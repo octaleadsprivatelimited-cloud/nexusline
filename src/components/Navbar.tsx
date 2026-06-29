@@ -16,7 +16,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/85 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0b1e3f] text-white backdrop-blur-md">
       <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         <Link to="/" aria-label="Nexus Line Furniture — home" className="flex items-center">
           <img
@@ -31,8 +31,8 @@ export function Navbar() {
             <Link
               key={link.to}
               to={link.to}
-              activeProps={{ className: "text-primary" }}
-              className="text-[13px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-primary"
+              activeProps={{ className: "!text-white" }}
+              className="text-[13px] uppercase tracking-[0.18em] text-white/70 transition-colors hover:text-white"
             >
               {link.label}
             </Link>
@@ -42,20 +42,20 @@ export function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           <a
             href="tel:+971568277869"
-            className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-primary"
+            className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/80 hover:text-white"
           >
             <Phone className="h-3.5 w-3.5" /> +971 56 827 7869
           </a>
           <Link
             to="/contact"
-            className="rounded-none border border-primary bg-primary px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.2em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
+            className="rounded-none border border-white bg-white px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#0b1e3f] transition-colors hover:bg-transparent hover:text-white"
           >
             Get a Quote
           </Link>
         </div>
 
         <button
-          className="lg:hidden"
+          className="lg:hidden text-white"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -71,7 +71,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-0 right-0 top-full origin-top overflow-hidden border-b border-border/60 bg-background/95 shadow-xl backdrop-blur-md lg:hidden"
+            className="absolute left-0 right-0 top-full origin-top overflow-hidden border-b border-white/10 bg-[#0b1e3f] text-white shadow-xl lg:hidden"
           >
             <nav className="flex flex-col gap-5 px-6 py-6">
               {links.map((link, i) => (
@@ -84,7 +84,7 @@ export function Navbar() {
                   <Link
                     to={link.to}
                     onClick={() => setOpen(false)}
-                    className="text-sm uppercase tracking-[0.2em] text-muted-foreground hover:text-primary"
+                    className="text-sm uppercase tracking-[0.2em] text-white/80 hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -98,7 +98,7 @@ export function Navbar() {
                 <Link
                   to="/contact"
                   onClick={() => setOpen(false)}
-                  className="mt-2 inline-flex w-fit border border-primary bg-primary px-5 py-2.5 text-[11px] uppercase tracking-[0.2em] text-primary-foreground"
+                  className="mt-2 inline-flex w-fit border border-white bg-white px-5 py-2.5 text-[11px] uppercase tracking-[0.2em] text-[#0b1e3f]"
                 >
                   Get a Quote
                 </Link>
