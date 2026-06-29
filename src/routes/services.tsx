@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { services } from "@/lib/services-data";
+import heroServices from "@/assets/hero-services.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -19,8 +20,16 @@ export const Route = createFileRoute("/services")({
 function Services() {
   return (
     <>
-      <section className="border-b border-border/60">
-        <div className="mx-auto max-w-7xl px-6 pb-20 pt-28">
+      <section className="relative isolate overflow-hidden border-b border-border/60">
+        <img
+          src={heroServices}
+          alt="HPL cubicle, locker and partition finishes"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
+        <div className="mx-auto max-w-7xl px-6 pb-24 pt-32 md:pb-32 md:pt-40">
           <span className="text-xs uppercase tracking-[0.3em] text-primary">Services</span>
           <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.05] text-foreground md:text-6xl">
             Everything HPL, end-to-end.

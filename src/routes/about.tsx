@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import claddingImg from "@/assets/service-cladding.jpg";
+import heroAbout from "@/assets/hero-about.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -19,8 +20,16 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <>
-      <section className="border-b border-border/60">
-        <div className="mx-auto max-w-7xl px-6 pb-20 pt-28">
+      <section className="relative isolate overflow-hidden border-b border-border/60">
+        <img
+          src={heroAbout}
+          alt="Nexus Line Furniture workshop"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
+        <div className="mx-auto max-w-7xl px-6 pb-24 pt-32 md:pb-32 md:pt-40">
           <span className="text-xs uppercase tracking-[0.3em] text-primary">About the studio</span>
           <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.05] text-foreground md:text-6xl">
             A workshop built on craftsmanship, calibrated by engineering.
