@@ -7,6 +7,7 @@ export type ServiceDetail = {
   slug: string;
   title: string;
   tagline: string;
+  category: "washroom" | "office" | "interiors";
   img: string;
   body: string;
   bullets: string[];
@@ -22,6 +23,7 @@ export const services: ServiceDetail[] = [
     slug: "hpl-toilet-cubicles",
     title: "HPL Toilet Cubicles",
     tagline: "Compact-grade washroom cubicles built to outlast the building.",
+    category: "washroom",
     img: cubiclesImg,
     body: "Floor-to-ceiling and standard-height cubicles in 12 mm compact HPL, with stainless steel hardware and concealed fixings.",
     bullets: ["12mm compact-grade HPL", "Marine-grade stainless hardware", "200+ finishes & woodgrains"],
@@ -53,6 +55,7 @@ export const services: ServiceDetail[] = [
     slug: "hpl-urinal-partitions",
     title: "HPL Urinal Partitions & Screens",
     tagline: "Hygienic urinal screens engineered for high-traffic restrooms.",
+    category: "washroom",
     img: cubiclesImg,
     body: "Sanitary urinal screens with chamfered edges and anti-vandal fixings — engineered for high-traffic public restrooms.",
     bullets: ["Hygienic, non-porous surface", "Floor & wall mounting options", "Custom heights & widths"],
