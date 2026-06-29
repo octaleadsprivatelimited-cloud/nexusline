@@ -22,20 +22,20 @@ function Contact() {
   return (
     <>
       <section className="border-b border-border/60">
-        <div className="mx-auto max-w-7xl px-6 pb-20 pt-28">
-          <span className="text-xs uppercase tracking-[0.3em] text-primary">Get in touch</span>
-          <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.05] text-foreground md:text-6xl">
+        <div className="mx-auto max-w-7xl px-5 pb-12 pt-20 sm:px-6 sm:pb-20 sm:pt-28">
+          <span className="text-[11px] uppercase tracking-[0.3em] text-primary sm:text-xs">Get in touch</span>
+          <h1 className="mt-4 max-w-4xl font-serif text-[2.25rem] leading-[1.1] text-foreground sm:mt-6 sm:text-5xl md:text-6xl">
             Let's discuss your project.
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:mt-6 sm:text-base">
             Share a few details and our team will respond within one business
             day with a tailored quote and, where helpful, a free site visit.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-16 px-6 py-24 lg:grid-cols-[1fr_1.3fr]">
-        <div className="space-y-8">
+      <section className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-6 sm:py-24 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+        <div className="order-2 space-y-6 sm:space-y-8 lg:order-1">
           <div className="border-l-2 border-primary bg-card/40 p-6">
             <p className="text-xs uppercase tracking-[0.25em] text-primary">Speak with our team</p>
             <p className="mt-3 font-serif text-2xl leading-snug text-foreground">
@@ -80,7 +80,7 @@ function Contact() {
             e.preventDefault();
             setSent(true);
           }}
-          className="space-y-6 border border-border/60 bg-card p-8 md:p-10"
+          className="order-1 space-y-5 border border-border/60 bg-card p-5 sm:space-y-6 sm:p-8 md:p-10 lg:order-2"
         >
           <div className="grid gap-6 sm:grid-cols-2">
             <Field label="Name" name="name" />
