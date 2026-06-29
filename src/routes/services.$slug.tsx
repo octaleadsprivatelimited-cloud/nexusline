@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowRight, ArrowLeft, Check } from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
+import { useState } from "react";
 import { getService, services, type ServiceDetail as ServiceData } from "@/lib/services-data";
 
 export const Route = createFileRoute("/services/$slug")({
@@ -145,19 +146,7 @@ function ServiceDetail() {
               </dl>
             </div>
 
-            <div className="border border-primary bg-primary/5 p-8">
-              <h3 className="font-serif text-2xl text-foreground">Request a Quote</h3>
-              <p className="mt-3 text-sm text-muted-foreground">
-                Share your drawings or a quick brief — we'll come back with a
-                transparent estimate within 24 hours.
-              </p>
-              <Link
-                to="/contact"
-                className="mt-6 inline-flex items-center gap-3 border border-primary bg-primary px-6 py-3 text-[11px] font-medium uppercase tracking-[0.25em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
-              >
-                Talk to a Specialist <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
+            <QuoteForm serviceTitle={service.title} />
           </aside>
         </div>
       </section>
@@ -191,5 +180,59 @@ function ServiceDetail() {
         </div>
       </section>
     </>
+  );
+}
+
+function QuoteForm({ serviceTitle }: { serviceTitle: string }) {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [sent, setSent] = useState(false);
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmedName = name.trim().slice(0, 100);
+    const trimmedPhone = phone.trim().slice(0, 30);
+    if (!trimmedName || !trimmedPhone) return;
+    const text = encodeURIComponent(
+      `Hi Nexus Line Furniture,\n\nI'd like a quote for: ${serviceTitle}\nName: ${trimmedName}\nPhone: ${trimmedPhone}`,
+    );
+    window.open(`https://wa.me/971568277869?text=${text}`, "_blank", "noopener");
+    setSent(true);
+  };
+
+  return (
+    <div className="border border-primary bg-primary/5 p-8">
+      <h3 className="font-serif text-2xl text-foreground">Request a Quote</h3>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Leave your name and number — our team replies within 24 hours.
+      </p>
+      <form onSubmit={onSubmit} className="mt-5 space-y-3">
+        <input
+          type="text"
+          required
+          maxLength={100}
+          placeholder="Your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+        />
+        <input
+          type="tel"
+          required
+          maxLength={30}
+          pattern="[0-9+\-\s()]{6,30}"
+          placeholder="Phone number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          className="w-full border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+        />
+        <button
+          type="submit"
+          className="w-full border border-primary bg-primary px-6 py-3 text-[11px] font-medium uppercase tracking-[0.25em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
+        >
+          {sent ? "Sent — we'll be in touch" : "Request Quote"}
+        </button>
+      </form>
+    </div>
   );
 }
