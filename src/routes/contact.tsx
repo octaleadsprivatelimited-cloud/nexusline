@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, ArrowRight, Clock } from "lucide-react";
 import { useState } from "react";
 import heroContact from "@/assets/hero-contact.jpg";
+import claddingImg from "@/assets/service-cladding.jpg";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -43,7 +44,10 @@ function Contact() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-6 sm:py-24 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+      <section className="relative isolate overflow-hidden">
+        <img src={claddingImg} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.05]" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/92 to-background" />
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-6 sm:py-24 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
         <div className="order-2 space-y-6 sm:space-y-8 lg:order-1">
           <div className="border-l-2 border-primary bg-card/40 p-6">
             <p className="text-xs uppercase tracking-[0.25em] text-primary">Speak with our team</p>
@@ -121,6 +125,7 @@ function Contact() {
             </p>
           )}
         </form>
+        </div>
       </section>
     </>
   );

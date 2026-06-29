@@ -50,7 +50,10 @@ function Projects() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-24">
+      <section className="relative isolate overflow-hidden">
+        <img src={heroImg} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.05]" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/90 to-background" />
+        <div className="relative mx-auto max-w-7xl px-6 py-24">
         <div className="grid auto-rows-[280px] grid-cols-1 gap-4 md:grid-cols-3 md:auto-rows-[260px]">
           {projects.map((p) => (
             <div
@@ -89,6 +92,7 @@ function Projects() {
           >
             Request a Portfolio
           </Link>
+        </div>
         </div>
       </section>
     </>

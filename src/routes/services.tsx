@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { services } from "@/lib/services-data";
 import heroServices from "@/assets/hero-services.jpg";
+import claddingImg from "@/assets/service-cladding.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -42,7 +43,10 @@ function Services() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-24">
+      <section className="relative isolate overflow-hidden">
+        <img src={claddingImg} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.06]" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/90 to-background" />
+        <div className="relative mx-auto max-w-7xl px-6 py-24">
         <div className="grid gap-10 md:grid-cols-2">
           {services.map((s) => (
             <article key={s.slug} className="flex flex-col border border-border/60 bg-card">
@@ -92,6 +96,7 @@ function Services() {
           >
             Talk to a Specialist <ArrowRight className="h-4 w-4" />
           </Link>
+        </div>
         </div>
       </section>
     </>
