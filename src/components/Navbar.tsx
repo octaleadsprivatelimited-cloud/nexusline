@@ -44,7 +44,7 @@ export function Navbar() {
             href="tel:+971000000000"
             className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-primary"
           >
-            <Phone className="h-3.5 w-3.5" /> +971 00 000 0000
+            <Phone className="h-3.5 w-3.5" /> +971 56 827 7869
           </a>
           <Link
             to="/contact"
