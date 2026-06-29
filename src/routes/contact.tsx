@@ -38,7 +38,7 @@ function Contact() {
         <div className="space-y-8">
           {[
             { icon: MapPin, label: "Studio", value: "Dubai, United Arab Emirates" },
-            { icon: Phone, label: "Phone", value: "+971 00 000 0000" },
+            { icon: Phone, label: "Phone", value: "+971 56 827 7869" },
             { icon: Mail, label: "Email", value: "sales@nexuslinefurniture.ae" },
           ].map(({ icon: Icon, label, value }) => (
             <div key={label} className="border-b border-border/60 pb-6">

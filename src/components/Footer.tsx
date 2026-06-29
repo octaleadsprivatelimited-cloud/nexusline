@@ -37,7 +37,7 @@ export function Footer() {
                 <MapPin className="mt-0.5 h-4 w-4 text-primary" /> Dubai, United Arab Emirates
               </li>
               <li className="flex items-start gap-2">
-                <Phone className="mt-0.5 h-4 w-4 text-primary" /> +971 00 000 0000
+                <Phone className="mt-0.5 h-4 w-4 text-primary" /> +971 56 827 7869
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="mt-0.5 h-4 w-4 text-primary" /> sales@nexuslinefurniture.ae
