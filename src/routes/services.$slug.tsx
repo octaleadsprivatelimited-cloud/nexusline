@@ -18,8 +18,19 @@ export const Route = createFileRoute("/services/$slug")({
         { name: "description", content: desc },
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
-        ...(s ? [{ property: "og:image", content: s.img }, { name: "twitter:image", content: s.img }] : []),
+        { property: "og:type", content: "article" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: desc },
+        ...(s
+          ? [
+              { property: "og:url", content: `/services/${s.slug}` },
+              { property: "og:image", content: s.img },
+              { name: "twitter:image", content: s.img },
+            ]
+          : []),
       ],
+      links: s ? [{ rel: "canonical", href: `/services/${s.slug}` }] : [],
     };
   },
   notFoundComponent: () => (
