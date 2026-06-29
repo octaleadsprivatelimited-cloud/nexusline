@@ -49,7 +49,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border/60 pt-6 sm:flex-row">
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+          <p className="whitespace-nowrap text-[10px] uppercase tracking-[0.15em] text-muted-foreground sm:text-xs sm:tracking-[0.2em]">
             &copy; {new Date().getFullYear()} Nexus Line Furniture. All rights reserved.
           </p>
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
