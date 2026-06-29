@@ -22,7 +22,7 @@ export function Navbar() {
           <img
             src={logo.url}
             alt="Nexus Line Furniture"
-            className="h-10 w-auto sm:h-12"
+            className="h-20 w-auto sm:h-24 lg:h-28 max-h-[140%] -my-6 object-contain"
           />
         </Link>
 
