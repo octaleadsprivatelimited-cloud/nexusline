@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import logo from "../assets/nexus-logo.png.asset.json";
 
 function NotFoundComponent() {
   return (
@@ -85,13 +86,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Nexus Line Furniture — Luxury HPL Cubicles & Interiors" },
       { property: "og:description", content: "Premium HPL toilet cubicles, lockers, office partitions and wall cladding across the UAE." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:image", content: logo.url },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: logo.url },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "icon", type: "image/png", href: logo.url },
+      { rel: "apple-touch-icon", href: logo.url },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

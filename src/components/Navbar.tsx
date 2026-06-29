@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone } from "lucide-react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import logo from "@/assets/nexus-logo.png.asset.json";
 
 const links = [
   { to: "/", label: "Home" },
@@ -17,13 +18,12 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/85 backdrop-blur-md">
       <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-        <Link to="/" className="flex items-baseline gap-2">
-          <span className="font-serif text-2xl font-semibold tracking-tight text-foreground">
-            Nexus<span className="text-primary"> Line</span>
-          </span>
-          <span className="hidden text-[10px] uppercase tracking-[0.3em] text-muted-foreground sm:inline">
-            Furniture
-          </span>
+        <Link to="/" aria-label="Nexus Line Furniture — home" className="flex items-center">
+          <img
+            src={logo.url}
+            alt="Nexus Line Furniture"
+            className="h-10 w-auto sm:h-12"
+          />
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex">
