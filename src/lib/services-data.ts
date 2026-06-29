@@ -7,6 +7,7 @@ export type ServiceDetail = {
   slug: string;
   title: string;
   tagline: string;
+  category: "washroom" | "office" | "interiors";
   img: string;
   body: string;
   bullets: string[];
@@ -22,6 +23,7 @@ export const services: ServiceDetail[] = [
     slug: "hpl-toilet-cubicles",
     title: "HPL Toilet Cubicles",
     tagline: "Compact-grade washroom cubicles built to outlast the building.",
+    category: "washroom",
     img: cubiclesImg,
     body: "Floor-to-ceiling and standard-height cubicles in 12 mm compact HPL, with stainless steel hardware and concealed fixings.",
     bullets: ["12mm compact-grade HPL", "Marine-grade stainless hardware", "200+ finishes & woodgrains"],
@@ -53,6 +55,7 @@ export const services: ServiceDetail[] = [
     slug: "hpl-urinal-partitions",
     title: "HPL Urinal Partitions & Screens",
     tagline: "Hygienic urinal screens engineered for high-traffic restrooms.",
+    category: "washroom",
     img: cubiclesImg,
     body: "Sanitary urinal screens with chamfered edges and anti-vandal fixings — engineered for high-traffic public restrooms.",
     bullets: ["Hygienic, non-porous surface", "Floor & wall mounting options", "Custom heights & widths"],
@@ -80,6 +83,7 @@ export const services: ServiceDetail[] = [
     slug: "hpl-lockers",
     title: "HPL Lockers",
     tagline: "Modular locker walls for gyms, hotels, staff rooms and schools.",
+    category: "washroom",
     img: lockersImg,
     body: "Modular locker walls for gyms, hotels, staff rooms and schools — keyed, combination or RFID locking.",
     bullets: ["1-12 compartment configurations", "Ventilated or solid doors", "Cam, RFID & digital locks"],
@@ -108,6 +112,7 @@ export const services: ServiceDetail[] = [
     slug: "office-cubicles-partitions",
     title: "Office Cubicles & Partitions",
     tagline: "Acoustic workstations and meeting pods, built around your floorplate.",
+    category: "office",
     img: officeImg,
     body: "Acoustic workstations and meeting pods built around your floorplate, brand palette and workplace strategy.",
     bullets: ["Acoustic-rated panels", "Cable management built-in", "Glass, fabric & HPL combinations"],
@@ -135,6 +140,7 @@ export const services: ServiceDetail[] = [
     slug: "hpl-doors-wooden-works",
     title: "HPL Doors & Wooden Works",
     tagline: "Solid HPL doors, framed joinery and bespoke carpentry.",
+    category: "interiors",
     img: cubiclesImg,
     body: "Solid HPL doors, framed joinery and bespoke wooden works installed by our in-house carpentry crew.",
     bullets: ["Fire-rated options", "Custom ironmongery", "Site-finished and pre-finished"],
@@ -161,6 +167,7 @@ export const services: ServiceDetail[] = [
     slug: "hpl-desks-tabletops-benches",
     title: "HPL Desks, Tabletops & Benches",
     tagline: "Hard-wearing tabletops, benches and changing-room seating.",
+    category: "office",
     img: lockersImg,
     body: "Hard-wearing tabletops, benches and changing-room seating in HPL with steel or timber frames.",
     bullets: ["Scratch & heat resistant", "Indoor & semi-outdoor grade", "Custom edge profiles"],
@@ -187,6 +194,7 @@ export const services: ServiceDetail[] = [
     slug: "wall-cladding",
     title: "Wall Cladding",
     tagline: "Architectural wall panelling for lobbies, retail and hospitality.",
+    category: "interiors",
     img: claddingImg,
     body: "Architectural wall panelling in HPL, veneer and acoustic finishes for lobbies, retail and hospitality.",
     bullets: ["Concealed fixing systems", "Curved & faceted geometries", "Acoustic backing available"],
@@ -213,6 +221,7 @@ export const services: ServiceDetail[] = [
     slug: "interior-exterior-decor",
     title: "Interior & Exterior Decor",
     tagline: "End-to-end fit-out and exterior HPL facade detailing.",
+    category: "interiors",
     img: claddingImg,
     body: "End-to-end interior fit-out and exterior HPL facade detailing — one accountable partner, full handover.",
     bullets: ["Design + build", "MEP coordination", "Snag-free handover"],

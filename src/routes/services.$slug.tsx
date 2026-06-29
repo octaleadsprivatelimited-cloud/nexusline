@@ -53,7 +53,16 @@ export const Route = createFileRoute("/services/$slug")({
 
 function ServiceDetail() {
   const { service } = Route.useLoaderData() as { service: ServiceData };
-  const related = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const related = (() => {
+    const sameCat = services.filter(
+      (s) => s.slug !== service.slug && s.category === service.category,
+    );
+    if (sameCat.length >= 3) return sameCat.slice(0, 3);
+    const fillers = services.filter(
+      (s) => s.slug !== service.slug && s.category !== service.category,
+    );
+    return [...sameCat, ...fillers].slice(0, 3);
+  })();
 
   return (
     <>
