@@ -49,10 +49,22 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 overflow-hidden border-t border-border/60 pt-6 sm:flex-row">
-          <p className="whitespace-nowrap text-[9px] uppercase tracking-[0.1em] text-muted-foreground sm:text-xs sm:tracking-[0.2em]">
+          <p
+            className="whitespace-nowrap uppercase text-muted-foreground"
+            style={{
+              fontSize: "clamp(0.625rem, 1.6vw, 0.75rem)",
+              letterSpacing: "clamp(0.1em, 0.4vw, 0.2em)",
+            }}
+          >
             &copy; {new Date().getFullYear()} Nexus Line Furniture. All rights reserved.
           </p>
-          <p className="whitespace-nowrap text-[9px] uppercase tracking-[0.1em] text-muted-foreground sm:text-xs sm:tracking-[0.2em]">
+          <p
+            className="whitespace-nowrap uppercase text-muted-foreground"
+            style={{
+              fontSize: "clamp(0.625rem, 1.6vw, 0.75rem)",
+              letterSpacing: "clamp(0.1em, 0.4vw, 0.2em)",
+            }}
+          >
             Developed by{" "}
             <a
               href="https://www.octaleads.com"
