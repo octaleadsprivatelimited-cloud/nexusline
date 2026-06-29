@@ -16,7 +16,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0b1e3f] text-white backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#000932] text-white backdrop-blur-md">
       <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         <Link to="/" aria-label="Nexus Line Furniture — home" className="flex items-center">
           <img
@@ -48,7 +48,7 @@ export function Navbar() {
           </a>
           <Link
             to="/contact"
-            className="rounded-none border border-white bg-white px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#0b1e3f] transition-colors hover:bg-transparent hover:text-white"
+            className="rounded-none border border-white bg-white px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#000932] transition-colors hover:bg-transparent hover:text-white"
           >
             Get a Quote
           </Link>
@@ -71,7 +71,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-0 right-0 top-full origin-top overflow-hidden border-b border-white/10 bg-[#0b1e3f] text-white shadow-xl lg:hidden"
+            className="absolute left-0 right-0 top-full origin-top overflow-hidden border-b border-white/10 bg-[#000932] text-white shadow-xl lg:hidden"
           >
             <nav className="flex flex-col gap-5 px-6 py-6">
               {links.map((link, i) => (
@@ -98,7 +98,7 @@ export function Navbar() {
                 <Link
                   to="/contact"
                   onClick={() => setOpen(false)}
-                  className="mt-2 inline-flex w-fit border border-white bg-white px-5 py-2.5 text-[11px] uppercase tracking-[0.2em] text-[#0b1e3f]"
+                  className="mt-2 inline-flex w-fit border border-white bg-white px-5 py-2.5 text-[11px] uppercase tracking-[0.2em] text-[#000932]"
                 >
                   Get a Quote
                 </Link>
