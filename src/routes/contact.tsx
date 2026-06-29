@@ -37,15 +37,19 @@ function Contact() {
       <section className="mx-auto grid max-w-7xl gap-16 px-6 py-24 lg:grid-cols-[1fr_1.3fr]">
         <div className="space-y-8">
           {[
-            { icon: MapPin, label: "Studio", value: "Dubai, United Arab Emirates" },
-            { icon: Phone, label: "Phone", value: "+971 56 827 7869" },
-            { icon: Mail, label: "Email", value: "sales@nexuslinefurniture.ae" },
-          ].map(({ icon: Icon, label, value }) => (
+            { icon: MapPin, label: "Studio", value: "Dubai, United Arab Emirates", href: undefined as string | undefined },
+            { icon: Phone, label: "Phone", value: "+971 56 827 7869", href: "tel:+971568277869" },
+            { icon: Mail, label: "Email", value: "sales@nexuslinefurniture.ae", href: "mailto:sales@nexuslinefurniture.ae" },
+          ].map(({ icon: Icon, label, value, href }) => (
             <div key={label} className="border-b border-border/60 pb-6">
               <div className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-primary">
                 <Icon className="h-4 w-4" /> {label}
               </div>
-              <p className="mt-3 font-serif text-2xl text-foreground">{value}</p>
+              {href ? (
+                <a href={href} className="mt-3 block font-serif text-2xl text-foreground hover:text-primary">{value}</a>
+              ) : (
+                <p className="mt-3 font-serif text-2xl text-foreground">{value}</p>
+              )}
             </div>
           ))}
         </div>
