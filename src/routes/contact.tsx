@@ -125,6 +125,7 @@ function Contact() {
             </p>
           )}
         </form>
+        </div>
       </section>
     </>
   );
