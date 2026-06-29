@@ -53,7 +53,15 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Nexus Line Furniture. All rights reserved.
           </p>
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            nexuslinefurniture.ae
+            Developed by{" "}
+            <a
+              href="https://www.octaleads.com"
+              target="_blank"
+              rel="noopener"
+              className="text-primary hover:underline"
+            >
+              Octaleads Pvt Ltd.
+            </a>
           </p>
         </div>
       </div>
