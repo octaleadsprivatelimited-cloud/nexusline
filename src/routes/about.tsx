@@ -38,7 +38,16 @@ function About() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-16 px-6 py-24 lg:grid-cols-2">
+      <section className="relative isolate overflow-hidden">
+        <img
+          src={heroAbout}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.05]"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/95 to-background" />
+        <div className="absolute inset-x-0 top-1/3 -z-10 h-[420px] bg-[radial-gradient(ellipse_at_center,_color-mix(in_oklab,_var(--primary)_18%,_transparent),_transparent_70%)]" />
+        <div className="mx-auto grid max-w-7xl gap-16 px-6 py-24 lg:grid-cols-2">
         <img
           src={claddingImg}
           alt="Nexus Line Furniture workshop detail"
@@ -85,6 +94,7 @@ function About() {
           >
             Work with us <ArrowRight className="h-4 w-4" />
           </Link>
+        </div>
         </div>
       </section>
     </>
