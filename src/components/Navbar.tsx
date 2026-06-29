@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone } from "lucide-react";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const links = [
   { to: "/", label: "Home" },
@@ -15,7 +16,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+      <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         <Link to="/" className="flex items-baseline gap-2">
           <span className="font-serif text-2xl font-semibold tracking-tight text-foreground">
             Nexus<span className="text-primary"> Line</span>
@@ -62,29 +63,50 @@ export function Navbar() {
         </button>
       </div>
 
-      {open && (
-        <div className="border-t border-border/60 px-6 py-6 lg:hidden">
-          <nav className="flex flex-col gap-5">
-            {links.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                onClick={() => setOpen(false)}
-                className="text-sm uppercase tracking-[0.2em] text-muted-foreground hover:text-primary"
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute left-0 right-0 top-full origin-top overflow-hidden border-b border-border/60 bg-background/95 shadow-xl backdrop-blur-md lg:hidden"
+          >
+            <nav className="flex flex-col gap-5 px-6 py-6">
+              {links.map((link, i) => (
+                <motion.div
+                  key={link.to}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 + i * 0.05, duration: 0.25 }}
+                >
+                  <Link
+                    to={link.to}
+                    onClick={() => setOpen(false)}
+                    className="text-sm uppercase tracking-[0.2em] text-muted-foreground hover:text-primary"
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05 + links.length * 0.05, duration: 0.25 }}
               >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              to="/contact"
-              onClick={() => setOpen(false)}
-              className="mt-2 inline-flex w-fit border border-primary bg-primary px-5 py-2.5 text-[11px] uppercase tracking-[0.2em] text-primary-foreground"
-            >
-              Get a Quote
-            </Link>
-          </nav>
-        </div>
-      )}
+                <Link
+                  to="/contact"
+                  onClick={() => setOpen(false)}
+                  className="mt-2 inline-flex w-fit border border-primary bg-primary px-5 py-2.5 text-[11px] uppercase tracking-[0.2em] text-primary-foreground"
+                >
+                  Get a Quote
+                </Link>
+              </motion.div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
