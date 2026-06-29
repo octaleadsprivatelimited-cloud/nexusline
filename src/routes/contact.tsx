@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Phone, ArrowRight, Clock } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/contact")({
@@ -36,6 +36,12 @@ function Contact() {
 
       <section className="mx-auto grid max-w-7xl gap-16 px-6 py-24 lg:grid-cols-[1fr_1.3fr]">
         <div className="space-y-8">
+          <div className="border-l-2 border-primary bg-card/40 p-6">
+            <p className="text-xs uppercase tracking-[0.25em] text-primary">Speak with our team</p>
+            <p className="mt-3 font-serif text-2xl leading-snug text-foreground">
+              Planning a fit-out? Call us for a free consultation and same-day quote.
+            </p>
+          </div>
           {[
             { icon: MapPin, label: "Studio", value: "Dubai, United Arab Emirates", href: undefined as string | undefined },
             { icon: Phone, label: "Phone", value: "+971 56 827 7869", href: "tel:+971568277869" },
@@ -52,6 +58,21 @@ function Contact() {
               )}
             </div>
           ))}
+          <div className="border-b border-border/60 pb-6">
+            <div className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-primary">
+              <Clock className="h-4 w-4" /> Business Hours
+            </div>
+            <dl className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+              <div className="flex justify-between gap-6">
+                <dt>Saturday – Thursday</dt>
+                <dd className="text-foreground">9:00 AM – 7:00 PM</dd>
+              </div>
+              <div className="flex justify-between gap-6">
+                <dt>Friday</dt>
+                <dd className="text-foreground">Closed</dd>
+              </div>
+            </dl>
+          </div>
         </div>
 
         <form
