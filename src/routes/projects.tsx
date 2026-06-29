@@ -93,6 +93,7 @@ function Projects() {
             Request a Portfolio
           </Link>
         </div>
+        </div>
       </section>
     </>
   );
