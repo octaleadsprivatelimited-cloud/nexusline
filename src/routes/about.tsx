@@ -70,7 +70,7 @@ function About() {
             {[
               { k: "12+", v: "Years in the UAE" },
               { k: "850+", v: "Projects" },
-              { k: "60K m²", v: "HPL installed" },
+              { k: "15K m²", v: "HPL installed" },
               { k: "70+", v: "Specialists" },
             ].map((s) => (
               <div key={s.v}>
