@@ -154,7 +154,7 @@ function Index() {
 
 function HeroDoor() {
   return (
-    <section className="relative isolate min-h-[92vh] overflow-hidden bg-background [perspective:1800px]">
+    <section className="relative isolate min-h-[88svh] overflow-hidden bg-background [perspective:1800px] sm:min-h-[92vh]">
       {/* Reveal: full hero image, scaled in */}
       <motion.img
         src={heroImg}
@@ -212,17 +212,17 @@ function HeroDoor() {
       />
 
       {/* Foreground content */}
-      <div className="relative z-10 mx-auto flex min-h-[92vh] max-w-7xl flex-col justify-end px-6 pb-20 pt-32">
+      <div className="relative z-10 mx-auto flex min-h-[88svh] max-w-7xl flex-col justify-end px-5 pb-12 pt-24 sm:min-h-[92vh] sm:px-6 sm:pb-20 sm:pt-32">
         <motion.span
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.6 }}
-          className="text-xs uppercase tracking-[0.4em] text-primary"
+          className="text-[10px] uppercase tracking-[0.35em] text-primary sm:text-xs sm:tracking-[0.4em]"
         >
           HPL Specialists · United Arab Emirates
         </motion.span>
 
-        <h1 className="mt-6 max-w-4xl font-serif text-5xl font-medium leading-[1.05] text-foreground sm:text-6xl md:text-7xl lg:text-[88px]">
+        <h1 className="mt-5 max-w-4xl font-serif text-[2.5rem] font-medium leading-[1.05] text-foreground sm:mt-6 sm:text-6xl md:text-7xl lg:text-[88px]">
           {["Cubicles, lockers", "& interiors,"].map((line, i) => (
             <motion.span
               key={line}
@@ -248,7 +248,7 @@ function HeroDoor() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 2.2 }}
-          className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
+          className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:mt-8 sm:text-base md:text-lg"
         >
           Nexus Line Furniture designs, manufactures and installs premium HPL
           toilet cubicles, lockers, office partitions and architectural
@@ -259,18 +259,18 @@ function HeroDoor() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 2.4 }}
-          className="mt-10 flex flex-wrap items-center gap-4"
+          className="mt-8 flex flex-wrap items-center gap-3 sm:mt-10 sm:gap-4"
         >
           <Link
             to="/contact"
-            className="group inline-flex items-center gap-3 border border-primary bg-primary px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
+            className="group inline-flex items-center gap-2 border border-primary bg-primary px-5 py-3 text-[11px] font-medium uppercase tracking-[0.22em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary sm:gap-3 sm:px-7 sm:py-3.5 sm:tracking-[0.25em]"
           >
             Request a Quote
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
             to="/projects"
-            className="inline-flex items-center gap-3 border border-border px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] text-foreground transition-colors hover:border-primary hover:text-primary"
+            className="inline-flex items-center gap-2 border border-border px-5 py-3 text-[11px] font-medium uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary sm:gap-3 sm:px-7 sm:py-3.5 sm:tracking-[0.25em]"
           >
             View Projects
           </Link>
