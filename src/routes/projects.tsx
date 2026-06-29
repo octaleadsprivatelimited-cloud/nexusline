@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
+import heroProjects from "@/assets/hero-projects.jpg";
 import cubiclesImg from "@/assets/service-cubicles.jpg";
 import lockersImg from "@/assets/service-lockers.jpg";
 import officeImg from "@/assets/service-office.jpg";
@@ -32,8 +33,16 @@ const projects = [
 function Projects() {
   return (
     <>
-      <section className="border-b border-border/60">
-        <div className="mx-auto max-w-7xl px-6 pb-20 pt-28">
+      <section className="relative isolate overflow-hidden border-b border-border/60">
+        <img
+          src={heroProjects}
+          alt="Luxury hotel washroom fit-out by Nexus Line Furniture"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
+        <div className="mx-auto max-w-7xl px-6 pb-24 pt-32 md:pb-32 md:pt-40">
           <span className="text-xs uppercase tracking-[0.3em] text-primary">Selected projects</span>
           <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.05] text-foreground md:text-6xl">
             Fit-outs delivered across the UAE.

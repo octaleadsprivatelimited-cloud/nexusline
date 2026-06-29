@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, ArrowRight, Clock } from "lucide-react";
 import { useState } from "react";
+import heroContact from "@/assets/hero-contact.jpg";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -21,8 +22,16 @@ function Contact() {
 
   return (
     <>
-      <section className="border-b border-border/60">
-        <div className="mx-auto max-w-7xl px-5 pb-12 pt-20 sm:px-6 sm:pb-20 sm:pt-28">
+      <section className="relative isolate overflow-hidden border-b border-border/60">
+        <img
+          src={heroContact}
+          alt="Nexus Line Furniture studio reception"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
+        <div className="mx-auto max-w-7xl px-5 pb-16 pt-24 sm:px-6 sm:pb-24 sm:pt-32 md:pt-40">
           <span className="text-[11px] uppercase tracking-[0.3em] text-primary sm:text-xs">Get in touch</span>
           <h1 className="mt-4 max-w-4xl font-serif text-[2.25rem] leading-[1.1] text-foreground sm:mt-6 sm:text-5xl md:text-6xl">
             Let's discuss your project.
