@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import claddingImg from "@/assets/service-cladding.jpg";
 import heroAbout from "@/assets/hero-about.jpg";
-import { CountUp } from "@/components/CountUp";
+import { ScrollingNumber } from "@/components/ScrollingNumber";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -66,7 +66,7 @@ function About() {
             line you draw on day one is the line we hand back to you on
             handover.
           </p>
-          <div className="grid grid-cols-2 gap-6 pt-6">
+          <div className="grid grid-cols-4 gap-3 pt-6 sm:gap-6">
             {[
               { k: "12+", v: "Years in the UAE" },
               { k: "850+", v: "Projects" },
@@ -74,8 +74,8 @@ function About() {
               { k: "40+", v: "Specialists" },
             ].map((s) => (
               <div key={s.v}>
-                <CountUp value={s.k} className="block font-serif text-3xl text-primary" />
-                <div className="mt-1 text-xs uppercase tracking-[0.25em] text-muted-foreground">{s.v}</div>
+                <ScrollingNumber value={s.k} className="block font-serif text-2xl text-primary sm:text-3xl" />
+                <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground sm:text-xs sm:tracking-[0.25em]">{s.v}</div>
               </div>
             ))}
           </div>
