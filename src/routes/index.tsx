@@ -39,8 +39,10 @@ function Index() {
       <HeroDoor />
 
       {/* Stats strip */}
-      <section className="border-y border-border/60 bg-card/40">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-8 px-6 py-12 md:grid-cols-4">
+      <section className="relative isolate overflow-hidden border-y border-border/60 bg-card/40">
+        <img src={officeImg} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.07]" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/80 to-background" />
+        <div className="relative mx-auto grid max-w-7xl grid-cols-2 gap-y-8 px-6 py-12 md:grid-cols-4">
           {[
             { k: "12+", v: "Years of craft" },
             { k: "850+", v: "Projects delivered" },
@@ -104,8 +106,11 @@ function Index() {
       </section>
 
       {/* Why us */}
-      <section className="border-t border-border/60 bg-card/30">
-        <div className="mx-auto max-w-7xl px-6 py-28">
+      <section className="relative isolate overflow-hidden border-t border-border/60 bg-card/30">
+        <img src={claddingImg} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.06]" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/85 to-background" />
+        <div aria-hidden="true" className="pointer-events-none absolute -right-40 top-20 -z-10 h-[480px] w-[480px] rounded-full bg-primary/10 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-6 py-28">
           <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr]">
             <div>
               <span className="text-xs uppercase tracking-[0.3em] text-primary">Why Nexus Line</span>
@@ -133,8 +138,11 @@ function Index() {
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-6 py-28">
-        <div className="relative overflow-hidden border border-primary/30 bg-background p-12 md:p-20">
-          <div className="grid items-center gap-10 md:grid-cols-[1.5fr_1fr]">
+        <div className="relative isolate overflow-hidden border border-primary/30 bg-background p-12 md:p-20">
+          <img src={cubiclesImg} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.12]" />
+          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/90 to-background/70" />
+          <div aria-hidden="true" className="pointer-events-none absolute -left-32 -top-32 -z-10 h-[420px] w-[420px] rounded-full bg-primary/15 blur-3xl" />
+          <div className="relative grid items-center gap-10 md:grid-cols-[1.5fr_1fr]">
             <h2 className="font-serif text-4xl leading-tight text-foreground md:text-5xl">
               Have a project in mind? <span className="italic text-primary">Let's draw the lines.</span>
             </h2>
