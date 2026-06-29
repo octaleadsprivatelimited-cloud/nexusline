@@ -259,18 +259,18 @@ function HeroDoor() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 2.4 }}
-          className="mt-8 flex flex-wrap items-center gap-3 sm:mt-10 sm:gap-4"
+          className="mt-8 flex flex-row flex-nowrap items-center gap-3 sm:mt-10 sm:gap-4"
         >
           <Link
             to="/contact"
-            className="group inline-flex items-center gap-2 border border-primary bg-primary px-5 py-3 text-[11px] font-medium uppercase tracking-[0.22em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary sm:gap-3 sm:px-7 sm:py-3.5 sm:tracking-[0.25em]"
+            className="group inline-flex flex-1 items-center justify-center gap-2 border border-[#1d4fd7] bg-[#1d4fd7] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-[#163fb0] sm:flex-none sm:justify-start sm:gap-3 sm:px-7 sm:py-3.5 sm:tracking-[0.25em]"
           >
             Request a Quote
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 border border-border px-5 py-3 text-[11px] font-medium uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary sm:gap-3 sm:px-7 sm:py-3.5 sm:tracking-[0.25em]"
+            className="inline-flex flex-1 items-center justify-center gap-2 border border-[#f5c518] bg-[#f5c518] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.18em] text-[#0b1e3f] transition-colors hover:bg-[#e0b314] sm:flex-none sm:justify-start sm:gap-3 sm:px-7 sm:py-3.5 sm:tracking-[0.25em]"
           >
             View Projects
           </Link>
