@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Award, Hammer, Layers, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 import heroImg from "@/assets/hero.jpg";
 import cubiclesImg from "@/assets/service-cubicles.jpg";
 import lockersImg from "@/assets/service-lockers.jpg";
@@ -31,45 +32,7 @@ function Index() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden">
-        <img
-          src={heroImg}
-          alt="Luxury HPL cubicle interior by Nexus Line Furniture"
-          width={1920}
-          height={1280}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
-        <div className="relative mx-auto flex min-h-[88vh] max-w-7xl flex-col justify-end px-6 pb-20 pt-32">
-          <span className="text-xs uppercase tracking-[0.4em] text-primary">
-            HPL Specialists · United Arab Emirates
-          </span>
-          <h1 className="mt-6 max-w-4xl font-serif text-5xl font-medium leading-[1.05] text-foreground sm:text-6xl md:text-7xl lg:text-[88px]">
-            Cubicles, lockers &amp; interiors,
-            <span className="block italic text-primary">crafted in line.</span>
-          </h1>
-          <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Nexus Line Furniture designs, manufactures and installs premium HPL
-            toilet cubicles, lockers, office partitions and architectural
-            joinery for landmark projects across Dubai and the wider GCC.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-3 border border-primary bg-primary px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
-            >
-              Request a Quote
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-3 border border-border px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] text-foreground transition-colors hover:border-primary hover:text-primary"
-            >
-              View Projects
-            </Link>
-          </div>
-        </div>
-      </section>
+      <HeroDoor />
 
       {/* Stats strip */}
       <section className="border-y border-border/60 bg-card/40">
@@ -186,5 +149,133 @@ function Index() {
         </div>
       </section>
     </>
+  );
+}
+
+function HeroDoor() {
+  return (
+    <section className="relative isolate min-h-[92vh] overflow-hidden bg-background [perspective:1800px]">
+      {/* Reveal: full hero image, scaled in */}
+      <motion.img
+        src={heroImg}
+        alt="Luxury HPL cubicle interior by Nexus Line Furniture"
+        width={1920}
+        height={1280}
+        initial={{ scale: 1.15, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 2.4, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/40 to-background" />
+
+      {/* Two doors that swing open */}
+      <motion.div
+        initial={{ rotateY: 0 }}
+        animate={{ rotateY: -105 }}
+        transition={{ duration: 1.8, delay: 0.4, ease: [0.65, 0, 0.35, 1] }}
+        style={{ transformOrigin: "left center", backfaceVisibility: "hidden" }}
+        className="absolute inset-y-0 left-0 z-20 w-1/2 overflow-hidden border-r border-primary/30 shadow-2xl"
+      >
+        <img
+          src={heroImg}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-[200%] object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-foreground/30" />
+        <div className="absolute right-4 top-1/2 h-16 w-1.5 -translate-y-1/2 rounded-full bg-primary/80 shadow-lg" />
+      </motion.div>
+
+      <motion.div
+        initial={{ rotateY: 0 }}
+        animate={{ rotateY: 105 }}
+        transition={{ duration: 1.8, delay: 0.4, ease: [0.65, 0, 0.35, 1] }}
+        style={{ transformOrigin: "right center", backfaceVisibility: "hidden" }}
+        className="absolute inset-y-0 right-0 z-20 w-1/2 overflow-hidden border-l border-primary/30 shadow-2xl"
+      >
+        <img
+          src={heroImg}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-[200%] -translate-x-1/2 object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-l from-background/40 via-transparent to-foreground/30" />
+        <div className="absolute left-4 top-1/2 h-16 w-1.5 -translate-y-1/2 rounded-full bg-primary/80 shadow-lg" />
+      </motion.div>
+
+      {/* Center seam light */}
+      <motion.div
+        initial={{ opacity: 0, scaleY: 0.6 }}
+        animate={{ opacity: [0, 1, 0], scaleY: 1 }}
+        transition={{ duration: 1.6, delay: 0.3, times: [0, 0.4, 1] }}
+        className="absolute inset-y-0 left-1/2 z-30 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-primary to-transparent"
+      />
+
+      {/* Foreground content */}
+      <div className="relative z-10 mx-auto flex min-h-[92vh] max-w-7xl flex-col justify-end px-6 pb-20 pt-32">
+        <motion.span
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.6 }}
+          className="text-xs uppercase tracking-[0.4em] text-primary"
+        >
+          HPL Specialists · United Arab Emirates
+        </motion.span>
+
+        <h1 className="mt-6 max-w-4xl font-serif text-5xl font-medium leading-[1.05] text-foreground sm:text-6xl md:text-7xl lg:text-[88px]">
+          {["Cubicles, lockers", "& interiors,"].map((line, i) => (
+            <motion.span
+              key={line}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 1.7 + i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className="block"
+            >
+              {line}
+            </motion.span>
+          ))}
+          <motion.span
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 2.0, ease: [0.22, 1, 0.36, 1] }}
+            className="block italic text-primary"
+          >
+            crafted in line.
+          </motion.span>
+        </h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 2.2 }}
+          className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
+        >
+          Nexus Line Furniture designs, manufactures and installs premium HPL
+          toilet cubicles, lockers, office partitions and architectural
+          joinery for landmark projects across Dubai and the wider GCC.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 2.4 }}
+          className="mt-10 flex flex-wrap items-center gap-4"
+        >
+          <Link
+            to="/contact"
+            className="group inline-flex items-center gap-3 border border-primary bg-primary px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
+          >
+            Request a Quote
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+          <Link
+            to="/projects"
+            className="inline-flex items-center gap-3 border border-border px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] text-foreground transition-colors hover:border-primary hover:text-primary"
+          >
+            View Projects
+          </Link>
+        </motion.div>
+      </div>
+    </section>
   );
 }
