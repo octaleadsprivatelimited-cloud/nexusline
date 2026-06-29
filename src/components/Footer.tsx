@@ -1,10 +1,25 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin } from "lucide-react";
+import footerBg from "@/assets/hero-contact.jpg";
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-border/60 bg-background">
-      <div className="mx-auto max-w-7xl px-6 py-16">
+    <footer className="relative isolate w-full overflow-hidden border-t border-border/60 bg-background">
+      <img
+        src={footerBg}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.08]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/85 to-background"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-32 left-1/2 -z-10 h-[420px] w-[820px] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl"
+      />
+      <div className="relative mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-4">
           <div className="md:col-span-2">
             <Link to="/" className="font-serif text-2xl font-semibold text-foreground">
