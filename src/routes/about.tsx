@@ -75,16 +75,16 @@ function About() {
             line you draw on day one is the line we hand back to you on
             handover.
           </p>
-          <div className="grid grid-cols-4 gap-3 pt-6 sm:gap-6">
+          <div className="grid grid-cols-4 gap-x-2 gap-y-4 pt-6 sm:gap-x-6">
             {[
               { k: "12+", v: "Years in the UAE" },
               { k: "850+", v: "Projects" },
               { k: "15K m²", v: "HPL installed" },
               { k: "70+", v: "Specialists" },
             ].map((s) => (
-              <div key={s.v}>
-                <ScrollingNumber value={s.k} className="block font-serif text-2xl text-primary sm:text-3xl" />
-                <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground sm:text-xs sm:tracking-[0.25em]">{s.v}</div>
+              <div key={s.v} className="min-w-0">
+                <ScrollingNumber value={s.k} className="block whitespace-nowrap font-serif text-xl leading-tight text-primary sm:text-3xl" />
+                <div className="mt-2 text-[10px] uppercase leading-snug tracking-[0.15em] text-muted-foreground sm:text-xs sm:tracking-[0.25em]">{s.v}</div>
               </div>
             ))}
           </div>
