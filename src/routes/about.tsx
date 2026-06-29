@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import claddingImg from "@/assets/service-cladding.jpg";
 import heroAbout from "@/assets/hero-about.jpg";
+import { CountUp } from "@/components/CountUp";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -73,7 +74,7 @@ function About() {
               { k: "40+", v: "Specialists" },
             ].map((s) => (
               <div key={s.v}>
-                <div className="font-serif text-3xl text-primary">{s.k}</div>
+                <CountUp value={s.k} className="block font-serif text-3xl text-primary" />
                 <div className="mt-1 text-xs uppercase tracking-[0.25em] text-muted-foreground">{s.v}</div>
               </div>
             ))}
