@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
-import { getService, services, type ServiceDetail } from "@/lib/services-data";
+import { getService, services, type ServiceDetail as ServiceData } from "@/lib/services-data";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -41,7 +41,7 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServiceDetail() {
-  const { service } = Route.useLoaderData() as { service: ServiceDetail };
+  const { service } = Route.useLoaderData() as { service: ServiceData };
   const related = services.filter((s) => s.slug !== service.slug).slice(0, 3);
 
   return (
