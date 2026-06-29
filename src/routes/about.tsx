@@ -71,7 +71,7 @@ function About() {
               { k: "12+", v: "Years in the UAE" },
               { k: "850+", v: "Projects" },
               { k: "60K m²", v: "HPL installed" },
-              { k: "40+", v: "Specialists" },
+              { k: "70+", v: "Specialists" },
             ].map((s) => (
               <div key={s.v}>
                 <ScrollingNumber value={s.k} className="block font-serif text-2xl text-primary sm:text-3xl" />
