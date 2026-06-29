@@ -6,6 +6,10 @@ import cubiclesImg from "@/assets/service-cubicles.jpg";
 import lockersImg from "@/assets/service-lockers.jpg";
 import officeImg from "@/assets/service-office.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
+import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
+
+const heroSlides = [heroImg, cubiclesImg, officeImg, claddingImg, lockersImg];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -153,19 +157,28 @@ function Index() {
 }
 
 function HeroDoor() {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setIdx((i) => (i + 1) % heroSlides.length), 5000);
+    return () => clearInterval(id);
+  }, []);
   return (
     <section className="relative isolate min-h-[88svh] overflow-hidden bg-background [perspective:1800px] sm:min-h-[92vh]">
-      {/* Reveal: full hero image, scaled in */}
-      <motion.img
-        src={heroImg}
-        alt="Luxury HPL cubicle interior by Nexus Line Furniture"
-        width={1920}
-        height={1280}
-        initial={{ scale: 1.15, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 2.4, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+      {/* Crossfading background slideshow */}
+      <AnimatePresence>
+        <motion.img
+          key={idx}
+          src={heroSlides[idx]}
+          alt="Luxury HPL interiors by Nexus Line Furniture"
+          width={1920}
+          height={1280}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ opacity: { duration: 1.4 }, scale: { duration: 6, ease: "linear" } }}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </AnimatePresence>
       <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/40 to-background" />
 
       {/* Two doors that swing open */}
