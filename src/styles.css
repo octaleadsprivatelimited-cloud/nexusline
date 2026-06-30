@@ -188,6 +188,36 @@
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+    animation-delay: 0ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Neutralize hover/focus scale + translate transforms (Tailwind hover:scale-*,
+     hover:-translate-*, group-hover variants, motion-safe utilities). */
+  *:hover,
+  *:focus,
+  *:focus-visible,
+  *:active,
+  .group:hover *,
+  .peer:hover ~ * {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* Kill Tailwind transition utilities and any lingering will-change hints. */
+  .transition,
+  [class*="transition-"],
+  [class*="duration-"],
+  [class*="animate-"],
+  [class*="hover:scale-"],
+  [class*="hover:-translate-"],
+  [class*="hover:translate-"],
+  [class*="hover:rotate-"],
+  [style*="transition"],
+  [style*="transform"] {
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
   }
 }
