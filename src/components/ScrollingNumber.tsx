@@ -9,6 +9,13 @@ export function ScrollingNumber({ value, className, duration = 2000 }: Props) {
 
   useEffect(() => {
     if (!ref.current) return;
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      setActive(true);
+      return;
+    }
     const io = new IntersectionObserver(
       ([e]) => e.isIntersecting && setActive(true),
       { threshold: 0.3 },
@@ -45,7 +52,11 @@ function Digit({ target, active, duration }: { target: number; active: boolean; 
         style={{
           display: "block",
           transform: `translateY(${active ? -target : 0}em)`,
-          transition: `transform ${duration}ms cubic-bezier(0.22, 1, 0.36, 1)`,
+          transition:
+            typeof window !== "undefined" &&
+            window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+              ? "none"
+              : `transform ${duration}ms cubic-bezier(0.22, 1, 0.36, 1)`,
         }}
       >
         {Array.from({ length: 10 }, (_, n) => (
