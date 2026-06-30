@@ -41,6 +41,12 @@ function Contact() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [values, setValues] = useState({ name: "", email: "", message: "" });
+  const requiredSchema = contactSchema.pick({ name: true, email: true, message: true });
+  const isValid = requiredSchema.safeParse(values).success;
+  const onChange = (k: "name" | "email" | "message") => (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => setValues((v) => ({ ...v, [k]: e.target.value }));
 
   return (
     <>
@@ -157,9 +163,9 @@ function Contact() {
           className="order-1 space-y-5 border border-border/60 bg-card p-5 sm:space-y-6 sm:p-8 md:p-10 lg:order-2"
         >
           <div className="grid gap-6 sm:grid-cols-2">
-            <Field label="Name" name="name" error={errors.name} />
+            <Field label="Name" name="name" error={errors.name} value={values.name} onChange={onChange("name")} />
             <Field label="Company" name="company" required={false} error={errors.company} />
-            <Field label="Email" name="email" type="email" error={errors.email} />
+            <Field label="Email" name="email" type="email" error={errors.email} value={values.email} onChange={onChange("email")} />
             <Field label="Phone" name="phone" type="tel" error={errors.phone} />
           </div>
           <Field label="Project type" name="type" placeholder="e.g. HPL toilet cubicles for a hotel" error={errors.type} />
@@ -170,6 +176,8 @@ function Contact() {
             <textarea
               name="message"
               rows={5}
+              value={values.message}
+              onChange={onChange("message")}
               aria-invalid={!!errors.message}
               className={`mt-2 w-full border bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary ${
                 errors.message ? "border-destructive" : "border-border"
