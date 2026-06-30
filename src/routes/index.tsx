@@ -234,54 +234,28 @@ function HeroDoor() {
 
       {/* Foreground content */}
       <div className="relative z-10 mx-auto flex min-h-[88svh] max-w-7xl flex-col justify-end px-5 pb-12 pt-24 sm:min-h-[92vh] sm:px-6 sm:pb-20 sm:pt-32">
-        <motion.span
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.6 }}
-          className="text-[10px] uppercase tracking-[0.35em] text-primary sm:text-xs sm:tracking-[0.4em]"
-        >
+        <span className="text-[10px] uppercase tracking-[0.35em] text-primary sm:text-xs sm:tracking-[0.4em]">
           HPL Specialists · United Arab Emirates
-        </motion.span>
+        </span>
 
         <h1 className="mt-5 max-w-4xl font-serif text-[2.5rem] font-medium leading-[1.05] text-foreground sm:mt-6 sm:text-6xl md:text-7xl lg:text-[88px]">
-          {["Cubicles, lockers", "& interiors,"].map((line, i) => (
-            <motion.span
-              key={line}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 1.7 + i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="block"
-            >
+          {["Cubicles, lockers", "& interiors,"].map((line) => (
+            <span key={line} className="block">
               {line}
-            </motion.span>
+            </span>
           ))}
-          <motion.span
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 2.0, ease: [0.22, 1, 0.36, 1] }}
-            className="block italic text-primary"
-          >
+          <span className="block italic text-primary">
             crafted in line.
-          </motion.span>
+          </span>
         </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2.2 }}
-          className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:mt-8 sm:text-base md:text-lg"
-        >
+        <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:mt-8 sm:text-base md:text-lg">
           Nexus Line Furniture designs, manufactures and installs premium HPL
           toilet cubicles, lockers, office partitions and architectural
           joinery for landmark projects across Dubai and the wider GCC.
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2.4 }}
-          className="mt-8 flex flex-row flex-nowrap items-center gap-3 sm:mt-10 sm:gap-4"
-        >
+        <div className="mt-8 flex flex-row flex-nowrap items-center gap-3 sm:mt-10 sm:gap-4">
           <Link
             to="/contact"
             className="group inline-flex flex-1 items-center justify-center gap-2 border border-[#1d4fd7] bg-[#1d4fd7] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-[#163fb0] sm:flex-none sm:justify-start sm:gap-3 sm:px-7 sm:py-3.5 sm:tracking-[0.25em]"
@@ -295,7 +269,7 @@ function HeroDoor() {
           >
             View Projects
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
