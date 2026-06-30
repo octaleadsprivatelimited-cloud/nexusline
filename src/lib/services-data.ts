@@ -2,6 +2,10 @@ import cubiclesImg from "@/assets/service-cubicles.jpg";
 import lockersImg from "@/assets/service-lockers.jpg";
 import officeImg from "@/assets/service-office.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
+import urinalImg from "@/assets/service-urinal.jpg";
+import doorsImg from "@/assets/service-doors.jpg";
+import desksImg from "@/assets/service-desks.jpg";
+import decorImg from "@/assets/service-decor.jpg";
 
 export type ServiceDetail = {
   slug: string;
@@ -56,7 +60,7 @@ export const services: ServiceDetail[] = [
     title: "HPL Urinal Partitions & Screens",
     tagline: "Hygienic urinal screens engineered for high-traffic restrooms.",
     category: "washroom",
-    img: cubiclesImg,
+    img: urinalImg,
     body: "Sanitary urinal screens with chamfered edges and anti-vandal fixings — engineered for high-traffic public restrooms.",
     bullets: ["Hygienic, non-porous surface", "Floor & wall mounting options", "Custom heights & widths"],
     overview: [
@@ -141,7 +145,7 @@ export const services: ServiceDetail[] = [
     title: "HPL Doors & Wooden Works",
     tagline: "Solid HPL doors, framed joinery and bespoke carpentry.",
     category: "interiors",
-    img: cubiclesImg,
+    img: doorsImg,
     body: "Solid HPL doors, framed joinery and bespoke wooden works installed by our in-house carpentry crew.",
     bullets: ["Fire-rated options", "Custom ironmongery", "Site-finished and pre-finished"],
     overview: [
@@ -168,7 +172,7 @@ export const services: ServiceDetail[] = [
     title: "HPL Desks, Tabletops & Benches",
     tagline: "Hard-wearing tabletops, benches and changing-room seating.",
     category: "office",
-    img: lockersImg,
+    img: desksImg,
     body: "Hard-wearing tabletops, benches and changing-room seating in HPL with steel or timber frames.",
     bullets: ["Scratch & heat resistant", "Indoor & semi-outdoor grade", "Custom edge profiles"],
     overview: [
@@ -222,7 +226,7 @@ export const services: ServiceDetail[] = [
     title: "Interior & Exterior Decor",
     tagline: "End-to-end fit-out and exterior HPL facade detailing.",
     category: "interiors",
-    img: claddingImg,
+    img: decorImg,
     body: "End-to-end interior fit-out and exterior HPL facade detailing — one accountable partner, full handover.",
     bullets: ["Design + build", "MEP coordination", "Snag-free handover"],
     overview: [
