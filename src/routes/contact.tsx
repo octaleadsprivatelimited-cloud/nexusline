@@ -122,6 +122,13 @@ function Contact() {
             setError(null);
             const form = e.currentTarget;
             const fd = new FormData(form);
+            // Honeypot: real users never fill this hidden field.
+            // Formspree also drops submissions where `_gotcha` is non-empty.
+            if ((fd.get("_gotcha") as string)?.trim()) {
+              setSent(true);
+              form.reset();
+              return;
+            }
             const parsed = contactSchema.safeParse(Object.fromEntries(fd.entries()));
             if (!parsed.success) {
               const next: FieldErrors = {};
@@ -161,6 +168,15 @@ function Contact() {
           }}
           className="order-1 space-y-5 border border-border/60 bg-card p-5 sm:space-y-6 sm:p-8 md:p-10 lg:order-2"
         >
+          <input
+            type="text"
+            name="_gotcha"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="hidden"
+            style={{ position: "absolute", left: "-10000px", width: 1, height: 1, opacity: 0 }}
+          />
           <div className="grid gap-6 sm:grid-cols-2">
             <Field label="Name" name="name" error={errors.name} value={values.name} onChange={(e) => setField("name", e.target.value)} />
             <Field label="Company" name="company" required={false} error={errors.company} />
