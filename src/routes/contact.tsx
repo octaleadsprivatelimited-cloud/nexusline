@@ -44,9 +44,8 @@ function Contact() {
   const [values, setValues] = useState({ name: "", email: "", message: "" });
   const requiredSchema = contactSchema.pick({ name: true, email: true, message: true });
   const isValid = requiredSchema.safeParse(values).success;
-  const onChange = (k: "name" | "email" | "message") => (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => setValues((v) => ({ ...v, [k]: e.target.value }));
+  const setField = (k: "name" | "email" | "message", v: string) =>
+    setValues((s) => ({ ...s, [k]: v }));
 
   return (
     <>
@@ -163,9 +162,9 @@ function Contact() {
           className="order-1 space-y-5 border border-border/60 bg-card p-5 sm:space-y-6 sm:p-8 md:p-10 lg:order-2"
         >
           <div className="grid gap-6 sm:grid-cols-2">
-            <Field label="Name" name="name" error={errors.name} value={values.name} onChange={onChange("name")} />
+            <Field label="Name" name="name" error={errors.name} value={values.name} onChange={(e) => setField("name", e.target.value)} />
             <Field label="Company" name="company" required={false} error={errors.company} />
-            <Field label="Email" name="email" type="email" error={errors.email} value={values.email} onChange={onChange("email")} />
+            <Field label="Email" name="email" type="email" error={errors.email} value={values.email} onChange={(e) => setField("email", e.target.value)} />
             <Field label="Phone" name="phone" type="tel" error={errors.phone} />
           </div>
           <Field label="Project type" name="type" placeholder="e.g. HPL toilet cubicles for a hotel" error={errors.type} />
@@ -177,7 +176,7 @@ function Contact() {
               name="message"
               rows={5}
               value={values.message}
-              onChange={onChange("message")}
+              onChange={(e) => setField("message", e.target.value)}
               aria-invalid={!!errors.message}
               className={`mt-2 w-full border bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary ${
                 errors.message ? "border-destructive" : "border-border"
@@ -189,7 +188,7 @@ function Contact() {
           </div>
           <button
             type="submit"
-            disabled={sending}
+            disabled={sending || !isValid}
             className="inline-flex items-center gap-3 border border-primary bg-primary px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
           >
             {sending ? "Sending..." : "Send Enquiry"} <ArrowRight className="h-4 w-4" />
