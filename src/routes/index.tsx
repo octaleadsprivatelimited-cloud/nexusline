@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Award, Hammer, Layers, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import heroImg from "@/assets/hero.jpg";
 import cubiclesImg from "@/assets/service-cubicles.jpg";
 import lockersImg from "@/assets/service-lockers.jpg";
@@ -166,10 +166,12 @@ function Index() {
 
 function HeroDoor() {
   const [idx, setIdx] = useState(0);
+  const reduce = useReducedMotion();
   useEffect(() => {
+    if (reduce) return;
     const id = setInterval(() => setIdx((i) => (i + 1) % heroSlides.length), 5000);
     return () => clearInterval(id);
-  }, []);
+  }, [reduce]);
   return (
     <section className="relative isolate min-h-[88svh] overflow-hidden bg-background [perspective:1800px] sm:min-h-[92vh]">
       {/* Crossfading background slideshow */}
@@ -180,10 +182,10 @@ function HeroDoor() {
           alt="Luxury HPL interiors by Nexus Line Furniture"
           width={1920}
           height={1280}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ opacity: { duration: 1.4 }, scale: { duration: 6, ease: "linear" } }}
+          initial={reduce ? false : { opacity: 0, scale: 1.1 }}
+          animate={reduce ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+          exit={reduce ? { opacity: 1 } : { opacity: 0 }}
+          transition={reduce ? { duration: 0 } : { opacity: { duration: 1.4 }, scale: { duration: 6, ease: "linear" } }}
           className="absolute inset-0 h-full w-full object-cover"
         />
       </AnimatePresence>
@@ -191,9 +193,9 @@ function HeroDoor() {
 
       {/* Two doors that swing open */}
       <motion.div
-        initial={{ rotateY: 0 }}
+        initial={reduce ? { rotateY: -105 } : { rotateY: 0 }}
         animate={{ rotateY: -105 }}
-        transition={{ duration: 1.8, delay: 0.4, ease: [0.65, 0, 0.35, 1] }}
+        transition={reduce ? { duration: 0 } : { duration: 1.8, delay: 0.4, ease: [0.65, 0, 0.35, 1] }}
         style={{ transformOrigin: "left center", backfaceVisibility: "hidden" }}
         className="absolute inset-y-0 left-0 z-20 w-1/2 overflow-hidden border-r border-primary/30 shadow-2xl"
       >
@@ -208,9 +210,9 @@ function HeroDoor() {
       </motion.div>
 
       <motion.div
-        initial={{ rotateY: 0 }}
+        initial={reduce ? { rotateY: 105 } : { rotateY: 0 }}
         animate={{ rotateY: 105 }}
-        transition={{ duration: 1.8, delay: 0.4, ease: [0.65, 0, 0.35, 1] }}
+        transition={reduce ? { duration: 0 } : { duration: 1.8, delay: 0.4, ease: [0.65, 0, 0.35, 1] }}
         style={{ transformOrigin: "right center", backfaceVisibility: "hidden" }}
         className="absolute inset-y-0 right-0 z-20 w-1/2 overflow-hidden border-l border-primary/30 shadow-2xl"
       >
@@ -226,9 +228,9 @@ function HeroDoor() {
 
       {/* Center seam light */}
       <motion.div
-        initial={{ opacity: 0, scaleY: 0.6 }}
-        animate={{ opacity: [0, 1, 0], scaleY: 1 }}
-        transition={{ duration: 1.6, delay: 0.3, times: [0, 0.4, 1] }}
+        initial={reduce ? { opacity: 0 } : { opacity: 0, scaleY: 0.6 }}
+        animate={reduce ? { opacity: 0 } : { opacity: [0, 1, 0], scaleY: 1 }}
+        transition={reduce ? { duration: 0 } : { duration: 1.6, delay: 0.3, times: [0, 0.4, 1] }}
         className="absolute inset-y-0 left-1/2 z-30 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-primary to-transparent"
       />
 
