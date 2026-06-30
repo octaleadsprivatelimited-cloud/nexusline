@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Check } from "lucide-react";
 import { useState } from "react";
-import { getService, services, type ServiceDetail as ServiceData } from "@/lib/services-data";
+import { getService, type ServiceDetail as ServiceData } from "@/lib/services-data";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -54,16 +54,6 @@ export const Route = createFileRoute("/services/$slug")({
 
 function ServiceDetail() {
   const { service } = Route.useLoaderData() as { service: ServiceData };
-  const related = (() => {
-    const sameCat = services.filter(
-      (s) => s.slug !== service.slug && s.category === service.category,
-    );
-    if (sameCat.length >= 3) return sameCat.slice(0, 3);
-    const fillers = services.filter(
-      (s) => s.slug !== service.slug && s.category !== service.category,
-    );
-    return [...sameCat, ...fillers].slice(0, 3);
-  })();
 
   return (
     <>
@@ -148,35 +138,6 @@ function ServiceDetail() {
 
             <QuoteForm serviceTitle={service.title} />
           </aside>
-        </div>
-      </section>
-
-      <section className="border-t border-border/60 bg-card/40">
-        <div className="mx-auto max-w-7xl px-6 py-20">
-          <span className="text-xs uppercase tracking-[0.3em] text-primary">Related services</span>
-          <div className="mt-8 grid gap-8 md:grid-cols-3">
-            {related.map((r) => (
-              <Link
-                key={r.slug}
-                to="/services/$slug"
-                params={{ slug: r.slug }}
-                className="group border border-border/60 bg-background transition-colors hover:border-primary"
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={r.img}
-                    alt={r.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-xl text-foreground">{r.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{r.tagline}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
         </div>
       </section>
     </>
