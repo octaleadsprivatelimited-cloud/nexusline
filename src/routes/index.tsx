@@ -6,6 +6,8 @@ import cubiclesImg from "@/assets/service-cubicles.jpg";
 import lockersImg from "@/assets/service-lockers.jpg";
 import officeImg from "@/assets/service-office.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
+import urinalImg from "@/assets/service-urinal.jpg";
+import desksImg from "@/assets/service-desks.jpg";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
@@ -14,10 +16,10 @@ const heroSlides = [heroImg, cubiclesImg, officeImg, claddingImg, lockersImg];
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Nexus Line Furniture — Luxury HPL Cubicles & Interiors in Dubai" },
-      { name: "description", content: "Premium HPL toilet cubicles, lockers, office partitions, doors and wall cladding designed, manufactured and installed across the UAE." },
-      { property: "og:title", content: "Nexus Line Furniture — Luxury HPL Cubicles & Interiors" },
-      { property: "og:description", content: "Premium HPL toilet cubicles, lockers, partitions and wall cladding across the UAE." },
+      { title: "Nexus Line Furniture — Toilet Cubicles, Lockers, Vanities & Joinery in Dubai" },
+      { name: "description", content: "Toilet cubicles, lockers, vanities, urinal partitions, kitchen cabinets, office furniture, carpet tiles, wall cladding, IPS panels, lab furniture and solid surface worktops — manufactured and installed across the UAE." },
+      { property: "og:title", content: "Nexus Line Furniture — Cubicles, Lockers, Vanities & Joinery" },
+      { property: "og:description", content: "Cubicles, lockers, vanities, kitchen cabinets, office furniture, wall cladding, IPS panels and solid surface worktops across the UAE." },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -26,10 +28,17 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { title: "HPL Toilet Cubicles", img: cubiclesImg, blurb: "Moisture-proof, vandal-resistant cubicle systems engineered for hotels, malls and offices.", href: "/services" },
-  { title: "HPL Lockers", img: lockersImg, blurb: "Bespoke locker walls for gyms, staff rooms, schools and clubhouses — built to outlast.", href: "/services" },
-  { title: "Office Cubicles & Partitions", img: officeImg, blurb: "Acoustic workstations and partitions tailored to your floorplate and brand language.", href: "/services" },
-  { title: "Wall Cladding & Interiors", img: claddingImg, blurb: "Sculpted wall panelling, doors and joinery — a single workshop for the entire fit-out.", href: "/services" },
+  { title: "Toilet Cubicles", slug: "toilet-cubicles", img: cubiclesImg, blurb: "Moisture-proof, vandal-resistant cubicle systems engineered for hotels, malls and offices." },
+  { title: "Lockers", slug: "lockers", img: lockersImg, blurb: "Bespoke locker walls for gyms, staff rooms, schools and clubhouses — built to outlast." },
+  { title: "Vanities", slug: "vanities", img: cubiclesImg, blurb: "Custom washroom vanities and counters — coordinated with your cubicle finish." },
+  { title: "Urinal Partitions", slug: "urinal-partitions", img: urinalImg, blurb: "Hygienic urinal screens with sealed edges, built for high-traffic public restrooms." },
+  { title: "Kitchen Cabinets", slug: "kitchen-cabinets", img: officeImg, blurb: "Modular kitchen cabinetry in HPL, acrylic and lacquer with Hafele / Blum hardware." },
+  { title: "Office Furniture", slug: "office-furniture", img: desksImg, blurb: "Workstations, executive desks, meeting tables and storage — built and installed in-house." },
+  { title: "Carpet Tiles", slug: "carpet-tiles", img: officeImg, blurb: "Heavy-contract modular carpet tiles, supplied and installed for offices and schools." },
+  { title: "Wall Cladding", slug: "wall-cladding", img: claddingImg, blurb: "Architectural wall panelling on concealed sub-frames — HPL, veneer and acoustic finishes." },
+  { title: "IPS Panels", slug: "ips-panels", img: cubiclesImg, blurb: "Integrated Plumbing System panels — concealed pipework with full service access." },
+  { title: "Lab Furniture", slug: "lab-furniture", img: desksImg, blurb: "Chemical-resistant benches, fume hoods and storage for schools, R&D and QC labs." },
+  { title: "Solid Surface Worktops", slug: "solid-surface-worktops", img: claddingImg, blurb: "Seamless Corian-style worktops, vanities and reception counters with integrated basins." },
 ];
 
 function Index() {
@@ -79,7 +88,8 @@ function Index() {
         <div className="mt-14 grid gap-8 md:grid-cols-2">
           {services.map((s) => (
             <Link
-              to={s.href}
+              to="/services/$slug"
+              params={{ slug: s.slug }}
               key={s.title}
               className="group relative block overflow-hidden border border-border/60 bg-card"
             >
@@ -241,7 +251,7 @@ function HeroDoor() {
         </span>
 
         <h1 className="mt-5 max-w-4xl font-serif text-[2.5rem] font-medium leading-[1.05] text-foreground sm:mt-6 sm:text-6xl md:text-7xl lg:text-[88px]">
-          {["Cubicles, lockers", "& interiors,"].map((line) => (
+          {["Cubicles, vanities", "& worktops,"].map((line) => (
             <span key={line} className="block">
               {line}
             </span>
@@ -252,9 +262,10 @@ function HeroDoor() {
         </h1>
 
         <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:mt-8 sm:text-base md:text-lg">
-          Nexus Line Furniture designs, manufactures and installs premium HPL
-          toilet cubicles, lockers, office partitions and architectural
-          joinery for landmark projects across Dubai and the wider GCC.
+          Nexus Line Furniture designs, manufactures and installs toilet
+          cubicles, lockers, vanities, kitchen cabinets, office furniture,
+          wall cladding, IPS panels, lab furniture and solid surface worktops
+          for landmark projects across Dubai and the wider GCC.
         </p>
 
         <div className="mt-8 flex flex-row flex-nowrap items-center gap-3 sm:mt-10 sm:gap-4">
