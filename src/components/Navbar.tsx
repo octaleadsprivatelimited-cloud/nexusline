@@ -19,17 +19,17 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#000932] text-white backdrop-blur-md">
-      <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+      <div className="relative mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:h-16 sm:px-6">
         <Link to="/" aria-label="Nexus Line Furniture — home" className="flex items-center">
           <img
             src={logo.url}
             alt="Nexus Line Furniture"
-            className="h-20 w-auto sm:h-24 lg:h-28 max-h-[140%] -my-6 object-contain"
+            className="h-10 w-auto sm:h-12 object-contain"
           />
         </Link>
 
-        <nav className="hidden items-center gap-9 lg:flex">
-          <Link to="/" activeProps={{ className: "!text-white" }} className="text-[13px] uppercase tracking-[0.18em] text-white/70 transition-colors hover:text-white">Home</Link>
+        <nav className="hidden items-center gap-7 lg:flex">
+          <Link to="/" activeProps={{ className: "!text-white" }} className="text-[12px] uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-white">Home</Link>
           <div
             className="relative"
             onMouseEnter={() => setServicesOpen(true)}
@@ -38,7 +38,7 @@ export function Navbar() {
             <Link
               to="/services"
               activeProps={{ className: "!text-white" }}
-              className="flex items-center gap-1 text-[13px] uppercase tracking-[0.18em] text-white/70 transition-colors hover:text-white"
+              className="flex items-center gap-1 text-[12px] uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-white"
             >
               Services <ChevronDown className="h-3 w-3" />
             </Link>
@@ -71,7 +71,7 @@ export function Navbar() {
               key={link.to}
               to={link.to}
               activeProps={{ className: "!text-white" }}
-              className="text-[13px] uppercase tracking-[0.18em] text-white/70 transition-colors hover:text-white"
+              className="text-[12px] uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-white"
             >
               {link.label}
             </Link>
@@ -81,13 +81,13 @@ export function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           <a
             href="tel:+971568277869"
-            className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/80 hover:text-white"
+            className="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-white/80 hover:text-white"
           >
             <Phone className="h-3.5 w-3.5" /> +971 56 827 7869
           </a>
           <Link
             to="/contact"
-            className="rounded-none border border-white bg-white px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#000932] transition-colors hover:bg-transparent hover:text-white"
+            className="rounded-none border border-white bg-white px-4 py-2 text-[10px] font-medium uppercase tracking-[0.18em] text-[#000932] transition-colors hover:bg-transparent hover:text-white"
           >
             Get a Quote
           </Link>
