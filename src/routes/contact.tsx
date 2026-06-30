@@ -226,6 +226,8 @@ function Field({
   required = true,
   placeholder,
   error,
+  value,
+  onChange,
 }: {
   label: string;
   name: string;
@@ -233,6 +235,8 @@ function Field({
   required?: boolean;
   placeholder?: string;
   error?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
     <div>
@@ -243,6 +247,8 @@ function Field({
         type={type}
         name={name}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
         aria-invalid={!!error}
         aria-required={required}
         className={`mt-2 w-full border bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary ${
