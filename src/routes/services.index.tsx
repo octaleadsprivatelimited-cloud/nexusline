@@ -4,7 +4,7 @@ import { services } from "@/lib/services-data";
 import heroServices from "@/assets/hero-services.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
 
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       { title: "Services — HPL Cubicles, Lockers & Interiors | Nexus Line Furniture" },
