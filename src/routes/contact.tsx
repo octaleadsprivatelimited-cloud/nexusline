@@ -20,6 +20,8 @@ export const Route = createFileRoute("/contact")({
 
 function Contact() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   return (
     <>
@@ -89,9 +91,30 @@ function Contact() {
         </div>
 
         <form
-          onSubmit={(e) => {
+          action="https://formspree.io/f/mlgywbyj"
+          method="POST"
+          onSubmit={async (e) => {
             e.preventDefault();
-            setSent(true);
+            setError(null);
+            setSending(true);
+            const form = e.currentTarget;
+            try {
+              const res = await fetch("https://formspree.io/f/mlgywbyj", {
+                method: "POST",
+                headers: { Accept: "application/json" },
+                body: new FormData(form),
+              });
+              if (res.ok) {
+                setSent(true);
+                form.reset();
+              } else {
+                setError("Something went wrong. Please try again or call us.");
+              }
+            } catch {
+              setError("Network error. Please try again.");
+            } finally {
+              setSending(false);
+            }
           }}
           className="order-1 space-y-5 border border-border/60 bg-card p-5 sm:space-y-6 sm:p-8 md:p-10 lg:order-2"
         >
@@ -115,15 +138,17 @@ function Contact() {
           </div>
           <button
             type="submit"
+            disabled={sending}
             className="inline-flex items-center gap-3 border border-primary bg-primary px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
           >
-            Send Enquiry <ArrowRight className="h-4 w-4" />
+            {sending ? "Sending..." : "Send Enquiry"} <ArrowRight className="h-4 w-4" />
           </button>
           {sent && (
             <p className="text-sm text-primary">
               Thank you — your enquiry has been received. We'll be in touch shortly.
             </p>
           )}
+          {error && <p className="text-sm text-destructive">{error}</p>}
         </form>
         </div>
       </section>
