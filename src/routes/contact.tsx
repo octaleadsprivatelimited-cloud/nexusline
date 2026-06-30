@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, ArrowRight, Clock, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { z } from "zod";
 import heroContact from "@/assets/hero-contact.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
 
@@ -19,10 +20,27 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
+const contactSchema = z.object({
+  name: z.string().trim().min(2, "Please enter your name").max(100),
+  company: z.string().trim().max(100).optional().or(z.literal("")),
+  email: z.string().trim().email("Enter a valid email").max(255),
+  phone: z
+    .string()
+    .trim()
+    .min(7, "Enter a valid phone number")
+    .max(20)
+    .regex(/^[+\d\s()-]+$/, "Only digits, spaces and + ( ) -"),
+  type: z.string().trim().min(2, "Please describe the project type").max(150),
+  message: z.string().trim().min(10, "Please add a few more details").max(1000),
+});
+
+type FieldErrors = Partial<Record<keyof z.infer<typeof contactSchema>, string>>;
+
 function Contact() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<FieldErrors>({});
 
   return (
     <>
@@ -97,13 +115,26 @@ function Contact() {
           onSubmit={async (e) => {
             e.preventDefault();
             setError(null);
-            setSending(true);
             const form = e.currentTarget;
+            const fd = new FormData(form);
+            const parsed = contactSchema.safeParse(Object.fromEntries(fd.entries()));
+            if (!parsed.success) {
+              const next: FieldErrors = {};
+              for (const issue of parsed.error.issues) {
+                const key = issue.path[0] as keyof FieldErrors;
+                if (key && !next[key]) next[key] = issue.message;
+              }
+              setErrors(next);
+              toast.error("Please fix the highlighted fields");
+              return;
+            }
+            setErrors({});
+            setSending(true);
             try {
               const res = await fetch("https://formspree.io/f/mlgywbyj", {
                 method: "POST",
                 headers: { Accept: "application/json" },
-                body: new FormData(form),
+                body: fd,
               });
               if (res.ok) {
                 setSent(true);
@@ -126,12 +157,12 @@ function Contact() {
           className="order-1 space-y-5 border border-border/60 bg-card p-5 sm:space-y-6 sm:p-8 md:p-10 lg:order-2"
         >
           <div className="grid gap-6 sm:grid-cols-2">
-            <Field label="Name" name="name" />
-            <Field label="Company" name="company" required={false} />
-            <Field label="Email" name="email" type="email" />
-            <Field label="Phone" name="phone" />
+            <Field label="Name" name="name" error={errors.name} />
+            <Field label="Company" name="company" required={false} error={errors.company} />
+            <Field label="Email" name="email" type="email" error={errors.email} />
+            <Field label="Phone" name="phone" type="tel" error={errors.phone} />
           </div>
-          <Field label="Project type" name="type" placeholder="e.g. HPL toilet cubicles for a hotel" />
+          <Field label="Project type" name="type" placeholder="e.g. HPL toilet cubicles for a hotel" error={errors.type} />
           <div>
             <label className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
               Project details
@@ -139,9 +170,14 @@ function Contact() {
             <textarea
               name="message"
               rows={5}
-              required
-              className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary"
+              aria-invalid={!!errors.message}
+              className={`mt-2 w-full border bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary ${
+                errors.message ? "border-destructive" : "border-border"
+              }`}
             />
+            {errors.message && (
+              <p className="mt-1 text-xs text-destructive">{errors.message}</p>
+            )}
           </div>
           <button
             type="submit"
@@ -181,12 +217,14 @@ function Field({
   type = "text",
   required = true,
   placeholder,
+  error,
 }: {
   label: string;
   name: string;
   type?: string;
   required?: boolean;
   placeholder?: string;
+  error?: string;
 }) {
   return (
     <div>
@@ -196,10 +234,14 @@ function Field({
       <input
         type={type}
         name={name}
-        required={required}
         placeholder={placeholder}
-        className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary"
+        aria-invalid={!!error}
+        aria-required={required}
+        className={`mt-2 w-full border bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary ${
+          error ? "border-destructive" : "border-border"
+        }`}
       />
+      {error && <p className="mt-1 text-xs text-destructive">{error}</p>}
     </div>
   );
 }
