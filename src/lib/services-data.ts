@@ -1,10 +1,14 @@
 import cubiclesImg from "@/assets/service-cubicles.jpg";
 import lockersImg from "@/assets/service-lockers.jpg";
-import officeImg from "@/assets/service-office.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
 import urinalImg from "@/assets/service-urinal.jpg";
-import doorsImg from "@/assets/service-doors.jpg";
-import desksImg from "@/assets/service-desks.jpg";
+import vanitiesImg from "@/assets/service-vanities.jpg";
+import kitchenImg from "@/assets/service-kitchen.jpg";
+import officeFurnitureImg from "@/assets/service-office-furniture.jpg";
+import carpetImg from "@/assets/service-carpet.jpg";
+import ipsImg from "@/assets/service-ips.jpg";
+import labImg from "@/assets/service-lab.jpg";
+import solidSurfaceImg from "@/assets/service-solid-surface.jpg";
 
 export type ServiceDetail = {
   slug: string;
@@ -88,7 +92,7 @@ export const services: ServiceDetail[] = [
     title: "Vanities & Washroom Counters",
     tagline: "Bespoke vanity units in HPL, solid surface and stone composites.",
     category: "washroom",
-    img: cubiclesImg,
+    img: vanitiesImg,
     body: "Bespoke vanity units and washroom counters fabricated to match your cubicle finish — with under-mount or vessel basin cut-outs.",
     bullets: ["Solid surface or HPL tops", "Under-mount basin cut-outs", "Concealed brackets & aprons"],
     overview: [
@@ -170,7 +174,7 @@ export const services: ServiceDetail[] = [
     title: "Kitchen Cabinets",
     tagline: "Modular kitchen cabinetry for residential and commercial kitchens.",
     category: "interiors",
-    img: doorsImg,
+    img: kitchenImg,
     body: "Modular kitchen cabinetry in HPL, acrylic and lacquer finishes — built around your appliance plan and ergonomics.",
     bullets: ["HPL, acrylic & lacquer finishes", "Hafele / Blum hardware", "Soft-close drawers & lift-ups"],
     overview: [
@@ -197,7 +201,7 @@ export const services: ServiceDetail[] = [
     title: "Office Furniture",
     tagline: "Workstations, executive desks, meeting tables and storage units.",
     category: "office",
-    img: desksImg,
+    img: officeFurnitureImg,
     body: "Complete office furniture packages — workstations, executive desks, meeting tables, credenzas and storage — manufactured and installed in-house.",
     bullets: ["Workstations & executive desks", "Meeting & boardroom tables", "Storage, credenzas & pedestals"],
     overview: [
@@ -224,7 +228,7 @@ export const services: ServiceDetail[] = [
     title: "Carpet Tiles",
     tagline: "Commercial-grade modular carpet tiles, supplied and installed.",
     category: "interiors",
-    img: officeImg,
+    img: carpetImg,
     body: "Commercial-grade modular carpet tiles supplied and installed — easy to replace, ideal for raised-floor offices and high-traffic spaces.",
     bullets: ["Heavy-contract grade", "Hundreds of colours & patterns", "Tackifier or full-stick install"],
     overview: [
@@ -251,7 +255,7 @@ export const services: ServiceDetail[] = [
     title: "IPS Panels",
     tagline: "Integrated Plumbing System panels for concealed washroom services.",
     category: "washroom",
-    img: cubiclesImg,
+    img: ipsImg,
     body: "Integrated Plumbing System (IPS) panels in compact HPL — concealing pipework while allowing full service access.",
     bullets: ["Concealed pipework", "Removable access panels", "Coordinated with cubicles"],
     overview: [
@@ -278,7 +282,7 @@ export const services: ServiceDetail[] = [
     title: "Lab Furniture",
     tagline: "Laboratory benches, fume hoods and storage built for science.",
     category: "office",
-    img: desksImg,
+    img: labImg,
     body: "Laboratory benches, fume hood enclosures, sink units and storage — built with chemical-resistant tops and powder-coated steel frames.",
     bullets: ["Chemical-resistant tops", "Fume hoods & sink units", "Powder-coated steel frames"],
     overview: [
@@ -305,7 +309,7 @@ export const services: ServiceDetail[] = [
     title: "Solid Surface Worktops",
     tagline: "Seamless Corian-style worktops, vanities and reception counters.",
     category: "interiors",
-    img: claddingImg,
+    img: solidSurfaceImg,
     body: "Seamless solid surface worktops, vanity tops and reception counters — fabricated with invisible joints and integrated basins.",
     bullets: ["Seamless invisible joints", "Integrated basins & sinks", "Repairable & non-porous"],
     overview: [
