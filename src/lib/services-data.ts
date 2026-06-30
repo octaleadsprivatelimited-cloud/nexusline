@@ -5,7 +5,6 @@ import claddingImg from "@/assets/service-cladding.jpg";
 import urinalImg from "@/assets/service-urinal.jpg";
 import doorsImg from "@/assets/service-doors.jpg";
 import desksImg from "@/assets/service-desks.jpg";
-import decorImg from "@/assets/service-decor.jpg";
 
 export type ServiceDetail = {
   slug: string;
