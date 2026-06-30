@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, ArrowRight, Clock } from "lucide-react";
+import { Mail, MapPin, Phone, ArrowRight, Clock, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 import heroContact from "@/assets/hero-contact.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
 
@@ -107,6 +108,12 @@ function Contact() {
               if (res.ok) {
                 setSent(true);
                 form.reset();
+                toast.success("Enquiry sent", {
+                  description: "We'll be in touch within one business day.",
+                });
+                document
+                  .getElementById("contact-success")
+                  ?.scrollIntoView({ behavior: "smooth", block: "center" });
               } else {
                 setError("Something went wrong. Please try again or call us.");
               }
@@ -144,9 +151,21 @@ function Contact() {
             {sending ? "Sending..." : "Send Enquiry"} <ArrowRight className="h-4 w-4" />
           </button>
           {sent && (
-            <p className="text-sm text-primary">
-              Thank you — your enquiry has been received. We'll be in touch shortly.
-            </p>
+            <div
+              id="contact-success"
+              role="status"
+              aria-live="polite"
+              className="flex items-start gap-3 border border-primary/40 bg-primary/10 p-4"
+            >
+              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+              <div>
+                <p className="font-serif text-lg text-foreground">Thank you — your enquiry has been received.</p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Our team will reach out within one business day. For urgent requests, call{" "}
+                  <a href="tel:+971568277869" className="text-primary hover:underline">+971 56 827 7869</a>.
+                </p>
+              </div>
+            </div>
           )}
           {error && <p className="text-sm text-destructive">{error}</p>}
         </form>
