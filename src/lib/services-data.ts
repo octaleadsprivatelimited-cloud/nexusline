@@ -5,7 +5,6 @@ import claddingImg from "@/assets/service-cladding.jpg";
 import urinalImg from "@/assets/service-urinal.jpg";
 import doorsImg from "@/assets/service-doors.jpg";
 import desksImg from "@/assets/service-desks.jpg";
-import decorImg from "@/assets/service-decor.jpg";
 
 export type ServiceDetail = {
   slug: string;
@@ -24,8 +23,8 @@ export type ServiceDetail = {
 
 export const services: ServiceDetail[] = [
   {
-    slug: "hpl-toilet-cubicles",
-    title: "HPL Toilet Cubicles",
+    slug: "toilet-cubicles",
+    title: "Toilet Cubicles",
     tagline: "Compact-grade washroom cubicles built to outlast the building.",
     category: "washroom",
     img: cubiclesImg,
@@ -56,36 +55,8 @@ export const services: ServiceDetail[] = [
     ],
   },
   {
-    slug: "hpl-urinal-partitions",
-    title: "HPL Urinal Partitions & Screens",
-    tagline: "Hygienic urinal screens engineered for high-traffic restrooms.",
-    category: "washroom",
-    img: urinalImg,
-    body: "Sanitary urinal screens with chamfered edges and anti-vandal fixings — engineered for high-traffic public restrooms.",
-    bullets: ["Hygienic, non-porous surface", "Floor & wall mounting options", "Custom heights & widths"],
-    overview: [
-      "Compact HPL urinal screens with chamfered, sealed edges that resist moisture, graffiti and impact — the right call for malls, schools and transit washrooms.",
-      "Available in wall-mounted, floor-mounted and floor-to-ceiling configurations with anti-vandal stainless fixings.",
-    ],
-    specs: [
-      { label: "Panel Thickness", value: "12 mm compact HPL" },
-      { label: "Standard Size", value: "400 × 900 mm (custom available)" },
-      { label: "Mounting", value: "Wall, floor or pedestal" },
-      { label: "Edge", value: "Sealed & chamfered" },
-    ],
-    applications: ["Schools", "Stadiums & arenas", "Malls", "Mosques", "Public restrooms"],
-    process: [
-      { step: "Site Survey", detail: "Measurement and mounting feasibility." },
-      { step: "Fabrication", detail: "CNC-cut and edge-sealed in our workshop." },
-      { step: "Installation", detail: "Fixed with concealed stainless brackets." },
-    ],
-    faqs: [
-      { q: "Are the screens easy to clean?", a: "Yes — the non-porous HPL surface is wipe-clean and resistant to standard washroom chemicals." },
-    ],
-  },
-  {
-    slug: "hpl-lockers",
-    title: "HPL Lockers",
+    slug: "lockers",
+    title: "Lockers",
     tagline: "Modular locker walls for gyms, hotels, staff rooms and schools.",
     category: "washroom",
     img: lockersImg,
@@ -113,85 +84,58 @@ export const services: ServiceDetail[] = [
     ],
   },
   {
-    slug: "office-cubicles-partitions",
-    title: "Office Cubicles & Partitions",
-    tagline: "Acoustic workstations and meeting pods, built around your floorplate.",
-    category: "office",
-    img: officeImg,
-    body: "Acoustic workstations and meeting pods built around your floorplate, brand palette and workplace strategy.",
-    bullets: ["Acoustic-rated panels", "Cable management built-in", "Glass, fabric & HPL combinations"],
+    slug: "vanities",
+    title: "Vanities & Washroom Counters",
+    tagline: "Bespoke vanity units in HPL, solid surface and stone composites.",
+    category: "washroom",
+    img: cubiclesImg,
+    body: "Bespoke vanity units and washroom counters fabricated to match your cubicle finish — with under-mount or vessel basin cut-outs.",
+    bullets: ["Solid surface or HPL tops", "Under-mount basin cut-outs", "Concealed brackets & aprons"],
     overview: [
-      "Bespoke workstation systems combining HPL, fabric-wrapped acoustic panels and glazing — designed around how your teams actually work.",
-      "All cabling and power routing is concealed inside the partition system for a clean, future-proof finish.",
+      "Custom washroom vanities engineered to coordinate with your cubicles and cladding — fabricated from solid surface, compact HPL or stone composite tops on concealed steel sub-frames.",
     ],
     specs: [
-      { label: "Panel Heights", value: "1200 / 1600 / 2100 mm" },
-      { label: "Acoustic Rating", value: "Up to 35 dB reduction" },
-      { label: "Materials", value: "HPL, fabric, glass, veneer" },
-      { label: "Power", value: "Integrated raceway & GPOs" },
+      { label: "Top Material", value: "Solid surface / 12 mm HPL / quartz" },
+      { label: "Basin Mounting", value: "Under-mount, vessel or integrated" },
+      { label: "Apron / Skirt", value: "HPL or matching top material" },
+      { label: "Sub-frame", value: "Powder-coated steel, wall-anchored" },
     ],
-    applications: ["Open-plan offices", "Call centres", "Coworking spaces", "Meeting pods & phone booths"],
+    applications: ["Hotel washrooms", "Office floors", "Malls & retail", "Schools"],
     process: [
-      { step: "Workplace Audit", detail: "Headcount, density and acoustic needs." },
-      { step: "Space Planning", detail: "2D and 3D layouts with finish samples." },
-      { step: "Installation", detail: "Phased install around live operations." },
+      { step: "Survey", detail: "Site dimensions, plumbing rough-ins and basin selection." },
+      { step: "Fabrication", detail: "CNC-cut tops and seamless joints in our workshop." },
+      { step: "Install", detail: "Sub-frame anchored, top set and sealed to wall." },
     ],
     faqs: [
-      { q: "Can you work after hours?", a: "Yes — we routinely install over weekends and night shifts to minimise downtime." },
+      { q: "Can vanities match our cubicle finish?", a: "Yes — we fabricate vanities from the same HPL or solid surface range as your cubicles for a coordinated look." },
     ],
   },
   {
-    slug: "hpl-doors-wooden-works",
-    title: "HPL Doors & Wooden Works",
-    tagline: "Solid HPL doors, framed joinery and bespoke carpentry.",
-    category: "interiors",
-    img: doorsImg,
-    body: "Solid HPL doors, framed joinery and bespoke wooden works installed by our in-house carpentry crew.",
-    bullets: ["Fire-rated options", "Custom ironmongery", "Site-finished and pre-finished"],
+    slug: "urinal-partitions",
+    title: "Urinal Partitions & Screens",
+    tagline: "Hygienic urinal screens engineered for high-traffic restrooms.",
+    category: "washroom",
+    img: urinalImg,
+    body: "Sanitary urinal screens with chamfered edges and anti-vandal fixings — engineered for high-traffic public restrooms.",
+    bullets: ["Hygienic, non-porous surface", "Floor & wall mounting options", "Custom heights & widths"],
     overview: [
-      "Heavy-duty HPL doors and custom joinery handled entirely by our in-house carpentry team — from a single bathroom door to a full hotel guest-room package.",
+      "Compact HPL urinal screens with chamfered, sealed edges that resist moisture, graffiti and impact — the right call for malls, schools and transit washrooms.",
+      "Available in wall-mounted, floor-mounted and floor-to-ceiling configurations with anti-vandal stainless fixings.",
     ],
     specs: [
-      { label: "Door Leaf", value: "40–55 mm HPL faced" },
-      { label: "Fire Rating", value: "30 / 60 / 90 minutes (optional)" },
-      { label: "Frames", value: "Steel, aluminium or hardwood" },
-      { label: "Ironmongery", value: "Dorma, Hafele, Yale" },
+      { label: "Panel Thickness", value: "12 mm compact HPL" },
+      { label: "Standard Size", value: "400 × 900 mm (custom available)" },
+      { label: "Mounting", value: "Wall, floor or pedestal" },
+      { label: "Edge", value: "Sealed & chamfered" },
     ],
-    applications: ["Hotel guest rooms", "Offices & meeting rooms", "Service & utility doors", "Residential villas"],
+    applications: ["Schools", "Stadiums & arenas", "Malls", "Mosques", "Public restrooms"],
     process: [
-      { step: "Sample Approval", detail: "Finish and ironmongery samples on site." },
-      { step: "Fabrication", detail: "Engineered cores with HPL facing." },
-      { step: "Installation", detail: "Hung, adjusted and ironmongery fitted." },
+      { step: "Site Survey", detail: "Measurement and mounting feasibility." },
+      { step: "Fabrication", detail: "CNC-cut and edge-sealed in our workshop." },
+      { step: "Installation", detail: "Fixed with concealed stainless brackets." },
     ],
     faqs: [
-      { q: "Do you supply civil-defence compliant fire doors?", a: "Yes — certified 30/60/90-minute door sets with full documentation." },
-    ],
-  },
-  {
-    slug: "hpl-desks-tabletops-benches",
-    title: "HPL Desks, Tabletops & Benches",
-    tagline: "Hard-wearing tabletops, benches and changing-room seating.",
-    category: "office",
-    img: desksImg,
-    body: "Hard-wearing tabletops, benches and changing-room seating in HPL with steel or timber frames.",
-    bullets: ["Scratch & heat resistant", "Indoor & semi-outdoor grade", "Custom edge profiles"],
-    overview: [
-      "Worktops, canteen tables, lab benches and changing-room seating in compact HPL — engineered for environments where standard MDF or wood would fail.",
-    ],
-    specs: [
-      { label: "Top Thickness", value: "12–25 mm compact HPL" },
-      { label: "Frames", value: "Powder-coated steel or timber" },
-      { label: "Edge Profiles", value: "Square, bevelled, bullnose" },
-      { label: "Grade", value: "Indoor & semi-outdoor" },
-    ],
-    applications: ["Canteens & break rooms", "Laboratories", "Changing rooms", "Outdoor terraces", "Education furniture"],
-    process: [
-      { step: "Spec", detail: "Top size, edge profile and frame style." },
-      { step: "Fabrication", detail: "CNC-cut tops, welded frames." },
-      { step: "Delivery", detail: "Assembled on site." },
-    ],
-    faqs: [
-      { q: "Are the tops heat resistant?", a: "Compact HPL handles short-term contact with hot pots and lab equipment without scorching." },
+      { q: "Are the screens easy to clean?", a: "Yes — the non-porous HPL surface is wipe-clean and resistant to standard washroom chemicals." },
     ],
   },
   {
@@ -219,61 +163,6 @@ export const services: ServiceDetail[] = [
     ],
     faqs: [
       { q: "Can panels be removed for maintenance?", a: "Yes — the concealed clip system allows individual panels to be lifted off without damage." },
-    ],
-  },
-  {
-    slug: "interior-exterior-decor",
-    title: "Interior & Exterior Decor",
-    tagline: "End-to-end fit-out and exterior HPL facade detailing.",
-    category: "interiors",
-    img: decorImg,
-    body: "End-to-end interior fit-out and exterior HPL facade detailing — one accountable partner, full handover.",
-    bullets: ["Design + build", "MEP coordination", "Snag-free handover"],
-    overview: [
-      "We act as a single accountable contractor for fit-out projects — from concept and approvals through MEP coordination, joinery and final handover.",
-    ],
-    specs: [
-      { label: "Scope", value: "Design + Build" },
-      { label: "MEP", value: "Coordinated with sub-contractors" },
-      { label: "Approvals", value: "Authority drawings included" },
-      { label: "Handover", value: "Snag-free, with O&M manuals" },
-    ],
-    applications: ["Office fit-outs", "Retail roll-outs", "F&B venues", "Villa interiors", "Exterior HPL facades"],
-    process: [
-      { step: "Concept", detail: "Mood boards and 3D walkthroughs." },
-      { step: "Approvals", detail: "Landlord and authority submissions." },
-      { step: "Build", detail: "Joinery, MEP and finishes on programme." },
-      { step: "Handover", detail: "Snag list closed before key handover." },
-    ],
-    faqs: [
-      { q: "Do you handle authority approvals?", a: "Yes — Dubai Municipality, Trakhees, DCD and free-zone approvals are part of our standard service." },
-    ],
-  },
-  {
-    slug: "vanities",
-    title: "Vanities & Washroom Counters",
-    tagline: "Bespoke vanity units in HPL, solid surface and stone composites.",
-    category: "washroom",
-    img: cubiclesImg,
-    body: "Bespoke vanity units and washroom counters fabricated to match your cubicle finish — with under-mount or vessel basin cut-outs.",
-    bullets: ["Solid surface or HPL tops", "Under-mount basin cut-outs", "Concealed brackets & aprons"],
-    overview: [
-      "Custom washroom vanities engineered to coordinate with your cubicles and cladding — fabricated from solid surface, compact HPL or stone composite tops on concealed steel sub-frames.",
-    ],
-    specs: [
-      { label: "Top Material", value: "Solid surface / 12 mm HPL / quartz" },
-      { label: "Basin Mounting", value: "Under-mount, vessel or integrated" },
-      { label: "Apron / Skirt", value: "HPL or matching top material" },
-      { label: "Sub-frame", value: "Powder-coated steel, wall-anchored" },
-    ],
-    applications: ["Hotel washrooms", "Office floors", "Malls & retail", "Schools"],
-    process: [
-      { step: "Survey", detail: "Site dimensions, plumbing rough-ins and basin selection." },
-      { step: "Fabrication", detail: "CNC-cut tops and seamless joints in our workshop." },
-      { step: "Install", detail: "Sub-frame anchored, top set and sealed to wall." },
-    ],
-    faqs: [
-      { q: "Can vanities match our cubicle finish?", a: "Yes — we fabricate vanities from the same HPL or solid surface range as your cubicles for a coordinated look." },
     ],
   },
   {
