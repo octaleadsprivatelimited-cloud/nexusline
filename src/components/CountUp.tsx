@@ -19,6 +19,13 @@ export function CountUp({ value, duration = 1800, className }: Props) {
 
   useEffect(() => {
     if (!ref.current || !match) return;
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      setN(target);
+      return;
+    }
     const el = ref.current;
     const io = new IntersectionObserver(
       (entries) => {
