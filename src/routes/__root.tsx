@@ -7,13 +7,12 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import logo from "../assets/nexus-logo.png.asset.json";
+import logo from "../assets/nexus-logo.png";
 
 function NotFoundComponent() {
   return (
@@ -40,9 +39,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -82,25 +78,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Nexus Line Furniture — Luxury HPL Cubicles & Interiors in Dubai" },
       { name: "description", content: "Premium HPL toilet cubicles, lockers, office partitions, doors and wall cladding manufactured and installed across the UAE." },
+      { name: "keywords", content: "HPL cubicles Dubai, toilet cubicles UAE, office partitions Dubai, lockers manufacturer Dubai, luxury HPL interiors, office furniture UAE" },
       { name: "author", content: "Nexus Line Furniture" },
       { property: "og:title", content: "Nexus Line Furniture — Luxury HPL Cubicles & Interiors in Dubai" },
       { property: "og:description", content: "Premium HPL toilet cubicles, lockers, office partitions, doors and wall cladding manufactured and installed across the UAE." },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: logo.url },
+      { property: "og:url", content: "https://nexuslinefurniture.ae" },
+      { property: "og:image", content: "https://nexuslinefurniture.ae/social-share.webp" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: logo.url },
       { name: "twitter:title", content: "Nexus Line Furniture — Luxury HPL Cubicles & Interiors in Dubai" },
       { name: "twitter:description", content: "Premium HPL toilet cubicles, lockers, office partitions, doors and wall cladding manufactured and installed across the UAE." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/OMtKKQKLA9VMD5oz0dGW7yI7zYs2/social-images/social-1782761189044-WhatsApp_Image_2026-06-26_at_12.56.50.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/OMtKKQKLA9VMD5oz0dGW7yI7zYs2/social-images/social-1782761189044-WhatsApp_Image_2026-06-26_at_12.56.50.webp" },
+      { name: "twitter:image", content: "https://nexuslinefurniture.ae/social-share.webp" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", type: "image/png", href: logo.url },
-      { rel: "apple-touch-icon", href: logo.url },
+      { rel: "canonical", href: "https://nexuslinefurniture.ae" },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

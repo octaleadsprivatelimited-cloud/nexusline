@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import logo from "@/assets/nexus-logo.png.asset.json";
+import logo from "@/assets/nexus-logo.png";
 import { services } from "@/lib/services-data";
 
 const links = [
@@ -22,7 +22,7 @@ export function Navbar() {
       <div className="relative mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:h-16 sm:px-6">
         <Link to="/" aria-label="Nexus Line Furniture — home" className="flex items-center">
           <img
-            src={logo.url}
+            src={logo}
             alt="Nexus Line Furniture"
             className="h-10 w-auto sm:h-12 object-contain"
           />
