@@ -49,11 +49,11 @@ export function Footer() {
             </h4>
             <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-4 w-4 text-primary" /> Dubai, United Arab Emirates
+                <MapPin className="mt-0.5 h-4 w-4 text-primary" /> Dubai & Ajman, United Arab Emirates
               </li>
               <li>
-                <a href="tel:+971568277869" className="flex items-start gap-2 hover:text-primary">
-                  <Phone className="mt-0.5 h-4 w-4 text-primary" /> +971 56 827 7869
+                <a href="tel:+971505097864" className="flex items-start gap-2 hover:text-primary">
+                  <Phone className="mt-0.5 h-4 w-4 text-primary" /> +971 50 509 7864
                 </a>
               </li>
               <li className="flex items-start gap-2">

@@ -80,10 +80,10 @@ export function Navbar() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <a
-            href="tel:+971568277869"
+            href="tel:+971505097864"
             className="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-white/80 hover:text-white"
           >
-            <Phone className="h-3.5 w-3.5" /> +971 56 827 7869
+            <Phone className="h-3.5 w-3.5" /> +971 50 509 7864
           </a>
           <Link
             to="/contact"

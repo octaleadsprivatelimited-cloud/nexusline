@@ -82,8 +82,8 @@ function Contact() {
             </p>
           </div>
           {[
-            { icon: MapPin, label: "Studio", value: "Dubai, United Arab Emirates", href: undefined as string | undefined },
-            { icon: Phone, label: "Phone", value: "+971 56 827 7869", href: "tel:+971568277869" },
+            { icon: MapPin, label: "Studio", value: "Dubai & Ajman, United Arab Emirates", href: undefined as string | undefined },
+            { icon: Phone, label: "Phone", value: "+971 50 509 7864", href: "tel:+971505097864" },
             { icon: Mail, label: "Email", value: "sales@nexuslinefurniture.ae", href: "mailto:sales@nexuslinefurniture.ae" },
           ].map(({ icon: Icon, label, value, href }) => (
             <div key={label} className="border-b border-border/60 pb-6">
@@ -103,11 +103,11 @@ function Contact() {
             </div>
             <dl className="mt-3 space-y-1.5 text-sm text-muted-foreground">
               <div className="flex justify-between gap-6">
-                <dt>Saturday – Thursday</dt>
-                <dd className="text-foreground">9:00 AM – 7:00 PM</dd>
+                <dt>Monday – Saturday</dt>
+                <dd className="text-foreground">7:00 AM – 6:00 PM</dd>
               </div>
               <div className="flex justify-between gap-6">
-                <dt>Friday</dt>
+                <dt>Sunday</dt>
                 <dd className="text-foreground">Closed</dd>
               </div>
             </dl>
@@ -221,7 +221,7 @@ function Contact() {
                 <p className="font-serif text-lg text-foreground">Thank you — your enquiry has been received.</p>
                 <p className="mt-1 text-sm text-muted-foreground">
                   Our team will reach out within one business day. For urgent requests, call{" "}
-                  <a href="tel:+971568277869" className="text-primary hover:underline">+971 56 827 7869</a>.
+                  <a href="tel:+971505097864" className="text-primary hover:underline">+971 50 509 7864</a>.
                 </p>
               </div>
             </div>

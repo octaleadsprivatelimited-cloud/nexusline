@@ -17,9 +17,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Nexus Line Furniture — Toilet Cubicles, Lockers, Vanities & Joinery in Dubai" },
-      { name: "description", content: "Toilet cubicles, lockers, vanities, urinal partitions, kitchen cabinets, office furniture, carpet tiles, wall cladding, IPS panels, lab furniture and solid surface worktops — manufactured and installed across the UAE." },
+      { name: "description", content: "Toilet cubicles, lockers, vanities, urinal partitions, kitchen cabinets, carpet tiles, wall cladding, IPS panels and solid surface worktops — manufactured and installed across the UAE." },
       { property: "og:title", content: "Nexus Line Furniture — Cubicles, Lockers, Vanities & Joinery" },
-      { property: "og:description", content: "Cubicles, lockers, vanities, kitchen cabinets, office furniture, wall cladding, IPS panels and solid surface worktops across the UAE." },
+      { property: "og:description", content: "Cubicles, lockers, vanities, kitchen cabinets, wall cladding, IPS panels and solid surface worktops across the UAE." },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -33,11 +33,9 @@ const services = [
   { title: "Vanities", slug: "vanities", img: cubiclesImg, blurb: "Custom washroom vanities and counters — coordinated with your cubicle finish." },
   { title: "Urinal Partitions", slug: "urinal-partitions", img: urinalImg, blurb: "Hygienic urinal screens with sealed edges, built for high-traffic public restrooms." },
   { title: "Kitchen Cabinets", slug: "kitchen-cabinets", img: officeImg, blurb: "Modular kitchen cabinetry in HPL, acrylic and lacquer with Hafele / Blum hardware." },
-  { title: "Office Furniture", slug: "office-furniture", img: desksImg, blurb: "Workstations, executive desks, meeting tables and storage — built and installed in-house." },
   { title: "Carpet Tiles", slug: "carpet-tiles", img: officeImg, blurb: "Heavy-contract modular carpet tiles, supplied and installed for offices and schools." },
   { title: "Wall Cladding", slug: "wall-cladding", img: claddingImg, blurb: "Architectural wall panelling on concealed sub-frames — HPL, veneer and acoustic finishes." },
   { title: "IPS Panels", slug: "ips-panels", img: cubiclesImg, blurb: "Integrated Plumbing System panels — concealed pipework with full service access." },
-  { title: "Lab Furniture", slug: "lab-furniture", img: desksImg, blurb: "Chemical-resistant benches, fume hoods and storage for schools, R&D and QC labs." },
   { title: "Solid Surface Worktops", slug: "solid-surface-worktops", img: claddingImg, blurb: "Seamless Corian-style worktops, vanities and reception counters with integrated basins." },
 ];
 
@@ -53,10 +51,10 @@ function Index() {
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/80 to-background" />
         <div className="relative mx-auto grid max-w-7xl grid-cols-2 gap-y-8 px-6 py-12 md:grid-cols-4">
           {[
-            { k: "12+", v: "Years of craft" },
-            { k: "850+", v: "Projects delivered" },
-            { k: "60K m²", v: "HPL installed" },
-            { k: "100%", v: "In-house production" },
+            { k: "7+", v: "Years experience" },
+            { k: "250+", v: "Projects delivered" },
+            { k: "10K m²", v: "HPL installed" },
+            { k: "20+", v: "Specialists" },
           ].map((s) => (
             <div key={s.v} className="text-center md:text-left">
               <div className="font-serif text-4xl text-primary md:text-5xl">{s.k}</div>
@@ -131,7 +129,7 @@ function Index() {
             <div className="grid gap-10 sm:grid-cols-2">
               {[
                 { icon: Hammer, title: "In-house manufacturing", body: "Our Dubai workshop controls every cut, edge and finish — no third-party guesswork." },
-                { icon: Layers, title: "Genuine HPL panels", body: "0.8–12 mm HPL from certified European mills, rated for moisture, impact and fire." },
+                { icon: Layers, title: "Genuine HPL panels", body: "0.8–25 mm HPL from certified European mills, rated for moisture, impact and fire." },
                 { icon: Award, title: "Site-trained installers", body: "Dedicated crews handle survey, delivery and fit-out — single point of accountability." },
                 { icon: Sparkles, title: "Bespoke finishes", body: "Over 200 woodgrains, solids and metallics — colour-matched to your interior scheme." },
               ].map(({ icon: Icon, title, body }) => (
@@ -201,49 +199,6 @@ function HeroDoor() {
       </AnimatePresence>
       <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/40 to-background" />
 
-      {/* Two doors that swing open */}
-      <motion.div
-        initial={reduce ? { rotateY: -105 } : { rotateY: 0 }}
-        animate={{ rotateY: -105 }}
-        transition={reduce ? { duration: 0 } : { duration: 1.8, delay: 0.4, ease: [0.65, 0, 0.35, 1] }}
-        style={{ transformOrigin: "left center", backfaceVisibility: "hidden" }}
-        className="absolute inset-y-0 left-0 z-20 w-1/2 overflow-hidden border-r border-primary/30 shadow-2xl"
-      >
-        <img
-          src={heroImg}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-[200%] object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-foreground/30" />
-        <div className="absolute right-4 top-1/2 h-16 w-1.5 -translate-y-1/2 rounded-full bg-primary/80 shadow-lg" />
-      </motion.div>
-
-      <motion.div
-        initial={reduce ? { rotateY: 105 } : { rotateY: 0 }}
-        animate={{ rotateY: 105 }}
-        transition={reduce ? { duration: 0 } : { duration: 1.8, delay: 0.4, ease: [0.65, 0, 0.35, 1] }}
-        style={{ transformOrigin: "right center", backfaceVisibility: "hidden" }}
-        className="absolute inset-y-0 right-0 z-20 w-1/2 overflow-hidden border-l border-primary/30 shadow-2xl"
-      >
-        <img
-          src={heroImg}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-[200%] -translate-x-1/2 object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-l from-background/40 via-transparent to-foreground/30" />
-        <div className="absolute left-4 top-1/2 h-16 w-1.5 -translate-y-1/2 rounded-full bg-primary/80 shadow-lg" />
-      </motion.div>
-
-      {/* Center seam light */}
-      <motion.div
-        initial={reduce ? { opacity: 0 } : { opacity: 0, scaleY: 0.6 }}
-        animate={reduce ? { opacity: 0 } : { opacity: [0, 1, 0], scaleY: 1 }}
-        transition={reduce ? { duration: 0 } : { duration: 1.6, delay: 0.3, times: [0, 0.4, 1] }}
-        className="absolute inset-y-0 left-1/2 z-30 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-primary to-transparent"
-      />
-
       {/* Foreground content */}
       <div className="relative z-10 mx-auto flex min-h-[88svh] max-w-7xl flex-col justify-end px-5 pb-12 pt-24 sm:min-h-[92vh] sm:px-6 sm:pb-20 sm:pt-32">
         <span className="text-[10px] uppercase tracking-[0.35em] text-primary sm:text-xs sm:tracking-[0.4em]">
@@ -263,8 +218,8 @@ function HeroDoor() {
 
         <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:mt-8 sm:text-base md:text-lg">
           Nexus Line Furniture designs, manufactures and installs toilet
-          cubicles, lockers, vanities, kitchen cabinets, office furniture,
-          wall cladding, IPS panels, lab furniture and solid surface worktops
+          cubicles, lockers, vanities, kitchen cabinets,
+          wall cladding, IPS panels and solid surface worktops
           for landmark projects across Dubai and the wider GCC.
         </p>
 

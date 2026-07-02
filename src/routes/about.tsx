@@ -77,10 +77,10 @@ function About() {
           </p>
           <div className="grid grid-cols-4 gap-x-2 gap-y-4 pt-6 sm:gap-x-6">
             {[
-              { k: "12+", v: "Years in the UAE" },
-              { k: "850+", v: "Projects" },
-              { k: "15K m²", v: "HPL installed" },
-              { k: "70+", v: "Specialists" },
+              { k: "7+", v: "Years experience" },
+              { k: "250+", v: "Projects" },
+              { k: "10K m²", v: "HPL installed" },
+              { k: "20+", v: "Specialists" },
             ].map((s) => (
               <div key={s.v} className="min-w-0">
                 <ScrollingNumber value={s.k} className="block whitespace-nowrap font-serif text-xl leading-tight text-primary sm:text-3xl" />

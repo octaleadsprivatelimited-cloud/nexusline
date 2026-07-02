@@ -82,7 +82,7 @@ function RootComponent() {
   useEffect(() => {
     let title = "Nexus Line Furniture — Luxury HPL Cubicles & Interiors in Dubai";
     let description = "Premium HPL toilet cubicles, lockers, office partitions, doors and wall cladding manufactured and installed across the UAE.";
-    let keywords = "HPL cubicles Dubai, toilet cubicles UAE, office partitions Dubai, lockers manufacturer Dubai, luxury HPL interiors, office furniture UAE";
+    let keywords = "HPL cubicles Dubai, toilet cubicles UAE, office partitions Dubai, lockers manufacturer Dubai, luxury HPL interiors";
     const canonical = `https://nexuslinefurniture.ae${location.pathname === "/" ? "" : location.pathname}`;
 
     const path = location.pathname.replace(/\/$/, ""); // strip trailing slash
@@ -90,7 +90,7 @@ function RootComponent() {
     if (path === "/about") {
       title = "HPL Specialists in Dubai | About Nexus Line Furniture";
       description = "Founded in Dubai, Nexus Line Furniture is an HPL and joinery specialist crafting premium commercial washrooms, locker rooms, and office interiors across the UAE.";
-      keywords = "HPL specialists Dubai, joinery factory Sharjah, commercial washroom fitout UAE, Nexus Line Furniture";
+      keywords = "HPL specialists Dubai, joinery factory Dubai, commercial washroom fitout UAE, Nexus Line Furniture";
     } else if (path === "/services") {
       title = "HPL & Joinery Services Dubai | Toilet Cubicles, Lockers & Partitions";
       description = "Explore our premium manufacturing & installation services in Dubai: HPL toilet cubicles, lockers, vanities, wall cladding, office desks, and solid surfaces.";
@@ -114,14 +114,10 @@ function RootComponent() {
           keywords = "HPL wall cladding Dubai, interior wall panelling UAE, decorative wall panels, exterior laminate cladding, lobby wall cladding Dubai";
         } else if (slug === "kitchen-cabinets") {
           keywords = "custom kitchen cabinets Dubai, modular pantry cabinets, HPL kitchen designer UAE, office pantry cabinetry, high end kitchen joinery";
-        } else if (slug === "office-furniture") {
-          keywords = "office workstations Dubai, executive desk supplier UAE, meeting room tables, corporate office chairs, office furniture manufacturer Dubai";
         } else if (slug === "carpet-tiles") {
           keywords = "commercial carpet tiles Dubai, office flooring solutions UAE, heavy contract carpet tile, modular carpet installation, carpet tiles supplier";
         } else if (slug === "ips-panels") {
           keywords = "IPS plumbing panels Dubai, integrated plumbing system UAE, concealed washroom ducts, duct wall cladding panels, plumbing service access panels";
-        } else if (slug === "lab-furniture") {
-          keywords = "laboratory furniture Dubai, chemical resistant workbenches UAE, science lab storage cabinets, fume hood systems, educational lab setup";
         } else if (slug === "solid-surface-worktops") {
           keywords = "acrylic solid surface worktops Dubai, Corian counters supplier UAE, seamless reception desks, custom solid surface joinery, non-porous washroom tops";
         } else {
@@ -133,9 +129,9 @@ function RootComponent() {
       description = "Browse our portfolio of commercial, education, hospitality, and residential fitouts delivered across Dubai, Abu Dhabi, and the UAE.";
       keywords = "fitout projects Dubai, toilet cubicle installations, HPL lockers project UAE";
     } else if (path === "/contact") {
-      title = "Get a Free Site Visit & Quote | Contact Nexus Line Dubai";
-      description = "Contact Nexus Line Furniture in Dubai for a free site survey, layout drawings, and itemized quotations. Call +971 56 827 7869 or email sales@nexuslinefurniture.ae.";
-      keywords = "contact HPL supplier Dubai, custom furniture quote UAE, office fitout quote";
+      title = "Get a Free Site Visit & Quote | Contact Nexus Line Dubai & Ajman";
+      description = "Contact Nexus Line Furniture in Dubai & Ajman for a free site survey, layout drawings, and itemized quotations. Call +971 50 509 7864 or email sales@nexuslinefurniture.ae.";
+      keywords = "contact HPL supplier Dubai, contact HPL supplier Ajman, custom furniture quote UAE, office fitout quote";
     }
 
     // Update Document Head

@@ -4,7 +4,6 @@ import claddingImg from "@/assets/service-cladding.jpg";
 import urinalImg from "@/assets/service-urinal.jpg";
 import vanitiesImg from "@/assets/service-vanities.jpg";
 import kitchenImg from "@/assets/service-kitchen.jpg";
-import officeFurnitureImg from "@/assets/service-office-furniture.jpg";
 import carpetImg from "@/assets/service-carpet.jpg";
 import ipsImg from "@/assets/service-ips.jpg";
 import labImg from "@/assets/service-lab.jpg";
@@ -32,16 +31,16 @@ export const services: ServiceDetail[] = [
     tagline: "Compact-grade washroom cubicles built to outlast the building.",
     category: "washroom",
     img: cubiclesImg,
-    body: "Floor-to-ceiling and standard-height cubicles in 12 mm compact HPL, with stainless steel hardware and concealed fixings.",
-    bullets: ["12mm compact-grade HPL", "Marine-grade stainless hardware", "200+ finishes & woodgrains"],
+    body: "Floor-to-ceiling and standard-height cubicles in 12–25 mm compact HPL, with SS 304 / 316 stainless steel hardware and concealed fixings.",
+    bullets: ["12–25mm compact HPL panels", "SS 304 / 316 stainless steel hardware", "200+ finishes & woodgrains"],
     overview: [
-      "Our toilet cubicles are fabricated from 12 mm compact-grade High Pressure Laminate — a fully waterproof, impact-resistant panel ideal for high-traffic UAE washrooms.",
-      "Each cubicle is fully prefabricated in our Sharjah workshop, then installed on site by our in-house crew with marine-grade stainless steel hardware that won't corrode in humid conditions.",
+      "Our toilet cubicles are fabricated from 12–25 mm compact-grade High Pressure Laminate — a fully waterproof, impact-resistant panel ideal for high-traffic UAE washrooms.",
+      "Each cubicle is fully prefabricated in our Dubai workshop, then installed on site by our in-house crew with SS 304 / 316 stainless steel hardware that won't corrode in humid conditions.",
     ],
     specs: [
-      { label: "Panel Thickness", value: "12 mm / 13 mm compact HPL" },
+      { label: "Panel Thickness", value: "12 mm – 25 mm compact HPL" },
       { label: "Standard Height", value: "2000 mm (custom up to 2700 mm)" },
-      { label: "Hardware", value: "SS 316 marine-grade" },
+      { label: "Hardware", value: "SS 304 / 316 grade" },
       { label: "Finishes", value: "200+ solid colours & woodgrains" },
       { label: "Warranty", value: "10 years on panels" },
       { label: "Fire Rating", value: "Class B-s2,d0 (on request)" },
@@ -127,7 +126,7 @@ export const services: ServiceDetail[] = [
       "Available in wall-mounted, floor-mounted and floor-to-ceiling configurations with anti-vandal stainless fixings.",
     ],
     specs: [
-      { label: "Panel Thickness", value: "12 mm compact HPL" },
+      { label: "Panel Thickness", value: "12 mm – 25 mm compact HPL" },
       { label: "Standard Size", value: "400 × 900 mm (custom available)" },
       { label: "Mounting", value: "Wall, floor or pedestal" },
       { label: "Edge", value: "Sealed & chamfered" },
@@ -197,33 +196,6 @@ export const services: ServiceDetail[] = [
     ],
   },
   {
-    slug: "office-furniture",
-    title: "Office Furniture",
-    tagline: "Workstations, executive desks, meeting tables and storage units.",
-    category: "office",
-    img: officeFurnitureImg,
-    body: "Complete office furniture packages — workstations, executive desks, meeting tables, credenzas and storage — manufactured and installed in-house.",
-    bullets: ["Workstations & executive desks", "Meeting & boardroom tables", "Storage, credenzas & pedestals"],
-    overview: [
-      "Turnkey office furniture for corporate fit-outs across the UAE — coordinated with your partition system, branding and cable management strategy.",
-    ],
-    specs: [
-      { label: "Tops", value: "HPL, veneer or solid surface" },
-      { label: "Frames", value: "Powder-coated steel, height options" },
-      { label: "Storage", value: "Pedestals, credenzas, tambour units" },
-      { label: "Cable Mgmt", value: "Integrated trays and grommets" },
-    ],
-    applications: ["Corporate HQs", "Coworking", "Executive offices", "Boardrooms"],
-    process: [
-      { step: "Space Plan", detail: "Layout aligned to headcount and workflow." },
-      { step: "Fabrication", detail: "Tops, frames and storage built to spec." },
-      { step: "Install", detail: "Delivered and assembled on site." },
-    ],
-    faqs: [
-      { q: "Can you match an existing furniture range?", a: "Yes — we replicate tops, edges and frame colours so additions sit alongside existing pieces seamlessly." },
-    ],
-  },
-  {
     slug: "carpet-tiles",
     title: "Carpet Tiles",
     tagline: "Commercial-grade modular carpet tiles, supplied and installed.",
@@ -275,33 +247,6 @@ export const services: ServiceDetail[] = [
     ],
     faqs: [
       { q: "Can maintenance teams reach the pipework?", a: "Yes — every IPS run includes removable access panels at cisterns, valves and traps." },
-    ],
-  },
-  {
-    slug: "lab-furniture",
-    title: "Lab Furniture",
-    tagline: "Laboratory benches, fume hoods and storage built for science.",
-    category: "office",
-    img: labImg,
-    body: "Laboratory benches, fume hood enclosures, sink units and storage — built with chemical-resistant tops and powder-coated steel frames.",
-    bullets: ["Chemical-resistant tops", "Fume hoods & sink units", "Powder-coated steel frames"],
-    overview: [
-      "Purpose-built lab furniture for schools, universities, R&D centres and quality-control labs — engineered for chemical resistance, ventilation and ergonomics.",
-    ],
-    specs: [
-      { label: "Worktop", value: "Phenolic resin / epoxy / compact HPL" },
-      { label: "Frames", value: "Powder-coated steel, C-frame or H-frame" },
-      { label: "Storage", value: "Under-bench cabinets, reagent shelves" },
-      { label: "Services", value: "Integrated gas, water & power" },
-    ],
-    applications: ["Schools & universities", "Research labs", "QC & testing labs", "Hospital labs"],
-    process: [
-      { step: "Lab Planning", detail: "Workflow, services and ventilation reviewed." },
-      { step: "Fabrication", detail: "Tops, cabinets and frames built to spec." },
-      { step: "Install", detail: "Services connected via licensed sub-contractors." },
-    ],
-    faqs: [
-      { q: "What worktop do you recommend?", a: "For wet chemistry, phenolic resin or epoxy — they handle solvents, acids and constant moisture. Compact HPL suits dry labs and prep areas." },
     ],
   },
   {
