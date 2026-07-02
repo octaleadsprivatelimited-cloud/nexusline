@@ -11,4 +11,7 @@ export default defineConfig({
     tsconfigPaths(),
     react(),
   ],
+  build: {
+    chunkSizeWarningLimit: 1000,
+  },
 });
