@@ -4,7 +4,10 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
 } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { services } from "../lib/services-data";
 
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
@@ -74,6 +77,90 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+
+  useEffect(() => {
+    let title = "Nexus Line Furniture — Luxury HPL Cubicles & Interiors in Dubai";
+    let description = "Premium HPL toilet cubicles, lockers, office partitions, doors and wall cladding manufactured and installed across the UAE.";
+    let keywords = "HPL cubicles Dubai, toilet cubicles UAE, office partitions Dubai, lockers manufacturer Dubai, luxury HPL interiors, office furniture UAE";
+    const canonical = `https://nexuslinefurniture.ae${location.pathname === "/" ? "" : location.pathname}`;
+
+    const path = location.pathname.replace(/\/$/, ""); // strip trailing slash
+
+    if (path === "/about") {
+      title = "HPL Specialists in Dubai | About Nexus Line Furniture";
+      description = "Founded in Dubai, Nexus Line Furniture is an HPL and joinery specialist crafting premium commercial washrooms, locker rooms, and office interiors across the UAE.";
+      keywords = "HPL specialists Dubai, joinery factory Sharjah, commercial washroom fitout UAE, Nexus Line Furniture";
+    } else if (path === "/services") {
+      title = "HPL & Joinery Services Dubai | Toilet Cubicles, Lockers & Partitions";
+      description = "Explore our premium manufacturing & installation services in Dubai: HPL toilet cubicles, lockers, vanities, wall cladding, office desks, and solid surfaces.";
+      keywords = "washroom counter manufacturer, HPL vanity tops Dubai, office partition wall, locker supplier UAE";
+    } else if (path.startsWith("/services/")) {
+      const slug = path.split("/").pop();
+      const service = services.find((s) => s.slug === slug);
+      if (service) {
+        title = `${service.title} Manufacturer & Installer Dubai | Nexus Line`;
+        description = `${service.tagline} Custom-fabricated in our Dubai workshop and installed by our in-house carpentry crew.`;
+        keywords = `${service.title} Dubai, ${service.title} supplier UAE, commercial ${service.title}, custom ${service.title} Dubai`;
+      }
+    } else if (path === "/projects") {
+      title = "HPL Cubicles & Joinery Projects Portfolio Dubai | Nexus Line";
+      description = "Browse our portfolio of commercial, education, hospitality, and residential fitouts delivered across Dubai, Abu Dhabi, and the UAE.";
+      keywords = "fitout projects Dubai, toilet cubicle installations, HPL lockers project UAE";
+    } else if (path === "/contact") {
+      title = "Get a Free Site Visit & Quote | Contact Nexus Line Dubai";
+      description = "Contact Nexus Line Furniture in Dubai for a free site survey, layout drawings, and itemized quotations. Call +971 56 827 7869 or email sales@nexuslinefurniture.ae.";
+      keywords = "contact HPL supplier Dubai, custom furniture quote UAE, office fitout quote";
+    }
+
+    // Update Document Head
+    document.title = title;
+    
+    // Update Meta Description
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", description);
+    } else {
+      metaDesc = document.createElement("meta");
+      metaDesc.setAttribute("name", "description");
+      metaDesc.setAttribute("content", description);
+      document.head.appendChild(metaDesc);
+    }
+
+    // Update Meta Keywords
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+      metaKeywords.setAttribute("content", keywords);
+    } else {
+      metaKeywords = document.createElement("meta");
+      metaKeywords.setAttribute("name", "keywords");
+      metaKeywords.setAttribute("content", keywords);
+      document.head.appendChild(metaKeywords);
+    }
+
+    // Update OG Title
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute("content", title);
+
+    // Update OG Description
+    let ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute("content", description);
+
+    // Update OG URL
+    let ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute("content", canonical);
+
+    // Update Canonical Link
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (canonicalLink) {
+      canonicalLink.setAttribute("href", canonical);
+    } else {
+      canonicalLink = document.createElement("link");
+      canonicalLink.setAttribute("rel", "canonical");
+      canonicalLink.setAttribute("href", canonical);
+      document.head.appendChild(canonicalLink);
+    }
+  }, [location.pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>
