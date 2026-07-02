@@ -101,7 +101,32 @@ function RootComponent() {
       if (service) {
         title = `${service.title} Manufacturer & Installer Dubai | Nexus Line`;
         description = `${service.tagline} Custom-fabricated in our Dubai workshop and installed by our in-house carpentry crew.`;
-        keywords = `${service.title} Dubai, ${service.title} supplier UAE, commercial ${service.title}, custom ${service.title} Dubai`;
+        
+        if (slug === "toilet-cubicles") {
+          keywords = "HPL toilet cubicles Dubai, restroom partition supplier UAE, compact laminate cubicles, toilet partitions manufacturer, commercial washroom cubicles Dubai";
+        } else if (slug === "lockers") {
+          keywords = "HPL lockers Dubai, staff lockers manufacturer UAE, gym changing room lockers, school storage lockers, RFID smart locker systems Dubai";
+        } else if (slug === "vanities") {
+          keywords = "washroom vanity counters Dubai, solid surface vanity top, custom HPL vanity units, bathroom counter manufacturer UAE, corporate washroom vanities";
+        } else if (slug === "urinal-partitions") {
+          keywords = "urinal screens Dubai, urinal divider partitions UAE, washroom privacy screens, HPL urinal screens, restroom partitions manufacturer";
+        } else if (slug === "wall-cladding") {
+          keywords = "HPL wall cladding Dubai, interior wall panelling UAE, decorative wall panels, exterior laminate cladding, lobby wall cladding Dubai";
+        } else if (slug === "kitchen-cabinets") {
+          keywords = "custom kitchen cabinets Dubai, modular pantry cabinets, HPL kitchen designer UAE, office pantry cabinetry, high end kitchen joinery";
+        } else if (slug === "office-furniture") {
+          keywords = "office workstations Dubai, executive desk supplier UAE, meeting room tables, corporate office chairs, office furniture manufacturer Dubai";
+        } else if (slug === "carpet-tiles") {
+          keywords = "commercial carpet tiles Dubai, office flooring solutions UAE, heavy contract carpet tile, modular carpet installation, carpet tiles supplier";
+        } else if (slug === "ips-panels") {
+          keywords = "IPS plumbing panels Dubai, integrated plumbing system UAE, concealed washroom ducts, duct wall cladding panels, plumbing service access panels";
+        } else if (slug === "lab-furniture") {
+          keywords = "laboratory furniture Dubai, chemical resistant workbenches UAE, science lab storage cabinets, fume hood systems, educational lab setup";
+        } else if (slug === "solid-surface-worktops") {
+          keywords = "acrylic solid surface worktops Dubai, Corian counters supplier UAE, seamless reception desks, custom solid surface joinery, non-porous washroom tops";
+        } else {
+          keywords = `${service.title} Dubai, ${service.title} supplier UAE, commercial ${service.title}, custom ${service.title} Dubai`;
+        }
       }
     } else if (path === "/projects") {
       title = "HPL Cubicles & Joinery Projects Portfolio Dubai | Nexus Line";
