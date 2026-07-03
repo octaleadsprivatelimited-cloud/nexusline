@@ -12,6 +12,7 @@ import vanitiesImg from "@/assets/service-vanities.jpeg";
 import kitchenImg from "@/assets/service-kitchen.jpeg";
 import solidSurfaceImg from "@/assets/service-solid-surface.jpeg";
 import ipsImg from "@/assets/service-ips.jpg";
+import carpetImg from "@/assets/service-carpet.jpg";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
@@ -37,7 +38,7 @@ const services = [
   { title: "Vanities", slug: "vanities", img: vanitiesImg, blurb: "Custom washroom vanities and counters — coordinated with your cubicle finish." },
   { title: "Urinal Partitions", slug: "urinal-partitions", img: urinalImg, blurb: "Hygienic urinal screens with sealed edges, built for high-traffic public restrooms." },
   { title: "Kitchen Cabinets", slug: "kitchen-cabinets", img: kitchenImg, blurb: "Modular kitchen cabinetry in HPL, acrylic and lacquer with Hafele / Blum hardware." },
-  { title: "Carpet Tiles", slug: "carpet-tiles", img: officeImg, blurb: "Heavy-contract modular carpet tiles, supplied and installed for offices and schools." },
+  { title: "Carpet Tiles", slug: "carpet-tiles", img: carpetImg, blurb: "Heavy-contract modular carpet tiles, supplied and installed for offices and schools." },
   { title: "Wall Cladding", slug: "wall-cladding", img: claddingImg, blurb: "Architectural wall panelling on concealed sub-frames — HPL, veneer and acoustic finishes." },
   { title: "IPS Panels", slug: "ips-panels", img: ipsImg, blurb: "Integrated Plumbing System panels — concealed pipework with full service access." },
   { title: "Solid Surface Worktops", slug: "solid-surface-worktops", img: solidSurfaceImg, blurb: "Seamless Corian-style worktops, vanities and reception counters with integrated basins." },
@@ -91,33 +92,33 @@ function Index() {
           </div>
 
           <div className="mt-14 grid gap-8 md:grid-cols-2">
-          {services.map((s) => (
-            <Link
-              to="/services/$slug"
-              params={{ slug: s.slug }}
-              key={s.title}
-              className="group relative block overflow-hidden border border-border/60 bg-card"
-            >
-              <div className="aspect-[4/3] overflow-hidden bg-muted/10">
-                <img
-                  src={s.img}
-                  alt={s.title}
-                  width={1280}
-                  height={960}
-                  loading="lazy"
-                  className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div className="flex items-start justify-between gap-4 p-8">
-                <div>
-                  <h3 className="font-serif text-2xl text-foreground">{s.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.blurb}</p>
+            {services.map((s) => (
+              <Link
+                to="/services/$slug"
+                params={{ slug: s.slug }}
+                key={s.title}
+                className="group relative block overflow-hidden border border-border/60 bg-card"
+              >
+                <div className="aspect-[4/3] overflow-hidden bg-muted/10">
+                  <img
+                    src={s.img}
+                    alt={s.title}
+                    width={1280}
+                    height={960}
+                    loading="lazy"
+                    className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
+                  />
                 </div>
-                <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-primary transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-              </div>
-            </Link>
-          ))}
-        </div>
+                <div className="flex items-start justify-between gap-4 p-8">
+                  <div>
+                    <h3 className="font-serif text-2xl text-foreground">{s.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.blurb}</p>
+                  </div>
+                  <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-primary transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -205,43 +206,45 @@ function HeroDoor() {
           className="absolute inset-0 h-full w-full object-cover"
         />
       </AnimatePresence>
-      <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/40 to-background" />
+
 
       {/* Foreground content */}
       <div className="relative z-10 mx-auto flex min-h-[88svh] max-w-7xl flex-col justify-end px-5 pb-12 pt-24 sm:min-h-[92vh] sm:px-6 sm:pb-20 sm:pt-32">
-        <span className="text-[10px] uppercase tracking-[0.35em] text-primary sm:text-xs sm:tracking-[0.4em]">
-          HPL Specialists · United Arab Emirates
-        </span>
-
-        <h1 className="mt-5 max-w-4xl font-serif text-3xl font-medium leading-[1.1] text-foreground sm:mt-6 sm:text-5xl md:text-6xl lg:text-7xl">
-          <span className="block">Restroom cubicles,</span>
-          <span className="block">worktops &amp;</span>
-          <span className="block italic text-primary">
-            interior solutions.
+        <div className="max-w-fit border border-border/50 bg-white/60 p-6 backdrop-blur-md shadow-2xl sm:p-10">
+          <span className="text-[10px] uppercase tracking-[0.35em] text-primary sm:text-xs sm:tracking-[0.4em]">
+            HPL Specialists · United Arab Emirates
           </span>
-        </h1>
 
-        <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:mt-8 sm:text-base md:text-lg">
-          Nexus Line Furniture designs, manufactures and installs toilet
-          cubicles, lockers, vanities, kitchen cabinets,
-          wall cladding, IPS panels and solid surface worktops
-          for landmark projects across Dubai and the wider GCC.
-        </p>
+          <h1 className="mt-5 max-w-4xl font-serif text-2xl font-medium leading-[1.1] text-foreground sm:mt-6 sm:text-4xl md:text-5xl lg:text-5xl">
+            <span className="block">Restroom cubicles,</span>
+            <span className="block">worktops &amp;</span>
+            <span className="block italic text-primary">
+              interior solutions.
+            </span>
+          </h1>
 
-        <div className="mt-8 flex flex-row flex-nowrap items-center gap-3 sm:mt-10 sm:gap-4">
-          <Link
-            to="/contact"
-            className="group inline-flex flex-1 items-center justify-center gap-2 border border-[#1d4fd7] bg-[#1d4fd7] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-[#163fb0] sm:flex-none sm:justify-start sm:gap-3 sm:px-7 sm:py-3.5 sm:tracking-[0.25em]"
-          >
-            Request a Quote
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
-          <Link
-            to="/projects"
-            className="inline-flex flex-1 items-center justify-center gap-2 border border-[#f5c518] bg-[#f5c518] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.18em] text-[#0b1e3f] transition-colors hover:bg-[#e0b314] sm:flex-none sm:justify-start sm:gap-3 sm:px-7 sm:py-3.5 sm:tracking-[0.25em]"
-          >
-            View Projects
-          </Link>
+          <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:mt-8 sm:text-base md:text-lg">
+            Nexus Line Furniture designs, manufactures and installs toilet
+            cubicles, lockers, vanities, kitchen cabinets,
+            wall cladding, IPS panels and solid surface worktops
+            for landmark projects across Dubai and the wider GCC.
+          </p>
+
+          <div className="mt-8 flex flex-row flex-nowrap items-center gap-3 sm:mt-10 sm:gap-4">
+            <Link
+              to="/contact"
+              className="group inline-flex flex-1 items-center justify-center gap-2 border border-[#1d4fd7] bg-[#1d4fd7] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-[#163fb0] sm:flex-none sm:justify-start sm:gap-3 sm:px-7 sm:py-3.5 sm:tracking-[0.25em]"
+            >
+              Request a Quote
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link
+              to="/projects"
+              className="inline-flex flex-1 items-center justify-center gap-2 border border-[#f5c518] bg-[#f5c518] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.18em] text-[#0b1e3f] transition-colors hover:bg-[#e0b314] sm:flex-none sm:justify-start sm:gap-3 sm:px-7 sm:py-3.5 sm:tracking-[0.25em]"
+            >
+              View Projects
+            </Link>
+          </div>
         </div>
       </div>
     </section>
