@@ -6,6 +6,9 @@ import cubiclesImg from "@/assets/service-cubicles.jpg";
 import lockersImg from "@/assets/service-lockers.jpg";
 import officeImg from "@/assets/service-office.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
+import solidSurfaceImg from "@/assets/service-solid-surface.jpg";
+import urinalImg from "@/assets/service-urinal.jpg";
+import doorsImg from "@/assets/service-doors.jpg";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -22,12 +25,63 @@ export const Route = createFileRoute("/projects")({
 });
 
 const projects = [
-  { title: "Aurum Office Tower", category: "HPL Toilet Cubicles", location: "Business Bay, Dubai", img: heroImg, span: "md:col-span-2 md:row-span-2" },
-  { title: "Marina Bay Fitness Club", category: "HPL Locker Walls", location: "Dubai Marina", img: lockersImg },
-  { title: "The Hayat Hotel", category: "Cubicles & Wall Cladding", location: "Downtown Dubai", img: cubiclesImg },
-  { title: "Vantage HQ", category: "Office Cubicles", location: "DIFC, Dubai", img: officeImg, span: "md:col-span-2" },
-  { title: "Maison Privé Lobby", category: "Architectural Cladding", location: "Palm Jumeirah", img: claddingImg },
-  { title: "Northgate International School", category: "Lockers & Doors", location: "Abu Dhabi", img: lockersImg },
+  {
+    title: "Dubai PMO Office",
+    category: "Executive Joinery & Cladding",
+    location: "Emirates Towers, Dubai",
+    img: officeImg,
+    span: "md:col-span-2 md:row-span-2",
+  },
+  {
+    title: "Dubai Hills Mall",
+    category: "HPL Toilet Cubicles & IPS Panels",
+    location: "Dubai Hills, Dubai",
+    img: cubiclesImg,
+  },
+  {
+    title: "Dubai Mall Reel Cinema",
+    category: "HPL Locker Walls & Washrooms",
+    location: "Downtown Dubai",
+    img: lockersImg,
+  },
+  {
+    title: "Dubai Airport (Terminal 1, 2 & 3)",
+    category: "HPL Toilet Cubicles & Urinal Screens",
+    location: "Garhoud, Dubai",
+    img: urinalImg,
+    span: "md:col-span-2",
+  },
+  {
+    title: "GEMS School of Research",
+    category: "School Lockers & Cubicles",
+    location: "Dubai",
+    img: lockersImg,
+  },
+  {
+    title: "Abu Dhabi Airport",
+    category: "IPS Panels & Solid Surface Vanities",
+    location: "Abu Dhabi",
+    img: solidSurfaceImg,
+  },
+  {
+    title: "ADNOC School Abu Dhabi",
+    category: "Heavy-Duty Lockers & Doors",
+    location: "Abu Dhabi",
+    img: doorsImg,
+  },
+  {
+    title: "Dubai Safari",
+    category: "HPL Changing Rooms & Benches",
+    location: "Al Warqa, Dubai",
+    img: claddingImg,
+  },
+  {
+    title: "100+ Labour Camps",
+    category: "Standard HPL Toilet Cubicles & Urinal Screens",
+    location: "Across United Arab Emirates",
+    img: cubiclesImg,
+    span: "md:col-span-3",
+  },
 ];
 
 function Projects() {
@@ -45,7 +99,7 @@ function Projects() {
         <div className="mx-auto max-w-7xl px-6 pb-24 pt-32 md:pb-32 md:pt-40">
           <span className="text-xs uppercase tracking-[0.3em] text-primary">Selected projects</span>
           <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.05] text-foreground md:text-6xl">
-            Fit-outs delivered across the UAE.
+            Representative Projects from Our Engineers' Careers
           </h1>
         </div>
       </section>

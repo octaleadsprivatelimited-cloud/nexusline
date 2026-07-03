@@ -206,13 +206,10 @@ function HeroDoor() {
         </span>
 
         <h1 className="mt-5 max-w-4xl font-serif text-[2.5rem] font-medium leading-[1.05] text-foreground sm:mt-6 sm:text-6xl md:text-7xl lg:text-[88px]">
-          {["Cubicles, vanities", "& worktops,"].map((line) => (
-            <span key={line} className="block">
-              {line}
-            </span>
-          ))}
+          <span className="block">Restroom cubicles,</span>
+          <span className="block">worktops &amp;</span>
           <span className="block italic text-primary">
-            crafted in line.
+            interior solutions.
           </span>
         </h1>
 
