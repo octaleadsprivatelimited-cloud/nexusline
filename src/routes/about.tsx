@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import claddingImg from "@/assets/service-cladding.jpg";
-import heroAbout from "@/assets/hero-about.jpg";
+import cubiclesImg from "@/assets/service-cubicles.jpg";
 import { ScrollingNumber } from "@/components/ScrollingNumber";
 
 export const Route = createFileRoute("/about")({
@@ -23,7 +23,7 @@ function About() {
     <>
       <section className="relative isolate overflow-hidden border-b border-border/60">
         <img
-          src={heroAbout}
+          src={cubiclesImg}
           alt="Nexus Line Furniture workshop"
           width={1920}
           height={1080}
@@ -40,7 +40,7 @@ function About() {
 
       <section className="relative isolate overflow-hidden">
         <img
-          src={heroAbout}
+          src={cubiclesImg}
           alt=""
           aria-hidden
           className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.05]"

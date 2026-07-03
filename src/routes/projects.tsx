@@ -6,8 +6,8 @@ import cubiclesImg from "@/assets/service-cubicles.jpg";
 import lockersImg from "@/assets/service-lockers.jpg";
 import officeImg from "@/assets/service-office.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
-import solidSurfaceImg from "@/assets/service-solid-surface.jpg";
-import urinalImg from "@/assets/service-urinal.jpg";
+import solidSurfaceImg from "@/assets/service-solid-surface.jpeg";
+import urinalImg from "@/assets/service-urinal.jpeg";
 import doorsImg from "@/assets/service-doors.jpg";
 
 export const Route = createFileRoute("/projects")({
@@ -89,7 +89,7 @@ function Projects() {
     <>
       <section className="relative isolate overflow-hidden border-b border-border/60">
         <img
-          src={heroProjects}
+          src={cubiclesImg}
           alt="Luxury hotel washroom fit-out by Nexus Line Furniture"
           width={1920}
           height={1080}
@@ -105,14 +105,14 @@ function Projects() {
       </section>
 
       <section className="relative isolate overflow-hidden">
-        <img src={heroImg} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.05]" />
+        <img src={cubiclesImg} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.05]" />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/90 to-background" />
         <div className="relative mx-auto max-w-7xl px-6 py-24">
         <div className="grid auto-rows-[280px] grid-cols-1 gap-4 md:grid-cols-3 md:auto-rows-[260px]">
           {projects.map((p) => (
             <div
               key={p.title}
-              className={`group relative overflow-hidden border border-border/60 ${p.span ?? ""}`}
+              className={`group relative overflow-hidden border border-border/60 bg-muted/10 ${p.span ?? ""}`}
             >
               <img
                 src={p.img}
@@ -120,7 +120,7 @@ function Projects() {
                 width={1280}
                 height={960}
                 loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6">

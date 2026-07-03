@@ -6,12 +6,16 @@ import cubiclesImg from "@/assets/service-cubicles.jpg";
 import lockersImg from "@/assets/service-lockers.jpg";
 import officeImg from "@/assets/service-office.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
-import urinalImg from "@/assets/service-urinal.jpg";
+import urinalImg from "@/assets/service-urinal.jpeg";
 import desksImg from "@/assets/service-desks.jpg";
+import vanitiesImg from "@/assets/service-vanities.jpeg";
+import kitchenImg from "@/assets/service-kitchen.jpeg";
+import solidSurfaceImg from "@/assets/service-solid-surface.jpeg";
+import ipsImg from "@/assets/service-ips.jpg";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
-const heroSlides = [heroImg, cubiclesImg, officeImg, claddingImg, lockersImg];
+const heroSlides = [cubiclesImg, vanitiesImg, kitchenImg, solidSurfaceImg, urinalImg];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,13 +34,13 @@ export const Route = createFileRoute("/")({
 const services = [
   { title: "Toilet Cubicles", slug: "toilet-cubicles", img: cubiclesImg, blurb: "Moisture-proof, vandal-resistant cubicle systems engineered for hotels, malls and offices." },
   { title: "Lockers", slug: "lockers", img: lockersImg, blurb: "Bespoke locker walls for gyms, staff rooms, schools and clubhouses — built to outlast." },
-  { title: "Vanities", slug: "vanities", img: cubiclesImg, blurb: "Custom washroom vanities and counters — coordinated with your cubicle finish." },
+  { title: "Vanities", slug: "vanities", img: vanitiesImg, blurb: "Custom washroom vanities and counters — coordinated with your cubicle finish." },
   { title: "Urinal Partitions", slug: "urinal-partitions", img: urinalImg, blurb: "Hygienic urinal screens with sealed edges, built for high-traffic public restrooms." },
-  { title: "Kitchen Cabinets", slug: "kitchen-cabinets", img: officeImg, blurb: "Modular kitchen cabinetry in HPL, acrylic and lacquer with Hafele / Blum hardware." },
+  { title: "Kitchen Cabinets", slug: "kitchen-cabinets", img: kitchenImg, blurb: "Modular kitchen cabinetry in HPL, acrylic and lacquer with Hafele / Blum hardware." },
   { title: "Carpet Tiles", slug: "carpet-tiles", img: officeImg, blurb: "Heavy-contract modular carpet tiles, supplied and installed for offices and schools." },
   { title: "Wall Cladding", slug: "wall-cladding", img: claddingImg, blurb: "Architectural wall panelling on concealed sub-frames — HPL, veneer and acoustic finishes." },
-  { title: "IPS Panels", slug: "ips-panels", img: cubiclesImg, blurb: "Integrated Plumbing System panels — concealed pipework with full service access." },
-  { title: "Solid Surface Worktops", slug: "solid-surface-worktops", img: claddingImg, blurb: "Seamless Corian-style worktops, vanities and reception counters with integrated basins." },
+  { title: "IPS Panels", slug: "ips-panels", img: ipsImg, blurb: "Integrated Plumbing System panels — concealed pipework with full service access." },
+  { title: "Solid Surface Worktops", slug: "solid-surface-worktops", img: solidSurfaceImg, blurb: "Seamless Corian-style worktops, vanities and reception counters with integrated basins." },
 ];
 
 function Index() {
@@ -67,23 +71,26 @@ function Index() {
       </section>
 
       {/* Services */}
-      <section className="mx-auto max-w-7xl px-6 py-28">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <span className="text-xs uppercase tracking-[0.3em] text-primary">What we do</span>
-            <h2 className="mt-4 font-serif text-4xl leading-tight text-foreground md:text-5xl">
-              A complete HPL &amp; joinery workshop under one roof.
-            </h2>
+      <section className="relative isolate overflow-hidden">
+        <img src={cubiclesImg} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.05]" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/95 to-background" />
+        <div className="relative mx-auto max-w-7xl px-6 py-28">
+          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+            <div className="max-w-2xl">
+              <span className="text-xs uppercase tracking-[0.3em] text-primary">What we do</span>
+              <h2 className="mt-4 font-serif text-4xl leading-tight text-foreground md:text-5xl">
+                A complete HPL &amp; joinery workshop under one roof.
+              </h2>
+            </div>
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-primary hover:text-foreground"
+            >
+              All services <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </div>
-          <Link
-            to="/services"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-primary hover:text-foreground"
-          >
-            All services <ArrowUpRight className="h-4 w-4" />
-          </Link>
-        </div>
 
-        <div className="mt-14 grid gap-8 md:grid-cols-2">
+          <div className="mt-14 grid gap-8 md:grid-cols-2">
           {services.map((s) => (
             <Link
               to="/services/$slug"
@@ -91,14 +98,14 @@ function Index() {
               key={s.title}
               className="group relative block overflow-hidden border border-border/60 bg-card"
             >
-              <div className="aspect-[4/3] overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden bg-muted/10">
                 <img
                   src={s.img}
                   alt={s.title}
                   width={1280}
                   height={960}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
               <div className="flex items-start justify-between gap-4 p-8">
@@ -110,6 +117,7 @@ function Index() {
               </div>
             </Link>
           ))}
+        </div>
         </div>
       </section>
 
@@ -205,7 +213,7 @@ function HeroDoor() {
           HPL Specialists · United Arab Emirates
         </span>
 
-        <h1 className="mt-5 max-w-4xl font-serif text-[2.5rem] font-medium leading-[1.05] text-foreground sm:mt-6 sm:text-6xl md:text-7xl lg:text-[88px]">
+        <h1 className="mt-5 max-w-4xl font-serif text-3xl font-medium leading-[1.1] text-foreground sm:mt-6 sm:text-5xl md:text-6xl lg:text-7xl">
           <span className="block">Restroom cubicles,</span>
           <span className="block">worktops &amp;</span>
           <span className="block italic text-primary">

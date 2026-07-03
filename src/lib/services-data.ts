@@ -1,13 +1,13 @@
 import cubiclesImg from "@/assets/service-cubicles.jpg";
 import lockersImg from "@/assets/service-lockers.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
-import urinalImg from "@/assets/service-urinal.jpg";
-import vanitiesImg from "@/assets/service-vanities.jpg";
-import kitchenImg from "@/assets/service-kitchen.jpg";
+import urinalImg from "@/assets/service-urinal.jpeg";
+import vanitiesImg from "@/assets/service-vanities.jpeg";
+import kitchenImg from "@/assets/service-kitchen.jpeg";
 import carpetImg from "@/assets/service-carpet.jpg";
 import ipsImg from "@/assets/service-ips.jpg";
 import labImg from "@/assets/service-lab.jpg";
-import solidSurfaceImg from "@/assets/service-solid-surface.jpg";
+import solidSurfaceImg from "@/assets/service-solid-surface.jpeg";
 
 export type ServiceDetail = {
   slug: string;

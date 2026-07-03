@@ -3,7 +3,7 @@ import { Mail, MapPin, Phone, ArrowRight, Clock, CheckCircle2 } from "lucide-rea
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
-import heroContact from "@/assets/hero-contact.jpg";
+import cubiclesImg from "@/assets/service-cubicles.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
 
 export const Route = createFileRoute("/contact")({
@@ -51,7 +51,7 @@ function Contact() {
     <>
       <section className="relative isolate overflow-hidden border-b border-border/60">
         <img
-          src={heroContact}
+          src={cubiclesImg}
           alt="Nexus Line Furniture studio reception"
           width={1920}
           height={1080}

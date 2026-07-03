@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { services } from "@/lib/services-data";
-import heroServices from "@/assets/hero-services.jpg";
+import cubiclesImg from "@/assets/service-cubicles.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
 
 export const Route = createFileRoute("/services/")({
@@ -23,7 +23,7 @@ function Services() {
     <>
       <section className="relative isolate overflow-hidden border-b border-border/60">
         <img
-          src={heroServices}
+          src={cubiclesImg}
           alt="HPL cubicle, locker and partition finishes"
           width={1920}
           height={1080}
@@ -50,14 +50,14 @@ function Services() {
         <div className="grid gap-10 md:grid-cols-2">
           {services.map((s) => (
             <article key={s.slug} className="flex flex-col border border-border/60 bg-card">
-              <div className="aspect-[4/3] overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden bg-muted/10">
                 <img
                   src={s.img}
                   alt={s.title}
                   width={1280}
                   height={960}
                   loading="lazy"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                 />
               </div>
               <div className="flex flex-1 flex-col p-8">
