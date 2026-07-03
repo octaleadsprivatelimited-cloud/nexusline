@@ -58,21 +58,23 @@ function ServiceDetail() {
   return (
     <>
       <section className="relative isolate overflow-hidden border-b border-border/60 bg-card">
-        <div className="absolute inset-0 -z-10">
-          <img src={service.img} alt="" className="h-full w-full object-cover opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
+        <div className="absolute inset-0 -z-10 bg-muted">
+          <img src={service.img} alt="" className="h-full w-full object-cover" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
         </div>
         <div className="mx-auto max-w-7xl px-6 pb-20 pt-28">
-          <Link
-            to="/services"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" /> All Services
-          </Link>
-          <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.05] text-foreground md:text-6xl">
-            {service.title}
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg text-muted-foreground">{service.tagline}</p>
+          <div className="max-w-fit border border-border/50 bg-white/70 p-8 shadow-xl backdrop-blur-md sm:p-12">
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground hover:text-primary"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" /> All Services
+            </Link>
+            <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.05] text-foreground md:text-6xl">
+              {service.title}
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg font-medium text-foreground">{service.tagline}</p>
+          </div>
         </div>
       </section>
 

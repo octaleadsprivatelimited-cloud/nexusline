@@ -112,7 +112,7 @@ function Projects() {
           {projects.map((p) => (
             <div
               key={p.title}
-              className={`group relative overflow-hidden border border-border/60 bg-muted/10 ${p.span ?? ""}`}
+              className={`group relative overflow-hidden border border-border/60 ${p.span ?? ""}`}
             >
               <img
                 src={p.img}
@@ -120,7 +120,7 @@ function Projects() {
                 width={1280}
                 height={960}
                 loading="lazy"
-                className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6">

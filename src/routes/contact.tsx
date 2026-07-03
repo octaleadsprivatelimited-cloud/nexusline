@@ -91,9 +91,9 @@ function Contact() {
                 <Icon className="h-4 w-4" /> {label}
               </div>
               {href ? (
-                <a href={href} className="mt-3 block font-serif text-2xl text-foreground hover:text-primary">{value}</a>
+                <a href={href} className="mt-2 block font-medium text-foreground hover:text-primary">{value}</a>
               ) : (
-                <p className="mt-3 font-serif text-2xl text-foreground">{value}</p>
+                <p className="mt-2 font-medium text-foreground">{value}</p>
               )}
             </div>
           ))}
