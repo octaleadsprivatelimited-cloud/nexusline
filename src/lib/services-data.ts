@@ -8,6 +8,7 @@ import carpetImg from "@/assets/service-carpet.jpg";
 import ipsImg from "@/assets/service-ips.jpg";
 import labImg from "@/assets/service-lab.jpg";
 import solidSurfaceImg from "@/assets/service-solid-surface.jpeg";
+import benchImg from "@/assets/service-hpl-bench.jpg";
 
 export type ServiceDetail = {
   slug: string;
@@ -276,6 +277,35 @@ export const services: ServiceDetail[] = [
       { q: "How is it different from quartz or stone?", a: "Solid surface is fully repairable and seamless — scratches and minor damage can be sanded out, and joins are invisible. Quartz is harder but joints are always visible." },
     ],
   },
+  {
+    slug: "hpl-benches",
+    title: "HPL Benches",
+    tagline: "Waterproof, heavy-duty HPL benches for locker rooms and gyms.",
+    category: "washroom",
+    img: benchImg,
+    body: "Heavy-duty modular changing room benches fabricated from compact High Pressure Laminate (HPL). Designed for high-traffic gym locker rooms and wet areas.",
+    bullets: ["Fully waterproof & impact resistant", "Stainless steel or powder-coated legs", "Custom sizes and configurations"],
+    overview: [
+      "Our HPL benches are engineered specifically for wet and humid environments like gym locker rooms, pool changing areas, and industrial staff rooms.",
+      "Fabricated from 12mm or thicker compact HPL with heavy-duty metal frameworks, they provide a hygienic, non-porous seating solution that won't warp, rot, or degrade."
+    ],
+    specs: [
+      { label: "Seat Material", value: "12 mm – 20 mm compact HPL" },
+      { label: "Framework", value: "Powder-coated steel or SS 304/316" },
+      { label: "Design", value: "Slatted or solid top, optional shoe racks" },
+      { label: "Moisture Resistance", value: "100% Waterproof" }
+    ],
+    applications: ["Gyms & fitness centers", "Swimming pools & spas", "Schools & university sports facilities", "Industrial staff locker rooms"],
+    process: [
+      { step: "Design & Measurement", detail: "Assessing space to maximize seating capacity and flow." },
+      { step: "Fabrication", detail: "CNC cutting of HPL and frame fabrication." },
+      { step: "Installation", detail: "Secure anchoring to floors or walls." }
+    ],
+    faqs: [
+      { q: "Can these be installed in wet areas like shower rooms?", a: "Yes, compact HPL is completely waterproof, making it the perfect material for wet area seating." },
+      { q: "Can we integrate shoe racks under the benches?", a: "Absolutely. We can custom-design the metal framework to include shoe racks or cubbies beneath the bench seats." }
+    ]
+  }
 ];
 
 export const getService = (slug: string) =>

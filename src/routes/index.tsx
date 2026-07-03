@@ -13,6 +13,7 @@ import kitchenImg from "@/assets/service-kitchen.jpeg";
 import solidSurfaceImg from "@/assets/service-solid-surface.jpeg";
 import ipsImg from "@/assets/service-ips.jpg";
 import carpetImg from "@/assets/service-carpet.jpg";
+import benchImg from "@/assets/service-hpl-bench.jpg";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
@@ -42,6 +43,7 @@ const services = [
   { title: "Wall Cladding", slug: "wall-cladding", img: claddingImg, blurb: "Architectural wall panelling on concealed sub-frames — HPL, veneer and acoustic finishes." },
   { title: "IPS Panels", slug: "ips-panels", img: ipsImg, blurb: "Integrated Plumbing System panels — concealed pipework with full service access." },
   { title: "Solid Surface Worktops", slug: "solid-surface-worktops", img: solidSurfaceImg, blurb: "Seamless Corian-style worktops, vanities and reception counters with integrated basins." },
+  { title: "HPL Benches", slug: "hpl-benches", img: benchImg, blurb: "Heavy-duty modular changing room benches fabricated from compact HPL for wet areas." },
 ];
 
 function Index() {
