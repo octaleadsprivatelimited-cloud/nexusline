@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { toast } from "sonner";
 import { auth, ADMIN_UID, isFirebaseConfigured } from "@/lib/firebase";
 import { useAdminAuth, demoAuth, DEMO_CREDENTIALS } from "@/lib/use-admin-auth";
@@ -15,6 +16,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (isAdmin) navigate({ to: "/admin" });
@@ -22,6 +24,7 @@ function Login() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     // Demo credentials always work — for previewing the admin layout.
     if (
       email.trim().toLowerCase() === DEMO_CREDENTIALS.email &&
@@ -33,20 +36,26 @@ function Login() {
       return;
     }
     if (!auth) {
-      toast.error("Use the demo credentials below, or configure Firebase.");
+      const message = "Firebase API key is missing or invalid in the app config.";
+      setError(message);
+      toast.error(message);
       return;
     }
     setBusy(true);
     try {
       const cred = await signInWithEmailAndPassword(auth, email, password);
       if (ADMIN_UID && cred.user.uid !== ADMIN_UID) {
-        toast.error("This account isn't the admin");
+        const message = "This account isn't the admin";
+        setError(message);
+        toast.error(message);
+        await signOut(auth);
       } else {
         toast.success("Welcome back");
         navigate({ to: "/admin" });
       }
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Sign in failed";
+      const msg = getFirebaseLoginError(err);
+      setError(msg);
       toast.error(msg);
     } finally {
       setBusy(false);
@@ -86,6 +95,11 @@ function Login() {
             Firebase isn't configured yet — only demo login works. Data won't persist.
           </p>
         )}
+        {error && (
+          <p className="border border-destructive/40 bg-destructive/10 px-3 py-2 text-xs text-destructive">
+            {error}
+          </p>
+        )}
         <div>
           <label className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
             Email
@@ -123,4 +137,25 @@ function Login() {
       </form>
     </div>
   );
+}
+
+function getFirebaseLoginError(err: unknown) {
+  if (err instanceof FirebaseError) {
+    switch (err.code) {
+      case "auth/api-key-not-valid":
+      case "auth/invalid-api-key":
+        return "Firebase rejected the API key. Use the Web app API key from Firebase project settings.";
+      case "auth/operation-not-allowed":
+        return "Email/password login is not enabled in Firebase Authentication.";
+      case "auth/invalid-credential":
+      case "auth/user-not-found":
+      case "auth/wrong-password":
+        return "Invalid admin email or password.";
+      case "auth/too-many-requests":
+        return "Too many attempts. Wait a moment and try again.";
+      default:
+        return err.message;
+    }
+  }
+  return err instanceof Error ? err.message : "Sign in failed";
 }
