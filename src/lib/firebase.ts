@@ -6,9 +6,18 @@ declare const __FIREBASE_GOOGLE_API_KEY__: string | undefined;
 
 const FIREBASE_WEB_API_KEY = "AIzaSyC-vrVtdCzRWJ5VXZfHq8PEXLQhizIPrYU";
 
+function normalizeFirebaseApiKey(value: unknown) {
+  if (typeof value !== "string") return "";
+  const trimmed = value.trim();
+  if (!trimmed || trimmed.includes("@secret:") || !trimmed.startsWith("AIza")) {
+    return "";
+  }
+  return trimmed;
+}
+
 const firebaseApiKey = (
-  import.meta.env.VITE_FIREBASE_API_KEY ||
-  __FIREBASE_GOOGLE_API_KEY__ ||
+  normalizeFirebaseApiKey(import.meta.env.VITE_FIREBASE_API_KEY) ||
+  normalizeFirebaseApiKey(__FIREBASE_GOOGLE_API_KEY__) ||
   FIREBASE_WEB_API_KEY
 ).trim();
 
