@@ -8,6 +8,7 @@ import { services } from "@/lib/services-data";
 const links = [
   { to: "/", label: "Home" },
   { to: "/projects", label: "Projects" },
+  { to: "/gallery", label: "Gallery" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
