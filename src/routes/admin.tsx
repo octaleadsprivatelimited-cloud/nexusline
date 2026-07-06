@@ -31,7 +31,6 @@ function AdminLayout() {
   const onLogin = location.pathname === "/admin/login";
 
   if (onLogin) return <Outlet />;
-  if (!configured) return <NotConfigured />;
   if (loading) return <FullScreen>Loading…</FullScreen>;
   if (!user) {
     return (
@@ -129,27 +128,4 @@ function FullScreen({ children }: { children: React.ReactNode }) {
   );
 }
 
-function NotConfigured() {
-  return (
-    <FullScreen>
-      <div className="max-w-lg space-y-4 border border-border/60 bg-card p-8">
-        <div className="flex items-center gap-2 text-destructive">
-          <AlertTriangle className="h-5 w-5" />
-          <h2 className="font-serif text-xl">Firebase not configured</h2>
-        </div>
-        <p className="text-sm text-muted-foreground">
-          The admin panel UI is ready, but the Firebase Web API key is missing or
-          invalid. Add the real Firebase Web API key to the saved GOOGLE_API_KEY
-          secret or to:
-        </p>
-        <pre className="overflow-auto rounded bg-muted p-3 text-xs">
-{`VITE_FIREBASE_API_KEY=...`}
-        </pre>
-        <p className="text-xs text-muted-foreground">
-          Then restart the dev server. Also enable Email/Password auth, Firestore,
-          and paste the Firestore security rules I shared earlier.
-        </p>
-      </div>
-    </FullScreen>
-  );
-}
+
