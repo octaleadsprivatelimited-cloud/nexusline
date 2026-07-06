@@ -19,16 +19,6 @@ type SiteSettings = {
 
 const DOC_ID = "site";
 
-const SEED_SETTINGS: SiteSettings = {
-  companyName: "Nexus Line Furniture",
-  phone: "+971 50 509 7864",
-  email: "sales@nexuslinefurniture.ae",
-  address: "Dubai & Ajman, United Arab Emirates",
-  heroTitle: "Restroom cubicles, worktops & interior solutions.",
-  heroSubtitle:
-    "Nexus Line Furniture designs, manufactures and installs toilet cubicles, lockers, vanities, kitchen cabinets, wall cladding, IPS panels and solid surface worktops for landmark projects across Dubai and the wider GCC.",
-};
-
 function Settings() {
   const [form, setForm] = useState<SiteSettings>({});
   const [loading, setLoading] = useState(true);

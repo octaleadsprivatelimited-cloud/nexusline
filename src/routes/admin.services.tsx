@@ -10,13 +10,11 @@ import {
   query,
   serverTimestamp,
   setDoc,
-  writeBatch,
 } from "firebase/firestore";
 import { toast } from "sonner";
-import { Plus, Trash2, Upload, Database } from "lucide-react";
+import { Plus, Trash2, Upload } from "lucide-react";
 import { db } from "@/lib/firebase";
 import { fileToCompressedDataUrl } from "@/lib/image-to-data-url";
-import { services as seedServices } from "@/lib/services-data";
 
 export const Route = createFileRoute("/admin/services")({
   component: Services,
