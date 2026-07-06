@@ -16,6 +16,7 @@ import carpetImg from "@/assets/service-carpet.jpg";
 import benchImg from "@/assets/service-hpl-bench.jpg";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import { useDoc } from "@/lib/use-firestore-data";
 
 const heroSlides = [cubiclesImg, vanitiesImg, kitchenImg, solidSurfaceImg, urinalImg];
 
@@ -186,6 +187,7 @@ function Index() {
 function HeroDoor() {
   const [idx, setIdx] = useState(0);
   const reduce = useReducedMotion();
+  const settings = useDoc<{ heroTitle?: string; heroSubtitle?: string }>("settings", "site");
   useEffect(() => {
     if (reduce) return;
     const id = setInterval(() => setIdx((i) => (i + 1) % heroSlides.length), 5000);
@@ -218,18 +220,20 @@ function HeroDoor() {
           </span>
 
           <h1 className="mt-5 max-w-4xl font-serif text-2xl font-medium leading-[1.1] text-foreground sm:mt-6 sm:text-4xl md:text-5xl lg:text-5xl">
-            <span className="block">Restroom cubicles,</span>
-            <span className="block">worktops &amp;</span>
-            <span className="block italic text-primary">
-              interior solutions.
-            </span>
+            {settings?.heroTitle ? (
+              <span className="block">{settings.heroTitle}</span>
+            ) : (
+              <>
+                <span className="block">Restroom cubicles,</span>
+                <span className="block">worktops &amp;</span>
+                <span className="block italic text-primary">interior solutions.</span>
+              </>
+            )}
           </h1>
 
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:mt-8 sm:text-base md:text-lg">
-            Nexus Line Furniture designs, manufactures and installs toilet
-            cubicles, lockers, vanities, kitchen cabinets,
-            wall cladding, IPS panels and solid surface worktops
-            for landmark projects across Dubai and the wider GCC.
+            {settings?.heroSubtitle ??
+              "Nexus Line Furniture designs, manufactures and installs toilet cubicles, lockers, vanities, kitchen cabinets, wall cladding, IPS panels and solid surface worktops for landmark projects across Dubai and the wider GCC."}
           </p>
 
           <div className="mt-8 flex flex-row flex-nowrap items-center gap-3 sm:mt-10 sm:gap-4">
