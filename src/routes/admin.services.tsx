@@ -14,8 +14,8 @@ import {
 } from "firebase/firestore";
 import { toast } from "sonner";
 import { Plus, Trash2, Upload, Database } from "lucide-react";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { db, storage } from "@/lib/firebase";
+import { db } from "@/lib/firebase";
+import { fileToCompressedDataUrl } from "@/lib/image-to-data-url";
 import { services as seedServices } from "@/lib/services-data";
 
 export const Route = createFileRoute("/admin/services")({
@@ -158,21 +158,14 @@ function ServiceEditor({
   const [saving, setSaving] = useState(false);
 
   const upload = async (file: File) => {
-    if (!storage) {
-      toast.error("Storage not configured");
-      return;
-    }
     setUploading(true);
     try {
-      const path = `services/${Date.now()}-${file.name}`;
-      const r = ref(storage, path);
-      await uploadBytes(r, file);
-      const url = await getDownloadURL(r);
-      setForm((f) => ({ ...f, imageUrl: url }));
+      const dataUrl = await fileToCompressedDataUrl(file);
+      setForm((f) => ({ ...f, imageUrl: dataUrl }));
       toast.success("Image uploaded");
     } catch (err) {
       console.error(err);
-      toast.error("Upload failed");
+      toast.error(err instanceof Error ? err.message : "Upload failed");
     } finally {
       setUploading(false);
     }
