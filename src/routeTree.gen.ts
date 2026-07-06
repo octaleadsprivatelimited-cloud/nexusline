@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
@@ -22,11 +23,17 @@ import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminServicesRouteImport } from './routes/admin.services'
 import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminGalleryRouteImport } from './routes/admin.gallery'
 import { Route as AdminEnquiriesRouteImport } from './routes/admin.enquiries'
 
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -89,6 +96,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminGalleryRoute = AdminGalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminEnquiriesRoute = AdminEnquiriesRouteImport.update({
   id: '/enquiries',
   path: '/enquiries',
@@ -100,8 +112,10 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
   '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
   '/projects': typeof ProjectsRoute
   '/admin/enquiries': typeof AdminEnquiriesRoute
+  '/admin/gallery': typeof AdminGalleryRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/services': typeof AdminServicesRoute
@@ -115,8 +129,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
   '/projects': typeof ProjectsRoute
   '/admin/enquiries': typeof AdminEnquiriesRoute
+  '/admin/gallery': typeof AdminGalleryRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/services': typeof AdminServicesRoute
@@ -132,8 +148,10 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
   '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
   '/projects': typeof ProjectsRoute
   '/admin/enquiries': typeof AdminEnquiriesRoute
+  '/admin/gallery': typeof AdminGalleryRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/services': typeof AdminServicesRoute
@@ -150,8 +168,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/contact'
+    | '/gallery'
     | '/projects'
     | '/admin/enquiries'
+    | '/admin/gallery'
     | '/admin/login'
     | '/admin/projects'
     | '/admin/services'
@@ -165,8 +185,10 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/gallery'
     | '/projects'
     | '/admin/enquiries'
+    | '/admin/gallery'
     | '/admin/login'
     | '/admin/projects'
     | '/admin/services'
@@ -181,8 +203,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/contact'
+    | '/gallery'
     | '/projects'
     | '/admin/enquiries'
+    | '/admin/gallery'
     | '/admin/login'
     | '/admin/projects'
     | '/admin/services'
@@ -198,6 +222,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRouteWithChildren
   ContactRoute: typeof ContactRoute
+  GalleryRoute: typeof GalleryRoute
   ProjectsRoute: typeof ProjectsRoute
   ServicesSplatRoute: typeof ServicesSplatRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
@@ -211,6 +236,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -297,6 +329,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/gallery': {
+      id: '/admin/gallery'
+      path: '/gallery'
+      fullPath: '/admin/gallery'
+      preLoaderRoute: typeof AdminGalleryRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/enquiries': {
       id: '/admin/enquiries'
       path: '/enquiries'
@@ -309,6 +348,7 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminEnquiriesRoute: typeof AdminEnquiriesRoute
+  AdminGalleryRoute: typeof AdminGalleryRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminProjectsRoute: typeof AdminProjectsRoute
   AdminServicesRoute: typeof AdminServicesRoute
@@ -318,6 +358,7 @@ interface AdminRouteChildren {
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminEnquiriesRoute: AdminEnquiriesRoute,
+  AdminGalleryRoute: AdminGalleryRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminProjectsRoute: AdminProjectsRoute,
   AdminServicesRoute: AdminServicesRoute,
@@ -332,6 +373,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdminRoute: AdminRouteWithChildren,
   ContactRoute: ContactRoute,
+  GalleryRoute: GalleryRoute,
   ProjectsRoute: ProjectsRoute,
   ServicesSplatRoute: ServicesSplatRoute,
   ServicesSlugRoute: ServicesSlugRoute,

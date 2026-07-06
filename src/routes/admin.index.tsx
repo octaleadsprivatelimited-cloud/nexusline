@@ -2,14 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { Inbox, Boxes, FolderKanban } from "lucide-react";
+import { Inbox, Boxes, FolderKanban, Images } from "lucide-react";
 
 export const Route = createFileRoute("/admin/")({
   component: Dashboard,
 });
 
 function Dashboard() {
-  const [counts, setCounts] = useState({ enquiries: 0, services: 0, projects: 0 });
+  const [counts, setCounts] = useState({ enquiries: 0, services: 0, projects: 0, gallery: 0 });
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -28,7 +28,12 @@ function Dashboard() {
         },
       );
 
-    const unsubs = [subscribe("enquiries"), subscribe("services"), subscribe("projects")];
+    const unsubs = [
+      subscribe("enquiries"),
+      subscribe("services"),
+      subscribe("projects"),
+      subscribe("gallery"),
+    ];
     return () => unsubs.forEach((unsub) => unsub());
   }, []);
 
@@ -36,6 +41,7 @@ function Dashboard() {
     { label: "Enquiries", value: counts.enquiries, icon: Inbox, to: "/admin/enquiries" },
     { label: "Services", value: counts.services, icon: Boxes, to: "/admin/services" },
     { label: "Projects", value: counts.projects, icon: FolderKanban, to: "/admin/projects" },
+    { label: "Gallery", value: counts.gallery, icon: Images, to: "/admin/gallery" },
   ] as const;
 
   return (
@@ -49,7 +55,7 @@ function Dashboard() {
           {error}
         </p>
       )}
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((c) => (
           <Link
             key={c.label}
