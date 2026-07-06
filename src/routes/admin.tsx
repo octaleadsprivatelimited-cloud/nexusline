@@ -5,6 +5,7 @@ import {
   Inbox,
   Boxes,
   FolderKanban,
+  Images,
   Settings,
   LogOut,
   AlertTriangle,
@@ -21,6 +22,7 @@ const NAV = [
   { to: "/admin/enquiries", label: "Enquiries", icon: Inbox },
   { to: "/admin/services", label: "Services", icon: Boxes },
   { to: "/admin/projects", label: "Projects", icon: FolderKanban },
+  { to: "/admin/gallery", label: "Gallery", icon: Images },
   { to: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
