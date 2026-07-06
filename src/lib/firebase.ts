@@ -26,12 +26,12 @@ const firebaseApiKey = (
 // by Firestore/Storage rules + the ADMIN_UID check below.
 const firebaseConfig = {
   apiKey: firebaseApiKey,
-  authDomain: "nexus-ad2f4.firebaseapp.com",
-  projectId: "nexus-ad2f4",
-  storageBucket: "nexus-ad2f4.firebasestorage.app",
-  messagingSenderId: "665645205956",
-  appId: "1:665645205956:web:856f2615f56d5098f07c91",
-  measurementId: "G-99KNL5VKRB",
+  authDomain: "nexus-c5968.firebaseapp.com",
+  projectId: "nexus-c5968",
+  storageBucket: "nexus-c5968.firebasestorage.app",
+  messagingSenderId: "627875249203",
+  appId: "1:627875249203:web:460736eb58371965143746",
+  measurementId: "G-7Z6445BGLB",
 };
 
 // UID of the original Firebase Auth admin user. Email fallback allows the
