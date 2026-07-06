@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { FirebaseError } from "firebase/app";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { toast } from "sonner";
-import { auth, isAdminUser, isFirebaseConfigured } from "@/lib/firebase";
+import { auth, isAdminUser } from "@/lib/firebase";
 import { useAdminAuth } from "@/lib/use-admin-auth";
 
 export const Route = createFileRoute("/admin/login")({
@@ -62,11 +62,6 @@ function Login() {
           <p className="text-[10px] uppercase tracking-[0.3em] text-primary">Nexus Line</p>
           <h1 className="mt-1 font-serif text-2xl">Admin sign in</h1>
         </div>
-        {!isFirebaseConfigured && (
-          <p className="text-[11px] text-muted-foreground">
-            Firebase isn't configured yet. Add the real Web API key before signing in.
-          </p>
-        )}
         {error && (
           <p className="border border-destructive/40 bg-destructive/10 px-3 py-2 text-xs text-destructive">
             {error}
