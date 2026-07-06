@@ -118,7 +118,7 @@ function AdminLayout() {
         </div>
       </aside>
       <main className="flex-1 overflow-x-auto p-6 md:p-10">
-        {isDemo && (
+        {isDemo && !configured && (
           <div className="mb-4 border border-primary/40 bg-primary/10 px-4 py-2 text-xs text-primary">
             Demo mode — Firebase isn't connected. Data won't persist and Firestore
             reads/writes will fail silently.
