@@ -3,24 +3,24 @@ import { getAuth, type Auth } from "firebase/auth";
 import { getFirestore, type Firestore } from "firebase/firestore";
 import { getStorage, type FirebaseStorage } from "firebase/storage";
 
-// Firebase web config is safe to expose — security is enforced by
-// Firestore/Storage rules + the ADMIN_UID check.
-// Fill these via a `.env` file at the project root (VITE_FIREBASE_*).
+// Firebase web config is safe to expose in client code — security is enforced
+// by Firestore/Storage rules + the ADMIN_UID check below.
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY as string | undefined,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN as string | undefined,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID as string | undefined,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET as string | undefined,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID as string | undefined,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID as string | undefined,
+  apiKey: "AIzaSyC-REPLACE_WITH_YOUR_WEB_API_KEY",
+  authDomain: "nexus-ad2f4.firebaseapp.com",
+  projectId: "nexus-ad2f4",
+  storageBucket: "nexus-ad2f4.firebasestorage.app",
+  messagingSenderId: "665645205956",
+  appId: "1:665645205956:web:856f2615f56d5098f07c91",
+  measurementId: "G-99KNL5VKRB",
 };
 
-export const ADMIN_UID =
-  (import.meta.env.VITE_FIREBASE_ADMIN_UID as string | undefined) ?? "";
+// TODO: paste the UID of your Firebase Auth admin user here.
+// Find it in Firebase Console → Authentication → Users → User UID.
+export const ADMIN_UID = "";
 
-export const isFirebaseConfigured = Boolean(
-  firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.appId,
-);
+export const isFirebaseConfigured =
+  !firebaseConfig.apiKey.includes("REPLACE_WITH_YOUR_WEB_API_KEY");
 
 let app: FirebaseApp | null = null;
 let authInstance: Auth | null = null;
@@ -28,7 +28,7 @@ let dbInstance: Firestore | null = null;
 let storageInstance: FirebaseStorage | null = null;
 
 if (isFirebaseConfigured) {
-  app = initializeApp(firebaseConfig as Required<typeof firebaseConfig>);
+  app = initializeApp(firebaseConfig);
   authInstance = getAuth(app);
   dbInstance = getFirestore(app);
   storageInstance = getStorage(app);
