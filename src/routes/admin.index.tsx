@@ -24,7 +24,7 @@ function Dashboard() {
         },
         (err) => {
           console.error(`Failed to load ${name} count`, err);
-          setError("Firestore permissions are blocking admin counts. Publish the updated rules below.");
+          setError("Firestore permissions are blocking admin counts. Publish the updated Firestore rules.");
         },
       );
 
