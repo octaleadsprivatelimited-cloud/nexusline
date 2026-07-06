@@ -11,6 +11,7 @@ import { services } from "../lib/services-data";
 
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { WhatsAppFloat } from "../components/WhatsAppFloat";
 
 function NotFoundComponent() {
   return (
@@ -192,6 +193,7 @@ function RootComponent() {
           <Outlet />
         </main>
         {!isAdmin && <Footer />}
+        {!isAdmin && <WhatsAppFloat />}
       </div>
     </QueryClientProvider>
   );
