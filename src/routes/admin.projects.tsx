@@ -61,29 +61,6 @@ function Projects() {
     toast.success("Deleted");
   };
 
-  const seed = async () => {
-    if (!db) return;
-    if (!confirm(`Import ${seedProjects.length} projects from the website?`)) return;
-    try {
-      const batch = writeBatch(db);
-      for (const p of seedProjects) {
-        const id = p.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-        batch.set(doc(db, "projects", id), {
-          title: p.title,
-          category: p.category,
-          location: p.location,
-          description: "",
-          imageUrl: p.img,
-          updatedAt: serverTimestamp(),
-        });
-      }
-      await batch.commit();
-      toast.success("Seeded projects");
-    } catch (err) {
-      console.error(err);
-      toast.error("Seed failed. Check that the updated Firestore rules are published.");
-    }
-  };
 
   return (
     <div className="space-y-6">
@@ -93,12 +70,6 @@ function Projects() {
           <p className="mt-1 text-sm text-muted-foreground">{items.length} projects</p>
         </div>
         <div className="flex gap-2">
-          <button
-            onClick={seed}
-            className="flex items-center gap-2 border border-border px-4 py-2 text-xs uppercase tracking-widest"
-          >
-            <Database className="h-4 w-4" /> Seed from code
-          </button>
           <button
             onClick={() =>
               setEditing({ id: "", title: "", category: "", location: "", description: "" })

@@ -23,8 +23,6 @@ function Settings() {
   const [form, setForm] = useState<SiteSettings>({});
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [seeding, setSeeding] = useState(false);
-  const [exists, setExists] = useState(false);
 
   useEffect(() => {
     if (!db) {
@@ -36,9 +34,6 @@ function Settings() {
       (snap) => {
         if (snap.exists()) {
           setForm(snap.data() as SiteSettings);
-          setExists(true);
-        } else {
-          setExists(false);
         }
         setLoading(false);
       },
@@ -68,23 +63,6 @@ function Settings() {
     }
   };
 
-  const seed = async () => {
-    if (!db) return;
-    setSeeding(true);
-    try {
-      await setDoc(
-        doc(db, "settings", DOC_ID),
-        { ...SEED_SETTINGS, updatedAt: serverTimestamp() },
-        { merge: true },
-      );
-      toast.success("Seeded site settings from website defaults");
-    } catch (err) {
-      console.error(err);
-      toast.error("Seed failed — check Firestore rules");
-    } finally {
-      setSeeding(false);
-    }
-  };
 
   const F = (label: string, key: keyof SiteSettings, textarea = false) => (
     <div>
@@ -114,13 +92,6 @@ function Settings() {
           Company details and hero copy. Frontend reads from Firestore.
         </p>
       </div>
-      <button
-        onClick={seed}
-        disabled={seeding}
-        className="border border-border px-4 py-2 text-xs uppercase tracking-widest hover:bg-muted disabled:opacity-50"
-      >
-        {seeding ? "Seeding…" : exists ? "Reset to website defaults" : "Seed from website defaults"}
-      </button>
       {loading ? (
         <p className="text-sm text-muted-foreground">Loading…</p>
       ) : (
