@@ -16,6 +16,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (isAdmin) navigate({ to: "/admin" });
@@ -23,6 +24,7 @@ function Login() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     // Demo credentials always work — for previewing the admin layout.
     if (
       email.trim().toLowerCase() === DEMO_CREDENTIALS.email &&
@@ -34,14 +36,18 @@ function Login() {
       return;
     }
     if (!auth) {
-      toast.error("Firebase API key is missing or invalid in the app config.");
+      const message = "Firebase API key is missing or invalid in the app config.";
+      setError(message);
+      toast.error(message);
       return;
     }
     setBusy(true);
     try {
       const cred = await signInWithEmailAndPassword(auth, email, password);
       if (ADMIN_UID && cred.user.uid !== ADMIN_UID) {
-        toast.error("This account isn't the admin");
+        const message = "This account isn't the admin";
+        setError(message);
+        toast.error(message);
         await signOut(auth);
       } else {
         toast.success("Welcome back");
@@ -49,6 +55,7 @@ function Login() {
       }
     } catch (err: unknown) {
       const msg = getFirebaseLoginError(err);
+      setError(msg);
       toast.error(msg);
     } finally {
       setBusy(false);
@@ -86,6 +93,11 @@ function Login() {
         {!isFirebaseConfigured && (
           <p className="text-[11px] text-muted-foreground">
             Firebase isn't configured yet — only demo login works. Data won't persist.
+          </p>
+        )}
+        {error && (
+          <p className="border border-destructive/40 bg-destructive/10 px-3 py-2 text-xs text-destructive">
+            {error}
           </p>
         )}
         <div>
