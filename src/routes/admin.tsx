@@ -25,7 +25,7 @@ const NAV = [
 ];
 
 function AdminLayout() {
-  const { user, loading, isAdmin, configured, email } = useAdminAuth();
+  const { user, loading, isAdmin, email } = useAdminAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const onLogin = location.pathname === "/admin/login";
