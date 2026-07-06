@@ -35,7 +35,7 @@ function Login() {
       const cred = await signInWithPopup(auth, provider);
       
       if (!isAdminUser(cred.user)) {
-        const message = "Access denied. Only nexuslineft@gmail.com is authorized.";
+        const message = "Access denied: you are not an admin";
         setError(message);
         toast.error(message);
         await signOut(auth);
