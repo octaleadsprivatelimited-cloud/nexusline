@@ -1,14 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
+import { useCollection } from "@/lib/use-firestore-data";
+import { seedProjects } from "@/lib/projects-data";
 import heroImg from "@/assets/hero.jpg";
 import heroProjects from "@/assets/hero-projects.jpg";
 import cubiclesImg from "@/assets/service-cubicles.jpg";
-import lockersImg from "@/assets/service-lockers.jpg";
-import officeImg from "@/assets/service-office.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
-import solidSurfaceImg from "@/assets/service-solid-surface.jpeg";
-import urinalImg from "@/assets/service-urinal.jpeg";
-import doorsImg from "@/assets/service-doors.jpg";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -24,67 +21,23 @@ export const Route = createFileRoute("/projects")({
   component: Projects,
 });
 
-const projects = [
-  {
-    title: "Dubai PMO Office",
-    category: "Executive Joinery & Cladding",
-    location: "Emirates Towers, Dubai",
-    img: officeImg,
-    span: "md:col-span-2 md:row-span-2",
-  },
-  {
-    title: "Dubai Hills Mall",
-    category: "HPL Toilet Cubicles & IPS Panels",
-    location: "Dubai Hills, Dubai",
-    img: cubiclesImg,
-  },
-  {
-    title: "Dubai Mall Reel Cinema",
-    category: "HPL Locker Walls & Washrooms",
-    location: "Downtown Dubai",
-    img: lockersImg,
-  },
-  {
-    title: "Dubai Airport (Terminal 1, 2 & 3)",
-    category: "HPL Toilet Cubicles & Urinal Screens",
-    location: "Garhoud, Dubai",
-    img: urinalImg,
-    span: "md:col-span-2",
-  },
-  {
-    title: "GEMS School of Research",
-    category: "School Lockers & Cubicles",
-    location: "Dubai",
-    img: lockersImg,
-  },
-  {
-    title: "Abu Dhabi Airport",
-    category: "IPS Panels & Solid Surface Vanities",
-    location: "Abu Dhabi",
-    img: solidSurfaceImg,
-  },
-  {
-    title: "ADNOC School Abu Dhabi",
-    category: "Heavy-Duty Lockers & Doors",
-    location: "Abu Dhabi",
-    img: doorsImg,
-  },
-  {
-    title: "Dubai Safari",
-    category: "HPL Changing Rooms & Benches",
-    location: "Al Warqa, Dubai",
-    img: claddingImg,
-  },
-  {
-    title: "100+ Labour Camps",
-    category: "Standard HPL Toilet Cubicles & Urinal Screens",
-    location: "Across United Arab Emirates",
-    img: cubiclesImg,
-    span: "md:col-span-3",
-  },
-];
-
 function Projects() {
+  const remote = useCollection<{
+    title?: string;
+    category?: string;
+    location?: string;
+    description?: string;
+    imageUrl?: string;
+  }>("projects");
+  const projects =
+    remote && remote.length > 0
+      ? remote.map((r) => ({
+          title: r.title ?? "",
+          category: r.category ?? "",
+          location: r.location ?? "",
+          img: r.imageUrl || cubiclesImg,
+        }))
+      : seedProjects;
   return (
     <>
       <section className="relative isolate overflow-hidden border-b border-border/60">
@@ -112,7 +65,7 @@ function Projects() {
           {projects.map((p) => (
             <div
               key={p.title}
-              className={`group relative overflow-hidden border border-border/60 ${p.span ?? ""}`}
+              className={`group relative overflow-hidden border border-border/60 ${("span" in p ? (p as { span?: string }).span : undefined) ?? ""}`}
             >
               <img
                 src={p.img}

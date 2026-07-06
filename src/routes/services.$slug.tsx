@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Check } from "lucide-react";
 import { useState } from "react";
 import { getService, type ServiceDetail as ServiceData } from "@/lib/services-data";
+import { useDoc } from "@/lib/use-firestore-data";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -54,12 +55,22 @@ export const Route = createFileRoute("/services/$slug")({
 
 function ServiceDetail() {
   const { service } = Route.useLoaderData() as { service: ServiceData };
+  const remote = useDoc<{ title?: string; tagline?: string; imageUrl?: string }>("services", service.slug);
+  const merged: ServiceData = remote
+    ? {
+        ...service,
+        title: remote.title ?? service.title,
+        tagline: remote.tagline ?? service.tagline,
+        img: remote.imageUrl || service.img,
+      }
+    : service;
+  const s = merged;
 
   return (
     <>
       <section className="relative isolate overflow-hidden border-b border-border/60 bg-card">
         <div className="absolute inset-0 -z-10 bg-muted">
-          <img src={service.img} alt="" className="h-full w-full object-cover" />
+          <img src={s.img} alt="" className="h-full w-full object-cover" />
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
         </div>
         <div className="mx-auto max-w-7xl px-6 pb-20 pt-28">
@@ -71,9 +82,9 @@ function ServiceDetail() {
               <ArrowLeft className="h-3.5 w-3.5" /> All Services
             </Link>
             <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.05] text-foreground md:text-6xl">
-              {service.title}
+              {s.title}
             </h1>
-            <p className="mt-5 max-w-2xl text-lg font-medium text-foreground">{service.tagline}</p>
+            <p className="mt-5 max-w-2xl text-lg font-medium text-foreground">{s.tagline}</p>
           </div>
         </div>
       </section>
@@ -83,12 +94,12 @@ function ServiceDetail() {
           <div>
             <span className="text-xs uppercase tracking-[0.3em] text-primary">Overview</span>
             <div className="mt-5 space-y-5 text-base leading-relaxed text-muted-foreground">
-              {service.overview.map((p) => <p key={p}>{p}</p>)}
+              {s.overview.map((p) => <p key={p}>{p}</p>)}
             </div>
 
             <h2 className="mt-14 font-serif text-3xl text-foreground">Applications</h2>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-              {service.applications.map((a) => (
+              {s.applications.map((a) => (
                 <li key={a} className="flex items-start gap-2 text-sm text-muted-foreground">
                   <Check className="mt-0.5 h-4 w-4 text-primary" /> {a}
                 </li>
@@ -97,7 +108,7 @@ function ServiceDetail() {
 
             <h2 className="mt-14 font-serif text-3xl text-foreground">Our Process</h2>
             <ol className="mt-6 space-y-5">
-              {service.process.map((p, i) => (
+              {s.process.map((p, i) => (
                 <li key={p.step} className="flex gap-5 border-l border-border/60 pl-5">
                   <span className="text-xs font-medium uppercase tracking-[0.25em] text-primary">
                     {String(i + 1).padStart(2, "0")}
@@ -110,11 +121,11 @@ function ServiceDetail() {
               ))}
             </ol>
 
-            {service.faqs.length > 0 && (
+            {s.faqs.length > 0 && (
               <>
                 <h2 className="mt-14 font-serif text-3xl text-foreground">FAQs</h2>
                 <div className="mt-6 space-y-5">
-                  {service.faqs.map((f) => (
+                  {s.faqs.map((f) => (
                     <div key={f.q} className="border border-border/60 bg-card p-6">
                       <h3 className="font-serif text-lg text-foreground">{f.q}</h3>
                       <p className="mt-2 text-sm text-muted-foreground">{f.a}</p>
@@ -129,16 +140,16 @@ function ServiceDetail() {
             <div className="border border-border/60 bg-card p-8">
               <span className="text-xs uppercase tracking-[0.3em] text-primary">Specifications</span>
               <dl className="mt-5 divide-y divide-border/60">
-                {service.specs.map((s) => (
-                  <div key={s.label} className="flex justify-between gap-4 py-3 text-sm">
-                    <dt className="text-muted-foreground">{s.label}</dt>
-                    <dd className="text-right font-medium text-foreground">{s.value}</dd>
+                {s.specs.map((sp) => (
+                  <div key={sp.label} className="flex justify-between gap-4 py-3 text-sm">
+                    <dt className="text-muted-foreground">{sp.label}</dt>
+                    <dd className="text-right font-medium text-foreground">{sp.value}</dd>
                   </div>
                 ))}
               </dl>
             </div>
 
-            <QuoteForm serviceTitle={service.title} />
+            <QuoteForm serviceTitle={s.title} />
           </aside>
         </div>
       </section>
