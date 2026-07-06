@@ -14,9 +14,10 @@ function Dashboard() {
 
   useEffect(() => {
     if (!db) return;
+    const firestore = db;
     const subscribe = (name: keyof typeof counts) =>
       onSnapshot(
-        collection(db, name),
+        collection(firestore, name),
         (snap) => {
           setError("");
           setCounts((current) => ({ ...current, [name]: snap.size }));
