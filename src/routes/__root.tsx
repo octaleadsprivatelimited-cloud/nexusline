@@ -78,6 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
+  const isAdmin = location.pathname.startsWith("/admin");
 
   useEffect(() => {
     let title = "Nexus Line Furniture — Luxury HPL Cubicles & Interiors in Dubai";
@@ -186,11 +187,11 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
-        <Navbar />
+        {!isAdmin && <Navbar />}
         <main className="flex-1">
           <Outlet />
         </main>
-        <Footer />
+        {!isAdmin && <Footer />}
       </div>
     </QueryClientProvider>
   );
