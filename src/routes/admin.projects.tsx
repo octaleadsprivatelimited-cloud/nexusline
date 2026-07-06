@@ -37,12 +37,23 @@ function Projects() {
   const [editing, setEditing] = useState<ProjectDoc | null>(null);
 
   useEffect(() => {
-    if (!db) return;
-    const q = query(collection(db, "projects"), orderBy("title"));
-    return onSnapshot(q, (snap) => {
-      setItems(snap.docs.map((d) => ({ id: d.id, ...(d.data() as Omit<ProjectDoc, "id">) })));
+    if (!db) {
       setLoading(false);
-    });
+      return;
+    }
+    const q = query(collection(db, "projects"), orderBy("title"));
+    return onSnapshot(
+      q,
+      (snap) => {
+        setItems(snap.docs.map((d) => ({ id: d.id, ...(d.data() as Omit<ProjectDoc, "id">) })));
+        setLoading(false);
+      },
+      (err) => {
+        console.error(err);
+        toast.error("Firestore permissions are blocking projects. Publish the updated rules.");
+        setLoading(false);
+      },
+    );
   }, []);
 
   const remove = async (id: string) => {
@@ -55,20 +66,25 @@ function Projects() {
   const seed = async () => {
     if (!db) return;
     if (!confirm(`Import ${seedProjects.length} projects from the website?`)) return;
-    const batch = writeBatch(db);
-    for (const p of seedProjects) {
-      const id = p.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-      batch.set(doc(db, "projects", id), {
-        title: p.title,
-        category: p.category,
-        location: p.location,
-        description: "",
-        imageUrl: p.img,
-        createdAt: serverTimestamp(),
-      });
+    try {
+      const batch = writeBatch(db);
+      for (const p of seedProjects) {
+        const id = p.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        batch.set(doc(db, "projects", id), {
+          title: p.title,
+          category: p.category,
+          location: p.location,
+          description: "",
+          imageUrl: p.img,
+          updatedAt: serverTimestamp(),
+        });
+      }
+      await batch.commit();
+      toast.success("Seeded projects");
+    } catch (err) {
+      console.error(err);
+      toast.error("Seed failed. Check that the updated Firestore rules are published.");
     }
-    await batch.commit();
-    toast.success("Seeded projects");
   };
 
   return (
