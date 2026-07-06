@@ -1,4 +1,5 @@
 import { initializeApp, type FirebaseApp } from "firebase/app";
+import { getAnalytics, isSupported as analyticsIsSupported } from "firebase/analytics";
 import { getAuth, type Auth, type User } from "firebase/auth";
 import { getFirestore, type Firestore } from "firebase/firestore";
 
@@ -56,6 +57,13 @@ if (isFirebaseConfigured) {
   app = initializeApp(firebaseConfig);
   authInstance = getAuth(app);
   dbInstance = getFirestore(app);
+  if (typeof window !== "undefined") {
+    analyticsIsSupported()
+      .then((ok) => {
+        if (ok && app) getAnalytics(app);
+      })
+      .catch(() => {});
+  }
 }
 
 export const auth = authInstance;
