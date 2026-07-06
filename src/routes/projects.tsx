@@ -65,7 +65,7 @@ function Projects() {
           {projects.map((p) => (
             <div
               key={p.title}
-              className={`group relative overflow-hidden border border-border/60 ${p.span ?? ""}`}
+              className={`group relative overflow-hidden border border-border/60 ${("span" in p ? (p as { span?: string }).span : undefined) ?? ""}`}
             >
               <img
                 src={p.img}
