@@ -12,10 +12,10 @@ import {
   setDoc,
   writeBatch,
 } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { toast } from "sonner";
 import { Plus, Trash2, Upload, Database } from "lucide-react";
-import { db, storage } from "@/lib/firebase";
+import { db } from "@/lib/firebase";
+import { fileToCompressedDataUrl } from "@/lib/image-to-data-url";
 import { seedProjects } from "@/lib/projects-data";
 
 export const Route = createFileRoute("/admin/projects")({
@@ -148,17 +148,14 @@ function ProjectEditor({ value, onClose }: { value: ProjectDoc; onClose: () => v
   const [saving, setSaving] = useState(false);
 
   const upload = async (file: File) => {
-    if (!storage) return;
     setUploading(true);
     try {
-      const r = ref(storage, `projects/${Date.now()}-${file.name}`);
-      await uploadBytes(r, file);
-      const url = await getDownloadURL(r);
-      setForm((f) => ({ ...f, imageUrl: url }));
+      const dataUrl = await fileToCompressedDataUrl(file);
+      setForm((f) => ({ ...f, imageUrl: dataUrl }));
       toast.success("Uploaded");
     } catch (err) {
       console.error(err);
-      toast.error("Upload failed");
+      toast.error(err instanceof Error ? err.message : "Upload failed");
     } finally {
       setUploading(false);
     }
