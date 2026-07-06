@@ -15,9 +15,8 @@ const firebaseConfig = {
   measurementId: "G-99KNL5VKRB",
 };
 
-// TODO: paste the UID of your Firebase Auth admin user here.
-// Find it in Firebase Console → Authentication → Users → User UID.
-export const ADMIN_UID = "";
+// UID of the Firebase Auth admin user (nexuslineft@gmail.com).
+export const ADMIN_UID = "fv4gYT89QQ6dX13iFjojjZTtUp1";
 
 export const isFirebaseConfigured =
   !firebaseConfig.apiKey.includes("REPLACE_WITH_YOUR_WEB_API_KEY");
