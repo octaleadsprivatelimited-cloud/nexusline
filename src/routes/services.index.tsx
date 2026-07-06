@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { services } from "@/lib/services-data";
+import { useCollection } from "@/lib/use-firestore-data";
 import cubiclesImg from "@/assets/service-cubicles.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
 
@@ -19,6 +20,26 @@ export const Route = createFileRoute("/services/")({
 });
 
 function Services() {
+  const remote = useCollection<{ title?: string; slug?: string; tagline?: string; imageUrl?: string }>("services");
+  const overrides = new Map((remote ?? []).map((r) => [r.slug ?? r.id, r]));
+  const merged = services.map((s) => {
+    const o = overrides.get(s.slug);
+    return o
+      ? { ...s, title: o.title ?? s.title, tagline: o.tagline ?? s.tagline, img: o.imageUrl || s.img, body: o.tagline ?? s.body }
+      : s;
+  });
+  // Include any Firestore-only services (not in seed) at the end.
+  const seedSlugs = new Set(services.map((s) => s.slug));
+  const extras = (remote ?? [])
+    .filter((r) => (r.slug ?? r.id) && !seedSlugs.has((r.slug ?? r.id) as string))
+    .map((r) => ({
+      slug: (r.slug ?? r.id) as string,
+      title: r.title ?? "",
+      body: r.tagline ?? "",
+      bullets: [] as string[],
+      img: r.imageUrl || cubiclesImg,
+    }));
+  const list = [...merged, ...extras];
   return (
     <>
       <section className="relative isolate overflow-hidden border-b border-border/60">
@@ -48,7 +69,7 @@ function Services() {
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background/90 to-background" />
         <div className="relative mx-auto max-w-7xl px-6 py-24">
         <div className="grid gap-10 md:grid-cols-2">
-          {services.map((s) => (
+          {list.map((s) => (
             <article key={s.slug} className="flex flex-col border border-border/60 bg-card">
               <div className="aspect-[4/3] overflow-hidden bg-muted/10">
                 <img
