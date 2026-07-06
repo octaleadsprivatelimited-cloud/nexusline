@@ -18,6 +18,8 @@ import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ServicesSplatRouteImport } from './routes/services.$'
+import { Route as AdminServicesRouteImport } from './routes/admin.services'
+import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminEnquiriesRouteImport } from './routes/admin.enquiries'
 
@@ -66,6 +68,16 @@ const ServicesSplatRoute = ServicesSplatRouteImport.update({
   path: '/services/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminServicesRoute = AdminServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProjectsRoute = AdminProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -85,6 +97,8 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/admin/enquiries': typeof AdminEnquiriesRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/projects': typeof AdminProjectsRoute
+  '/admin/services': typeof AdminServicesRoute
   '/services/$': typeof ServicesSplatRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -97,6 +111,8 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/admin/enquiries': typeof AdminEnquiriesRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/projects': typeof AdminProjectsRoute
+  '/admin/services': typeof AdminServicesRoute
   '/services/$': typeof ServicesSplatRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/admin': typeof AdminIndexRoute
@@ -111,6 +127,8 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/admin/enquiries': typeof AdminEnquiriesRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/projects': typeof AdminProjectsRoute
+  '/admin/services': typeof AdminServicesRoute
   '/services/$': typeof ServicesSplatRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -126,6 +144,8 @@ export interface FileRouteTypes {
     | '/projects'
     | '/admin/enquiries'
     | '/admin/login'
+    | '/admin/projects'
+    | '/admin/services'
     | '/services/$'
     | '/services/$slug'
     | '/admin/'
@@ -138,6 +158,8 @@ export interface FileRouteTypes {
     | '/projects'
     | '/admin/enquiries'
     | '/admin/login'
+    | '/admin/projects'
+    | '/admin/services'
     | '/services/$'
     | '/services/$slug'
     | '/admin'
@@ -151,6 +173,8 @@ export interface FileRouteTypes {
     | '/projects'
     | '/admin/enquiries'
     | '/admin/login'
+    | '/admin/projects'
+    | '/admin/services'
     | '/services/$'
     | '/services/$slug'
     | '/admin/'
@@ -233,6 +257,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/services': {
+      id: '/admin/services'
+      path: '/services'
+      fullPath: '/admin/services'
+      preLoaderRoute: typeof AdminServicesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/projects': {
+      id: '/admin/projects'
+      path: '/projects'
+      fullPath: '/admin/projects'
+      preLoaderRoute: typeof AdminProjectsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/login': {
       id: '/admin/login'
       path: '/login'
@@ -253,12 +291,16 @@ declare module '@tanstack/react-router' {
 interface AdminRouteChildren {
   AdminEnquiriesRoute: typeof AdminEnquiriesRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminProjectsRoute: typeof AdminProjectsRoute
+  AdminServicesRoute: typeof AdminServicesRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminEnquiriesRoute: AdminEnquiriesRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminProjectsRoute: AdminProjectsRoute,
+  AdminServicesRoute: AdminServicesRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
