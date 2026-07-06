@@ -11,7 +11,32 @@ export async function fileToCompressedDataUrl(
     reader.onerror = () => reject(reader.error);
     reader.readAsDataURL(file);
   });
+  return dataUrlToCompressedDataUrl(dataUrl, maxDim, quality);
+}
 
+/** Fetch a URL (same-origin bundled asset) and produce a compressed JPEG data URL. */
+export async function urlToCompressedDataUrl(
+  url: string,
+  maxDim = 1400,
+  quality = 0.82,
+): Promise<string> {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to fetch ${url}`);
+  const blob = await res.blob();
+  const dataUrl = await new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(blob);
+  });
+  return dataUrlToCompressedDataUrl(dataUrl, maxDim, quality);
+}
+
+async function dataUrlToCompressedDataUrl(
+  dataUrl: string,
+  maxDim: number,
+  quality: number,
+): Promise<string> {
   const img = await new Promise<HTMLImageElement>((resolve, reject) => {
     const el = new Image();
     el.onload = () => resolve(el);
