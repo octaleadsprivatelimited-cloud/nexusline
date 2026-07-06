@@ -8,10 +8,11 @@ import claddingImg from "@/assets/service-cladding.jpg";
 export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
-      { title: "Services — HPL Cubicles, Lockers & Interiors | Nexus Line Furniture" },
-      { name: "description", content: "HPL toilet cubicles, urinal partitions, lockers, office cubicles, doors, benches and wall cladding — designed and installed across the UAE." },
-      { property: "og:title", content: "Services — Nexus Line Furniture" },
-      { property: "og:description", content: "HPL cubicles, lockers, office partitions and wall cladding across the UAE." },
+      { title: "Commercial HPL Services & Custom Joinery Dubai | Nexus Line Furniture" },
+      { name: "description", content: "Discover our range of commercial HPL services in Dubai and the UAE: toilet cubicles, changing room lockers, washroom vanities, IPS panels, wall cladding, and solid surface worktops. Greenlam, Merino & Fundermax fabrication." },
+      { name: "keywords", content: "HPL services Dubai, toilet cubicle supplier UAE, urinal partitions, modular HPL lockers, wall cladding contractor, Corian worktops, commercial washroom fitout Dubai, HPL lockers Ajman, Fundermax cladding UAE" },
+      { property: "og:title", content: "Commercial HPL Services & Custom Joinery Dubai | Nexus Line Furniture" },
+      { property: "og:description", content: "HPL toilet cubicles, changing room lockers, washroom vanities, IPS panels, wall cladding, and solid surface worktops in the UAE." },
       { property: "og:url", content: "/services" },
     ],
     links: [{ rel: "canonical", href: "/services" }],

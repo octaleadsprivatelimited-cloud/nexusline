@@ -10,10 +10,11 @@ import claddingImg from "@/assets/service-cladding.jpg";
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Projects — Nexus Line Furniture" },
-      { name: "description", content: "Selected HPL cubicle, locker and interior fit-out projects delivered by Nexus Line Furniture across the UAE." },
-      { property: "og:title", content: "Projects — Nexus Line Furniture" },
-      { property: "og:description", content: "Selected HPL cubicle, locker and fit-out projects across the UAE." },
+      { title: "HPL Cubicles & Custom Joinery Projects Portfolio Dubai | Nexus Line UAE" },
+      { name: "description", content: "Explore our completed projects portfolio featuring luxury HPL toilet cubicles, gym/school lockers, solid surface vanities, and wall cladding delivered across Dubai, Abu Dhabi, and the UAE. Fabricated in our local facility." },
+      { name: "keywords", content: "restroom projects Dubai, toilet cubicle installations UAE, locker fit-outs, commercial washroom portfolio, HPL cladding projects, Greenlam cubicle portfolio, Merino partition works Dubai" },
+      { property: "og:title", content: "HPL Cubicles & Custom Joinery Projects Portfolio Dubai | Nexus Line UAE" },
+      { property: "og:description", content: "Completed projects portfolio featuring luxury HPL toilet cubicles, gym/school lockers, solid surface vanities, and wall cladding delivered across the UAE." },
       { property: "og:url", content: "/projects" },
     ],
     links: [{ rel: "canonical", href: "/projects" }],

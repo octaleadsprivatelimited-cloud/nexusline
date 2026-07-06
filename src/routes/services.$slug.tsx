@@ -12,12 +12,59 @@ export const Route = createFileRoute("/services/$slug")({
   },
   head: ({ loaderData }) => {
     const s = loaderData?.service;
-    const title = s ? `${s.title} — Nexus Line Furniture` : "Service — Nexus Line Furniture";
-    const desc = s?.tagline ?? "HPL cubicles, lockers and interiors across the UAE.";
+    
+    // Dynamic SEO Titles targeting search intent & location
+    const titleMap: Record<string, string> = {
+      "toilet-cubicles": "HPL Toilet Cubicles Dubai — Restroom Partitions UAE",
+      "lockers": "HPL Changing Room Lockers Dubai — Gym & School Lockers UAE",
+      "vanities": "Washroom Vanity Counters Dubai — HPL & Corian Vanity Tops",
+      "urinal-partitions": "HPL Urinal Partitions & Screens Dubai — Washroom Dividers",
+      "wall-cladding": "HPL Wall Cladding Dubai — Fundermax Exterior & Interior Panels",
+      "kitchen-cabinets": "Modular Kitchen Cabinets Dubai — Premium HPL & Wood Joinery",
+      "carpet-tiles": "Office Carpet Tiles Dubai — Commercial Flooring UAE",
+      "ips-panels": "IPS Duct Panels Dubai — Integrated Plumbing Systems UAE",
+      "solid-surface-worktops": "Solid Surface Worktops Dubai — Corian Countertops UAE",
+      "hpl-benches": "HPL Changing Room Benches Dubai — Wet Area Seating UAE"
+    };
+
+    // Dynamic SEO Descriptions
+    const descMap: Record<string, string> = {
+      "toilet-cubicles": "Premium HPL toilet cubicles and partitions in Dubai & UAE. Greenlam and Merino laminates with durable stainless steel/nylon hardware fittings.",
+      "lockers": "Heavy-duty HPL changing room lockers for gyms, schools, and offices. Water-resistant modular locker cabinets manufactured and installed in Dubai & UAE.",
+      "vanities": "Bespoke washroom vanity counters, HPL vanity units, and Corian solid surface tops for commercial restrooms in Dubai, Abu Dhabi, and Ajman.",
+      "urinal-partitions": "Hygienic HPL urinal partitions, screens, and washroom privacy dividers in Dubai, UAE. Vandal-resistant panels from certified European mills.",
+      "wall-cladding": "Architectural HPL wall cladding and wall paneling for exterior and interior applications in Dubai. Authorized Fundermax and Merino fabricator.",
+      "kitchen-cabinets": "Premium modular kitchen cabinets and joinery cupboards in HPL, lacquer, and acrylic finishes. Fitted with Blum & Hafele hardware across the UAE.",
+      "carpet-tiles": "Office carpet tiles in Dubai, Ajman, and Abu Dhabi. Heavy-contract modular flooring supplied and installed for schools, offices, and commercial spaces.",
+      "ips-panels": "IPS duct panel systems and integrated plumbing system partitions in Dubai, UAE. Concealed washroom pipework with easy-access maintenance panels.",
+      "solid-surface-worktops": "Custom solid surface worktops, Corian reception desks, and seamless washroom countertops fabricated in Dubai. Durable, non-porous acrylic surfaces.",
+      "hpl-benches": "Heavy-duty changing room benches and seating solutions made of compact HPL for wet areas, gyms, and sports facilities in Dubai and the UAE."
+    };
+
+    // Local SEO Keywords targeting commercial search volume and leading brands
+    const keywordsMap: Record<string, string> = {
+      "toilet-cubicles": "HPL toilet cubicles Dubai, restroom partitions UAE, toilet cubicle manufacturers, Greenlam toilet cubicles, Merino restroom partitions, commercial bathroom dividers Dubai",
+      "lockers": "HPL lockers Dubai, changing room lockers UAE, gym lockers manufacturer, school locker cabinet, staff lockers Dubai, plastic laminate lockers",
+      "vanities": "washroom vanity counters Dubai, HPL vanities, Corian vanity tops UAE, solid surface restroom worktop, washroom sink counters",
+      "urinal-partitions": "urinal partitions Dubai, urinal screens UAE, restroom privacy screens, HPL urinal dividers, public washroom partitions",
+      "wall-cladding": "HPL wall cladding Dubai, exterior wall panels UAE, Fundermax cladding, interior HPL panelling, architectural wall cladding UAE, Trespa cladding",
+      "kitchen-cabinets": "modular kitchen cabinets Dubai, HPL kitchen cabinetry, modern kitchen cupboards, Blum kitchen hardware, joinery workshop Dubai, Hafele kitchen fittings",
+      "carpet-tiles": "office carpet tiles Dubai, commercial carpet flooring UAE, heavy duty carpet tiles, modular carpet tiles Ajman",
+      "ips-panels": "IPS panels Dubai, integrated plumbing system panels UAE, concealed pipework washroom, IPS ducting systems",
+      "solid-surface-worktops": "solid surface worktops Dubai, Corian worktops UAE, reception desk solid surface, custom acrylic countertops, seamless washroom counters",
+      "hpl-benches": "HPL benches Dubai, changing room seating UAE, gym benches manufacturer, compact laminate benches, wet area seating"
+    };
+
+    const slug = s?.slug ?? "";
+    const title = titleMap[slug] || (s ? `${s.title} — Nexus Line Furniture` : "Service — Nexus Line Furniture");
+    const desc = descMap[slug] || (s?.tagline ?? "HPL cubicles, lockers and interiors across the UAE.");
+    const keywords = keywordsMap[slug] || "HPL services Dubai, toilet cubicle supplier UAE, urinal partitions, modular HPL lockers, wall cladding contractor";
+
     return {
       meta: [
         { title },
         { name: "description", content: desc },
+        { name: "keywords", content: keywords },
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
         { property: "og:type", content: "article" },
@@ -170,7 +217,7 @@ function QuoteForm({ serviceTitle }: { serviceTitle: string }) {
     const text = encodeURIComponent(
       `Hi Nexus Line Furniture,\n\nI'd like a quote for: ${serviceTitle}\nName: ${trimmedName}\nPhone: ${trimmedPhone}`,
     );
-    window.open(`https://wa.me/971568277869?text=${text}`, "_blank", "noopener");
+    window.open(`https://wa.me/971505097864?text=${text}`, "_blank", "noopener");
     setSent(true);
   };
 

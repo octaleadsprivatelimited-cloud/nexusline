@@ -11,10 +11,11 @@ import { db, isFirebaseConfigured } from "@/lib/firebase";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Nexus Line Furniture" },
-      { name: "description", content: "Request a quote or site visit from Nexus Line Furniture — HPL cubicles, lockers and interiors across the UAE." },
-      { property: "og:title", content: "Contact — Nexus Line Furniture" },
-      { property: "og:description", content: "Request a quote or site visit across the UAE." },
+      { title: "Get a Quote — HPL Toilet Cubicles & Lockers Dubai | Nexus Line" },
+      { name: "description", content: "Contact Nexus Line Furniture for free consultations, same-day quotes, and site visits for HPL toilet cubicles, lockers, and joinery works in Dubai, Ajman, and all UAE emirates." },
+      { name: "keywords", content: "contact toilet cubicle supplier Dubai, request quote HPL lockers, washroom fitout estimate UAE, commercial joinery contractor, Greenlam cubicles quote, Fundermax cladding estimate" },
+      { property: "og:title", content: "Get a Quote — HPL Toilet Cubicles & Lockers Dubai | Nexus Line" },
+      { property: "og:description", content: "Contact Nexus Line Furniture for free consultations, same-day quotes, and site visits for HPL toilet cubicles, lockers, and joinery works across the UAE." },
       { property: "og:url", content: "/contact" },
     ],
     links: [{ rel: "canonical", href: "/contact" }],

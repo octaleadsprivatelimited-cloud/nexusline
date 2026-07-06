@@ -7,10 +7,11 @@ import { ScrollingNumber } from "@/components/ScrollingNumber";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Nexus Line Furniture" },
-      { name: "description", content: "Nexus Line Furniture is a Dubai-based HPL specialist designing and manufacturing premium cubicles, lockers and interior joinery across the UAE." },
-      { property: "og:title", content: "About — Nexus Line Furniture" },
-      { property: "og:description", content: "A Dubai-based HPL specialist crafting premium cubicles, lockers and interiors." },
+      { title: "About Us — Premium HPL & Joinery Manufacturers | Nexus Line Dubai" },
+      { name: "description", content: "Learn about Nexus Line Furniture, the leading commercial HPL toilet cubicle, locker, and custom joinery manufacturer in Dubai & Ajman, serving the UAE with premium European laminates for over 7 years." },
+      { name: "keywords", content: "HPL manufacturer Dubai, restroom partition factory UAE, local joinery workshop, Nexus Line Furniture about, commercial fitout manufacturer UAE" },
+      { property: "og:title", content: "About Us — Premium HPL & Joinery Manufacturers | Nexus Line Dubai" },
+      { property: "og:description", content: "Learn about Nexus Line Furniture, the leading commercial HPL toilet cubicle, locker, and custom joinery manufacturer in Dubai & Ajman, serving the UAE." },
       { property: "og:url", content: "/about" },
     ],
     links: [{ rel: "canonical", href: "/about" }],

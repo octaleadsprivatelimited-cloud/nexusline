@@ -23,10 +23,11 @@ const heroSlides = [cubiclesImg, vanitiesImg, kitchenImg, solidSurfaceImg, urina
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Nexus Line Furniture — Toilet Cubicles, Lockers, Vanities & Joinery in Dubai" },
-      { name: "description", content: "Toilet cubicles, lockers, vanities, urinal partitions, kitchen cabinets, carpet tiles, wall cladding, IPS panels and solid surface worktops — manufactured and installed across the UAE." },
-      { property: "og:title", content: "Nexus Line Furniture — Cubicles, Lockers, Vanities & Joinery" },
-      { property: "og:description", content: "Cubicles, lockers, vanities, kitchen cabinets, wall cladding, IPS panels and solid surface worktops across the UAE." },
+      { title: "Nexus Line Furniture — HPL Toilet Cubicles, Changing Room Lockers & Custom Joinery Dubai, UAE" },
+      { name: "description", content: "Premium HPL toilet cubicles, changing room lockers, washroom vanities, HPL wall cladding, and modular kitchens across Dubai, Abu Dhabi, Ajman, and all UAE. Greenlam, Merino & Fundermax fabricator." },
+      { name: "keywords", content: "toilet cubicles Dubai, HPL toilet partitions UAE, restroom cubicles manufacturer Dubai, changing room lockers UAE, washroom vanity counters Dubai, HPL wall cladding Dubai, Greenlam restroom cubicles, Merino HPL partitions, Fundermax wall cladding UAE, modular kitchen cabinets, IPS panels Dubai, solid surface worktops Corian, local joinery contractor UAE" },
+      { property: "og:title", content: "Nexus Line Furniture — HPL Toilet Cubicles, Changing Room Lockers & Custom Joinery Dubai, UAE" },
+      { property: "og:description", content: "Premium HPL toilet cubicles, changing room lockers, washroom vanities, HPL wall cladding, and modular kitchens across the UAE. Greenlam, Merino & Fundermax fabricator." },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
