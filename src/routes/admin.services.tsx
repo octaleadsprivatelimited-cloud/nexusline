@@ -10,13 +10,11 @@ import {
   query,
   serverTimestamp,
   setDoc,
-  writeBatch,
 } from "firebase/firestore";
 import { toast } from "sonner";
-import { Plus, Trash2, Upload, Database } from "lucide-react";
+import { Plus, Trash2, Upload } from "lucide-react";
 import { db } from "@/lib/firebase";
 import { fileToCompressedDataUrl } from "@/lib/image-to-data-url";
-import { services as seedServices } from "@/lib/services-data";
 
 export const Route = createFileRoute("/admin/services")({
   component: Services,
@@ -55,27 +53,6 @@ function Services() {
     );
   }, []);
 
-  const seed = async () => {
-    if (!db) return;
-    if (!confirm(`Import ${seedServices.length} services from services-data.ts?`)) return;
-    try {
-      const batch = writeBatch(db);
-      for (const s of seedServices) {
-        batch.set(doc(db, "services", s.slug), {
-          title: s.title,
-          slug: s.slug,
-          tagline: s.tagline,
-          imageUrl: s.img,
-          updatedAt: serverTimestamp(),
-        });
-      }
-      await batch.commit();
-      toast.success("Seeded services");
-    } catch (err) {
-      console.error(err);
-      toast.error("Seed failed. Check that the updated Firestore rules are published.");
-    }
-  };
 
   const remove = async (id: string) => {
     if (!db) return;
@@ -93,12 +70,6 @@ function Services() {
         </div>
         <div className="flex gap-2">
           <button
-            onClick={seed}
-            className="flex items-center gap-2 border border-border px-4 py-2 text-xs uppercase tracking-widest"
-          >
-            <Database className="h-4 w-4" /> Seed from code
-          </button>
-          <button
             onClick={() =>
               setEditing({ id: "", title: "", slug: "", tagline: "", imageUrl: "" })
             }
@@ -113,7 +84,7 @@ function Services() {
         <p className="text-sm text-muted-foreground">Loading…</p>
       ) : items.length === 0 ? (
         <div className="border border-dashed border-border/60 p-10 text-center text-sm text-muted-foreground">
-          No services yet. Click "Seed from code" to import existing ones.
+          No services yet.
         </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
