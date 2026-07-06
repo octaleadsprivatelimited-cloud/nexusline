@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Inbox, Boxes, FolderKanban, Images } from "lucide-react";
-import { toast } from "sonner";
-import { seedServices, seedProjectsData } from "@/lib/seed-data";
 
 export const Route = createFileRoute("/admin/")({
   component: Dashboard,
@@ -13,7 +11,6 @@ export const Route = createFileRoute("/admin/")({
 function Dashboard() {
   const [counts, setCounts] = useState({ enquiries: 0, services: 0, projects: 0, gallery: 0 });
   const [error, setError] = useState("");
-  const [seeding, setSeeding] = useState<null | string>(null);
 
   useEffect(() => {
     if (!db) return;
@@ -47,22 +44,6 @@ function Dashboard() {
     { label: "Gallery", value: counts.gallery, icon: Images, to: "/admin/gallery" },
   ] as const;
 
-  const runSeed = async (
-    label: string,
-    fn: (p: (m: string) => void) => Promise<{ added: number; skipped: number }>,
-  ) => {
-    setSeeding(`Seeding ${label}…`);
-    try {
-      const { added, skipped } = await fn((m) => setSeeding(m));
-      toast.success(`${label}: ${added} added, ${skipped} skipped`);
-    } catch (err) {
-      console.error(err);
-      toast.error(err instanceof Error ? err.message : "Seed failed");
-    } finally {
-      setSeeding(null);
-    }
-  };
-
   return (
     <div className="space-y-8">
       <div>
@@ -90,43 +71,6 @@ function Dashboard() {
             <p className="mt-4 font-serif text-4xl">{c.value}</p>
           </Link>
         ))}
-      </div>
-
-      <div className="border border-border/60 bg-card p-6">
-        <h2 className="font-serif text-xl">Seed sample data</h2>
-        <p className="mt-1 text-xs text-muted-foreground">
-          Imports the services and projects that ship with the website into Firestore.
-          Existing docs (matched by slug/title) are skipped. Images are auto-compressed.
-        </p>
-        <div className="mt-4 flex flex-wrap items-center gap-2">
-          <button
-            disabled={!!seeding}
-            onClick={() => runSeed("services", seedServices)}
-            className="border border-primary px-4 py-2 text-xs uppercase tracking-widest text-primary disabled:opacity-50"
-          >
-            Seed services
-          </button>
-          <button
-            disabled={!!seeding}
-            onClick={() => runSeed("projects", seedProjectsData)}
-            className="border border-primary px-4 py-2 text-xs uppercase tracking-widest text-primary disabled:opacity-50"
-          >
-            Seed projects
-          </button>
-          <button
-            disabled={!!seeding}
-            onClick={async () => {
-              await runSeed("services", seedServices);
-              await runSeed("projects", seedProjectsData);
-            }}
-            className="bg-primary px-4 py-2 text-xs uppercase tracking-widest text-primary-foreground disabled:opacity-50"
-          >
-            Seed everything
-          </button>
-          {seeding && (
-            <span className="text-xs text-muted-foreground">{seeding}</span>
-          )}
-        </div>
       </div>
     </div>
   );
