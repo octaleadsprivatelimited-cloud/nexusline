@@ -36,7 +36,7 @@ const firebaseConfig = {
 
 // UID of the original Firebase Auth admin user. Email fallback allows the
 // Firebase-created admin account to keep working if Firebase recreated the UID.
-export const ADMIN_UID = "Jfv4gYT89QQ6dX13iFjojjZTtUp1";
+export const ADMIN_UID = "Yk3rphRJcdeQV2taK5gKfX0Magh2";
 export const ADMIN_EMAIL = "nexuslineft@gmail.com";
 
 export function isAdminUser(user: User | null | undefined) {
