@@ -10,11 +10,13 @@ import {
   query,
   serverTimestamp,
   setDoc,
+  writeBatch,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { toast } from "sonner";
-import { Plus, Trash2, Upload } from "lucide-react";
+import { Plus, Trash2, Upload, Database } from "lucide-react";
 import { db, storage } from "@/lib/firebase";
+import { seedProjects } from "@/lib/projects-data";
 
 export const Route = createFileRoute("/admin/projects")({
   component: Projects,
@@ -50,6 +52,25 @@ function Projects() {
     toast.success("Deleted");
   };
 
+  const seed = async () => {
+    if (!db) return;
+    if (!confirm(`Import ${seedProjects.length} projects from the website?`)) return;
+    const batch = writeBatch(db);
+    for (const p of seedProjects) {
+      const id = p.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      batch.set(doc(db, "projects", id), {
+        title: p.title,
+        category: p.category,
+        location: p.location,
+        description: "",
+        imageUrl: p.img,
+        createdAt: serverTimestamp(),
+      });
+    }
+    await batch.commit();
+    toast.success("Seeded projects");
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
@@ -57,14 +78,22 @@ function Projects() {
           <h1 className="font-serif text-3xl">Projects</h1>
           <p className="mt-1 text-sm text-muted-foreground">{items.length} projects</p>
         </div>
-        <button
-          onClick={() =>
-            setEditing({ id: "", title: "", category: "", location: "", description: "" })
-          }
-          className="flex items-center gap-2 bg-primary px-4 py-2 text-xs uppercase tracking-widest text-primary-foreground"
-        >
-          <Plus className="h-4 w-4" /> New project
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={seed}
+            className="flex items-center gap-2 border border-border px-4 py-2 text-xs uppercase tracking-widest"
+          >
+            <Database className="h-4 w-4" /> Seed from code
+          </button>
+          <button
+            onClick={() =>
+              setEditing({ id: "", title: "", category: "", location: "", description: "" })
+            }
+            className="flex items-center gap-2 bg-primary px-4 py-2 text-xs uppercase tracking-widest text-primary-foreground"
+          >
+            <Plus className="h-4 w-4" /> New project
+          </button>
+        </div>
       </div>
 
       {loading ? (
