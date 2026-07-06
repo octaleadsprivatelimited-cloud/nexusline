@@ -4,10 +4,12 @@ import { getFirestore, type Firestore } from "firebase/firestore";
 
 declare const __FIREBASE_GOOGLE_API_KEY__: string | undefined;
 
+const FIREBASE_WEB_API_KEY = "AIzaSyC-vrVtdCzRWJ5VXZfHq8PEXLQhizIPrYU";
+
 const firebaseApiKey = (
   import.meta.env.VITE_FIREBASE_API_KEY ||
   __FIREBASE_GOOGLE_API_KEY__ ||
-  ""
+  FIREBASE_WEB_API_KEY
 ).trim();
 
 // Firebase web config is safe to expose in client code — security is enforced
