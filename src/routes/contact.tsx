@@ -170,6 +170,14 @@ function Contact() {
                 document
                   .getElementById("contact-success")
                   ?.scrollIntoView({ behavior: "smooth", block: "center" });
+              // Redirect to WhatsApp with a prefilled message
+              const d = parsed.data;
+              const waText =
+                `New enquiry from ${d.name}` +
+                (d.company ? ` (${d.company})` : "") +
+                `\nEmail: ${d.email}\nPhone: ${d.phone}\nProject: ${d.type}\n\n${d.message}`;
+              const waUrl = `https://wa.me/971505097864?text=${encodeURIComponent(waText)}`;
+              window.open(waUrl, "_blank", "noopener,noreferrer");
               } else {
                 setError("Something went wrong. Please try again or call us.");
               }
