@@ -5,7 +5,7 @@ import { getFirestore, type Firestore } from "firebase/firestore";
 
 declare const __FIREBASE_GOOGLE_API_KEY__: string | undefined;
 
-const FIREBASE_WEB_API_KEY = "AIzaSyC-vrVtdCzRWJ5VXZfHq8PEXLQhizIPrYU";
+const FIREBASE_WEB_API_KEY = "AIzaSyCOjwQ_GVXBENQ2UpTa5Xoeh62AQXL0eI0";
 
 function normalizeFirebaseApiKey(value: unknown) {
   if (typeof value !== "string") return "";
