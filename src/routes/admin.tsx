@@ -10,7 +10,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { auth } from "@/lib/firebase";
-import { useAdminAuth, demoAuth } from "@/lib/use-admin-auth";
+import { useAdminAuth } from "@/lib/use-admin-auth";
 
 export const Route = createFileRoute("/admin")({
   component: AdminLayout,
@@ -25,15 +25,15 @@ const NAV = [
 ];
 
 function AdminLayout() {
-  const { user, loading, isAdmin, configured, isDemo, email } = useAdminAuth();
+  const { user, loading, isAdmin, configured, email } = useAdminAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const onLogin = location.pathname === "/admin/login";
 
   if (onLogin) return <Outlet />;
-  if (!configured && !isDemo) return <NotConfigured />;
+  if (!configured) return <NotConfigured />;
   if (loading) return <FullScreen>Loading…</FullScreen>;
-  if (!user && !isDemo) {
+  if (!user) {
     return (
       <FullScreen>
         <div className="text-center">
@@ -60,7 +60,6 @@ function AdminLayout() {
           <button
             onClick={async () => {
               if (auth && user) await signOut(auth);
-              demoAuth.signOut();
               navigate({ to: "/admin/login" });
             }}
             className="mt-4 rounded-md border px-4 py-2 text-sm"
@@ -103,12 +102,10 @@ function AdminLayout() {
         <div className="border-t border-border/60 p-3">
           <p className="mb-2 truncate px-2 text-xs text-muted-foreground">
             {email}
-            {isDemo && <span className="ml-1 text-primary">(demo)</span>}
           </p>
           <button
             onClick={async () => {
               if (auth && user) await signOut(auth);
-              demoAuth.signOut();
               navigate({ to: "/admin/login" });
             }}
             className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm text-foreground/80 hover:bg-muted"
@@ -118,12 +115,6 @@ function AdminLayout() {
         </div>
       </aside>
       <main className="flex-1 overflow-x-auto p-6 md:p-10">
-        {isDemo && !configured && (
-          <div className="mb-4 border border-primary/40 bg-primary/10 px-4 py-2 text-xs text-primary">
-            Demo mode — Firebase isn't connected. Data won't persist and Firestore
-            reads/writes will fail silently.
-          </div>
-        )}
         <Outlet />
       </main>
     </div>
@@ -156,8 +147,7 @@ function NotConfigured() {
         </pre>
         <p className="text-xs text-muted-foreground">
           Then restart the dev server. Also enable Email/Password auth, Firestore,
-          and Storage in the Firebase console, and paste the security rules I
-          shared earlier.
+          and paste the Firestore security rules I shared earlier.
         </p>
       </div>
     </FullScreen>

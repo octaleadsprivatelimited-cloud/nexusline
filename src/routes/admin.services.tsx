@@ -36,28 +36,45 @@ function Services() {
   const [editing, setEditing] = useState<ServiceDoc | null>(null);
 
   useEffect(() => {
-    if (!db) return;
-    const q = query(collection(db, "services"), orderBy("title"));
-    return onSnapshot(q, (snap) => {
-      setItems(snap.docs.map((d) => ({ id: d.id, ...(d.data() as Omit<ServiceDoc, "id">) })));
+    if (!db) {
       setLoading(false);
-    });
+      return;
+    }
+    const q = query(collection(db, "services"), orderBy("title"));
+    return onSnapshot(
+      q,
+      (snap) => {
+        setItems(snap.docs.map((d) => ({ id: d.id, ...(d.data() as Omit<ServiceDoc, "id">) })));
+        setLoading(false);
+      },
+      (err) => {
+        console.error(err);
+        toast.error("Firestore permissions are blocking services. Publish the updated rules.");
+        setLoading(false);
+      },
+    );
   }, []);
 
   const seed = async () => {
     if (!db) return;
     if (!confirm(`Import ${seedServices.length} services from services-data.ts?`)) return;
-    const batch = writeBatch(db);
-    for (const s of seedServices) {
-      batch.set(doc(db, "services", s.slug), {
-        title: s.title,
-        slug: s.slug,
-        tagline: s.tagline,
-        imageUrl: s.img,
-      });
+    try {
+      const batch = writeBatch(db);
+      for (const s of seedServices) {
+        batch.set(doc(db, "services", s.slug), {
+          title: s.title,
+          slug: s.slug,
+          tagline: s.tagline,
+          imageUrl: s.img,
+          updatedAt: serverTimestamp(),
+        });
+      }
+      await batch.commit();
+      toast.success("Seeded services");
+    } catch (err) {
+      console.error(err);
+      toast.error("Seed failed. Check that the updated Firestore rules are published.");
     }
-    await batch.commit();
-    toast.success("Seeded services");
   };
 
   const remove = async (id: string) => {

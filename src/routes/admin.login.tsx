@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { FirebaseError } from "firebase/app";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { toast } from "sonner";
-import { auth, ADMIN_UID, isFirebaseConfigured } from "@/lib/firebase";
-import { useAdminAuth, demoAuth, DEMO_CREDENTIALS } from "@/lib/use-admin-auth";
+import { auth, isAdminUser, isFirebaseConfigured } from "@/lib/firebase";
+import { useAdminAuth } from "@/lib/use-admin-auth";
 
 export const Route = createFileRoute("/admin/login")({
   component: Login,
@@ -25,16 +25,6 @@ function Login() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    // Demo credentials always work — for previewing the admin layout.
-    if (
-      email.trim().toLowerCase() === DEMO_CREDENTIALS.email &&
-      password === DEMO_CREDENTIALS.password
-    ) {
-      demoAuth.signIn(email);
-      toast.success("Signed in (demo mode)");
-      navigate({ to: "/admin" });
-      return;
-    }
     if (!auth) {
       const message = "Firebase API key is missing or invalid in the app config.";
       setError(message);
@@ -44,7 +34,7 @@ function Login() {
     setBusy(true);
     try {
       const cred = await signInWithEmailAndPassword(auth, email, password);
-      if (ADMIN_UID && cred.user.uid !== ADMIN_UID) {
+      if (!isAdminUser(cred.user)) {
         const message = "This account isn't the admin";
         setError(message);
         toast.error(message);
@@ -72,27 +62,9 @@ function Login() {
           <p className="text-[10px] uppercase tracking-[0.3em] text-primary">Nexus Line</p>
           <h1 className="mt-1 font-serif text-2xl">Admin sign in</h1>
         </div>
-        <div className="border border-primary/40 bg-primary/10 p-3 text-xs">
-          <p className="mb-1 font-medium text-primary uppercase tracking-widest">Demo login</p>
-          <p className="text-muted-foreground">
-            Email: <code>{DEMO_CREDENTIALS.email}</code>
-            <br />
-            Password: <code>{DEMO_CREDENTIALS.password}</code>
-          </p>
-          <button
-            type="button"
-            onClick={() => {
-              setEmail(DEMO_CREDENTIALS.email);
-              setPassword(DEMO_CREDENTIALS.password);
-            }}
-            className="mt-2 text-xs text-primary underline"
-          >
-            Fill demo credentials
-          </button>
-        </div>
         {!isFirebaseConfigured && (
           <p className="text-[11px] text-muted-foreground">
-            Firebase isn't configured yet — only demo login works. Data won't persist.
+            Firebase isn't configured yet. Add the real Web API key before signing in.
           </p>
         )}
         {error && (

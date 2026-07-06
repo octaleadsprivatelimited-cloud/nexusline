@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
+import { doc, onSnapshot, setDoc, serverTimestamp } from "firebase/firestore";
 import { toast } from "sonner";
 import { db } from "@/lib/firebase";
 
@@ -25,12 +25,22 @@ function Settings() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    (async () => {
-      if (!db) return;
-      const snap = await getDoc(doc(db, "settings", DOC_ID));
-      if (snap.exists()) setForm(snap.data() as SiteSettings);
+    if (!db) {
       setLoading(false);
-    })();
+      return;
+    }
+    return onSnapshot(
+      doc(db, "settings", DOC_ID),
+      (snap) => {
+        if (snap.exists()) setForm(snap.data() as SiteSettings);
+        setLoading(false);
+      },
+      (err) => {
+        console.error(err);
+        toast.error("Firestore permissions are blocking settings. Publish the updated rules.");
+        setLoading(false);
+      },
+    );
   }, []);
 
   const save = async () => {

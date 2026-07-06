@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { collection, getCountFromServer } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Inbox, Boxes, FolderKanban } from "lucide-react";
 
@@ -10,25 +10,25 @@ export const Route = createFileRoute("/admin/")({
 
 function Dashboard() {
   const [counts, setCounts] = useState({ enquiries: 0, services: 0, projects: 0 });
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    (async () => {
-      if (!db) return;
-      try {
-        const [e, s, p] = await Promise.all([
-          getCountFromServer(collection(db, "enquiries")),
-          getCountFromServer(collection(db, "services")),
-          getCountFromServer(collection(db, "projects")),
-        ]);
-        setCounts({
-          enquiries: e.data().count,
-          services: s.data().count,
-          projects: p.data().count,
-        });
-      } catch (err) {
-        console.warn("Failed to load counts", err);
-      }
-    })();
+    if (!db) return;
+    const subscribe = (name: keyof typeof counts) =>
+      onSnapshot(
+        collection(db, name),
+        (snap) => {
+          setError("");
+          setCounts((current) => ({ ...current, [name]: snap.size }));
+        },
+        (err) => {
+          console.error(`Failed to load ${name} count`, err);
+          setError("Firestore permissions are blocking admin counts. Publish the updated rules below.");
+        },
+      );
+
+    const unsubs = [subscribe("enquiries"), subscribe("services"), subscribe("projects")];
+    return () => unsubs.forEach((unsub) => unsub());
   }, []);
 
   const cards = [
@@ -43,6 +43,11 @@ function Dashboard() {
         <h1 className="font-serif text-3xl">Dashboard</h1>
         <p className="mt-1 text-sm text-muted-foreground">Overview of your site data.</p>
       </div>
+      {error && (
+        <p className="border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+          {error}
+        </p>
+      )}
       <div className="grid gap-4 sm:grid-cols-3">
         {cards.map((c) => (
           <Link

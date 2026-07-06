@@ -1,7 +1,6 @@
 import { initializeApp, type FirebaseApp } from "firebase/app";
-import { getAuth, type Auth } from "firebase/auth";
+import { getAuth, type Auth, type User } from "firebase/auth";
 import { getFirestore, type Firestore } from "firebase/firestore";
-import { getStorage, type FirebaseStorage } from "firebase/storage";
 
 declare const __FIREBASE_GOOGLE_API_KEY__: string | undefined;
 
@@ -23,8 +22,15 @@ const firebaseConfig = {
   measurementId: "G-99KNL5VKRB",
 };
 
-// UID of the Firebase Auth admin user (nexuslineft@gmail.com).
+// UID of the original Firebase Auth admin user. Email fallback allows the
+// Firebase-created admin account to keep working if Firebase recreated the UID.
 export const ADMIN_UID = "fv4gYT89QQ6dX13iFjojjZTtUp1";
+export const ADMIN_EMAIL = "nexuslineft@gmail.com";
+
+export function isAdminUser(user: User | null | undefined) {
+  if (!user) return false;
+  return user.uid === ADMIN_UID || user.email?.toLowerCase() === ADMIN_EMAIL;
+}
 
 export const isFirebaseConfigured =
   firebaseConfig.apiKey.startsWith("AIza") &&
@@ -34,16 +40,13 @@ export const isFirebaseConfigured =
 let app: FirebaseApp | null = null;
 let authInstance: Auth | null = null;
 let dbInstance: Firestore | null = null;
-let storageInstance: FirebaseStorage | null = null;
 
 if (isFirebaseConfigured) {
   app = initializeApp(firebaseConfig);
   authInstance = getAuth(app);
   dbInstance = getFirestore(app);
-  storageInstance = getStorage(app);
 }
 
 export const auth = authInstance;
 export const db = dbInstance;
-export const storage = storageInstance;
 export { app };
