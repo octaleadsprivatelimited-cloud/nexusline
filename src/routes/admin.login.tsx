@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "sonner";
 import { auth, ADMIN_UID, isFirebaseConfigured } from "@/lib/firebase";
-import { useAdminAuth } from "@/lib/use-admin-auth";
+import { useAdminAuth, demoAuth, DEMO_CREDENTIALS } from "@/lib/use-admin-auth";
 
 export const Route = createFileRoute("/admin/login")({
   component: Login,
@@ -11,19 +11,29 @@ export const Route = createFileRoute("/admin/login")({
 
 function Login() {
   const navigate = useNavigate();
-  const { user, isAdmin } = useAdminAuth();
+  const { isAdmin } = useAdminAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    if (user && isAdmin) navigate({ to: "/admin" });
-  }, [user, isAdmin, navigate]);
+    if (isAdmin) navigate({ to: "/admin" });
+  }, [isAdmin, navigate]);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Demo credentials always work — for previewing the admin layout.
+    if (
+      email.trim().toLowerCase() === DEMO_CREDENTIALS.email &&
+      password === DEMO_CREDENTIALS.password
+    ) {
+      demoAuth.signIn(email);
+      toast.success("Signed in (demo mode)");
+      navigate({ to: "/admin" });
+      return;
+    }
     if (!auth) {
-      toast.error("Firebase is not configured");
+      toast.error("Use the demo credentials below, or configure Firebase.");
       return;
     }
     setBusy(true);
@@ -53,9 +63,27 @@ function Login() {
           <p className="text-[10px] uppercase tracking-[0.3em] text-primary">Nexus Line</p>
           <h1 className="mt-1 font-serif text-2xl">Admin sign in</h1>
         </div>
+        <div className="border border-primary/40 bg-primary/10 p-3 text-xs">
+          <p className="mb-1 font-medium text-primary uppercase tracking-widest">Demo login</p>
+          <p className="text-muted-foreground">
+            Email: <code>{DEMO_CREDENTIALS.email}</code>
+            <br />
+            Password: <code>{DEMO_CREDENTIALS.password}</code>
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setEmail(DEMO_CREDENTIALS.email);
+              setPassword(DEMO_CREDENTIALS.password);
+            }}
+            className="mt-2 text-xs text-primary underline"
+          >
+            Fill demo credentials
+          </button>
+        </div>
         {!isFirebaseConfigured && (
-          <p className="border border-destructive/40 bg-destructive/10 p-3 text-xs text-destructive">
-            Firebase env vars are missing. Add them to .env then restart the dev server.
+          <p className="text-[11px] text-muted-foreground">
+            Firebase isn't configured yet — only demo login works. Data won't persist.
           </p>
         )}
         <div>
@@ -84,7 +112,7 @@ function Login() {
         </div>
         <button
           type="submit"
-          disabled={busy || !isFirebaseConfigured}
+          disabled={busy}
           className="w-full bg-primary px-4 py-3 text-xs font-medium uppercase tracking-[0.25em] text-primary-foreground disabled:opacity-50"
         >
           {busy ? "Signing in…" : "Sign in"}
