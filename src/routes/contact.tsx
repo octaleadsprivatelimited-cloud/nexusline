@@ -5,6 +5,8 @@ import { toast } from "sonner";
 import { z } from "zod";
 import cubiclesImg from "@/assets/service-cubicles.jpg";
 import claddingImg from "@/assets/service-cladding.jpg";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db, isFirebaseConfigured } from "@/lib/firebase";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -143,12 +145,23 @@ function Contact() {
             setErrors({});
             setSending(true);
             try {
-              const res = await fetch("https://formspree.io/f/mlgywbyj", {
-                method: "POST",
-                headers: { Accept: "application/json" },
-                body: fd,
-              });
-              if (res.ok) {
+              let ok = false;
+              if (isFirebaseConfigured && db) {
+                await addDoc(collection(db, "enquiries"), {
+                  ...parsed.data,
+                  status: "new",
+                  createdAt: serverTimestamp(),
+                });
+                ok = true;
+              } else {
+                const res = await fetch("https://formspree.io/f/mlgywbyj", {
+                  method: "POST",
+                  headers: { Accept: "application/json" },
+                  body: fd,
+                });
+                ok = res.ok;
+              }
+              if (ok) {
                 setSent(true);
                 form.reset();
                 toast.success("Enquiry sent", {
