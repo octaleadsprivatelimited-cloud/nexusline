@@ -5,6 +5,9 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
+  define: {
+    __FIREBASE_GOOGLE_API_KEY__: JSON.stringify(process.env.GOOGLE_API_KEY ?? ""),
+  },
   plugins: [
     TanStackRouterVite(),
     tailwindcss(),

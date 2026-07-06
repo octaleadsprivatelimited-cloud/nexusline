@@ -55,9 +55,7 @@ function AdminLayout() {
           <AlertTriangle className="mx-auto mb-3 h-8 w-8 text-destructive" />
           <h2 className="mb-2 font-serif text-2xl">Not authorized</h2>
           <p className="text-sm text-muted-foreground">
-            This account isn't an admin. Sign in with the admin account, or set
-            <code className="mx-1 rounded bg-muted px-1">VITE_FIREBASE_ADMIN_UID</code>
-            to your user's UID.
+            This account isn't an admin. Sign in with nexuslineft@gmail.com.
           </p>
           <button
             onClick={async () => {
@@ -149,18 +147,12 @@ function NotConfigured() {
           <h2 className="font-serif text-xl">Firebase not configured</h2>
         </div>
         <p className="text-sm text-muted-foreground">
-          The admin panel UI is ready, but Firebase credentials are missing.
-          Create a <code className="rounded bg-muted px-1">.env</code> file in the
-          project root with:
+          The admin panel UI is ready, but the Firebase Web API key is missing or
+          invalid. Add the real Firebase Web API key to the saved GOOGLE_API_KEY
+          secret or to:
         </p>
         <pre className="overflow-auto rounded bg-muted p-3 text-xs">
-{`VITE_FIREBASE_API_KEY=...
-VITE_FIREBASE_AUTH_DOMAIN=...
-VITE_FIREBASE_PROJECT_ID=...
-VITE_FIREBASE_STORAGE_BUCKET=...
-VITE_FIREBASE_MESSAGING_SENDER_ID=...
-VITE_FIREBASE_APP_ID=...
-VITE_FIREBASE_ADMIN_UID=...`}
+{`VITE_FIREBASE_API_KEY=...`}
         </pre>
         <p className="text-xs text-muted-foreground">
           Then restart the dev server. Also enable Email/Password auth, Firestore,

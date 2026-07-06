@@ -3,10 +3,18 @@ import { getAuth, type Auth } from "firebase/auth";
 import { getFirestore, type Firestore } from "firebase/firestore";
 import { getStorage, type FirebaseStorage } from "firebase/storage";
 
+declare const __FIREBASE_GOOGLE_API_KEY__: string | undefined;
+
+const firebaseApiKey = (
+  import.meta.env.VITE_FIREBASE_API_KEY ||
+  __FIREBASE_GOOGLE_API_KEY__ ||
+  ""
+).trim();
+
 // Firebase web config is safe to expose in client code — security is enforced
 // by Firestore/Storage rules + the ADMIN_UID check below.
 const firebaseConfig = {
-  apiKey: "AIzaSyC-REPLACE_WITH_YOUR_WEB_API_KEY",
+  apiKey: firebaseApiKey,
   authDomain: "nexus-ad2f4.firebaseapp.com",
   projectId: "nexus-ad2f4",
   storageBucket: "nexus-ad2f4.firebasestorage.app",
@@ -19,7 +27,9 @@ const firebaseConfig = {
 export const ADMIN_UID = "fv4gYT89QQ6dX13iFjojjZTtUp1";
 
 export const isFirebaseConfigured =
-  !firebaseConfig.apiKey.includes("REPLACE_WITH_YOUR_WEB_API_KEY");
+  firebaseConfig.apiKey.startsWith("AIza") &&
+  !firebaseConfig.apiKey.includes("REPLACE_WITH") &&
+  !firebaseConfig.apiKey.includes("@secret:");
 
 let app: FirebaseApp | null = null;
 let authInstance: Auth | null = null;

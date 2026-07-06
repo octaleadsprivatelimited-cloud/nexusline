@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { toast } from "sonner";
 import { auth, ADMIN_UID, isFirebaseConfigured } from "@/lib/firebase";
 import { useAdminAuth, demoAuth, DEMO_CREDENTIALS } from "@/lib/use-admin-auth";
@@ -33,7 +34,7 @@ function Login() {
       return;
     }
     if (!auth) {
-      toast.error("Use the demo credentials below, or configure Firebase.");
+      toast.error("Firebase API key is missing or invalid in the app config.");
       return;
     }
     setBusy(true);
@@ -41,12 +42,13 @@ function Login() {
       const cred = await signInWithEmailAndPassword(auth, email, password);
       if (ADMIN_UID && cred.user.uid !== ADMIN_UID) {
         toast.error("This account isn't the admin");
+        await signOut(auth);
       } else {
         toast.success("Welcome back");
         navigate({ to: "/admin" });
       }
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Sign in failed";
+      const msg = getFirebaseLoginError(err);
       toast.error(msg);
     } finally {
       setBusy(false);
@@ -123,4 +125,25 @@ function Login() {
       </form>
     </div>
   );
+}
+
+function getFirebaseLoginError(err: unknown) {
+  if (err instanceof FirebaseError) {
+    switch (err.code) {
+      case "auth/api-key-not-valid":
+      case "auth/invalid-api-key":
+        return "Firebase rejected the API key. Use the Web app API key from Firebase project settings.";
+      case "auth/operation-not-allowed":
+        return "Email/password login is not enabled in Firebase Authentication.";
+      case "auth/invalid-credential":
+      case "auth/user-not-found":
+      case "auth/wrong-password":
+        return "Invalid admin email or password.";
+      case "auth/too-many-requests":
+        return "Too many attempts. Wait a moment and try again.";
+      default:
+        return err.message;
+    }
+  }
+  return err instanceof Error ? err.message : "Sign in failed";
 }
